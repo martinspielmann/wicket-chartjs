@@ -13,7 +13,7 @@ No Flash, just html, css and javascript.</small></h3>
 /*
  * Line Chart
  */
-ChartPanel<Line> lineChart = new ChartPanel<Line>("lineChartPanel", new Line());
+ChartPanel&lt;Line&gt; lineChart = new ChartPanel&lt;Line&gt;("lineChartPanel", new Line());
 add(lineChart);
 </pre>
 
