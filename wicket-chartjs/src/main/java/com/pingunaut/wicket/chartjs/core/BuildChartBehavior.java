@@ -1,4 +1,4 @@
-package com.pingunaut.wicket.chartjs;
+package com.pingunaut.wicket.chartjs.core;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;

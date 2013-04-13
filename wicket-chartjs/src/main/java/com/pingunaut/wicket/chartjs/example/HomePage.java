@@ -6,12 +6,16 @@ import java.util.List;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.pingunaut.wicket.chartjs.charts.BarChartPanel;
-import com.pingunaut.wicket.chartjs.charts.LineChartPanel;
+import com.pingunaut.wicket.chartjs.chart.impl.Bar;
+import com.pingunaut.wicket.chartjs.chart.impl.Line;
+import com.pingunaut.wicket.chartjs.chart.impl.Radar;
+import com.pingunaut.wicket.chartjs.core.ChartPanel;
 import com.pingunaut.wicket.chartjs.data.BarChartData;
 import com.pingunaut.wicket.chartjs.data.LineChartData;
+import com.pingunaut.wicket.chartjs.data.RadarChartData;
 import com.pingunaut.wicket.chartjs.data.sets.BarDataSet;
 import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
+import com.pingunaut.wicket.chartjs.data.sets.RadarDataSet;
 
 /**
  * Homepage
@@ -76,11 +80,11 @@ public class HomePage extends WebPage {
 		/*
 		 * Line Chart
 		 */
-		LineChartPanel line = new LineChartPanel("lineChartPanel");
-		add(line);
+		ChartPanel<Line> lineChart = new ChartPanel<Line>("lineChartPanel", new Line());
+		add(lineChart);
 
 		LineChartData<LineDataSet> lineData = new LineChartData<LineDataSet>();
-		line.setData(lineData);
+		lineChart.getChart().setData(lineData);
 		lineData.setLabels(labels);
 
 		lineData.getDatasets().add(new LineDataSet(values1));
@@ -90,11 +94,11 @@ public class HomePage extends WebPage {
 		 * Bar Chart
 		 */
 		// set a custom size
-		BarChartPanel bar = new BarChartPanel("barChartPanel", 600, 400);
+		ChartPanel<Bar> bar = new ChartPanel<Bar>("barChartPanel", new Bar(), 400, 300);
 		add(bar);
 
 		BarChartData<BarDataSet> barData = new BarChartData<BarDataSet>();
-		bar.setData(barData);
+		bar.getChart().setData(barData);
 		barData.setLabels(labels);
 
 		barData.getDatasets().add(new BarDataSet(values1));
@@ -102,5 +106,24 @@ public class HomePage extends WebPage {
 		barDataSet2.setFillColor("#678");
 		barDataSet2.setStrokeColor("#567");
 		barData.getDatasets().add(barDataSet2);
+
+		/*
+		 * Radar Chart
+		 */
+		// set a custom size
+		ChartPanel<Radar> radar = new ChartPanel<Radar>("radarChartPanel", new Radar(), 400, 400);
+		add(radar);
+
+		RadarChartData<RadarDataSet> radarData = new RadarChartData<RadarDataSet>();
+		radar.getChart().setData(radarData);
+		radarData.setLabels(labels);
+
+		radarData.getDatasets().add(new RadarDataSet(values1));
+		RadarDataSet radarDataSet2 = new RadarDataSet(values2);
+		radarDataSet2.setFillColor("#456");
+		radarDataSet2.setStrokeColor("#345");
+		radarDataSet2.setPointColor("#234");
+		radarDataSet2.setPointStrokeColor("#123");
+		radarData.getDatasets().add(radarDataSet2);
 	}
 }

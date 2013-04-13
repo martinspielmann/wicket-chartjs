@@ -1,53 +1,37 @@
-package com.pingunaut.wicket.chartjs;
+package com.pingunaut.wicket.chartjs.core;
 
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
+import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.resource.JQueryResourceReference;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pingunaut.wicket.chartjs.data.AbstractChartData;
-import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.pingunaut.wicket.chartjs.chart.IChart;
 
-public abstract class ChartPanel<D extends AbstractChartData, O extends AbstractChartOptions> extends Panel {
+public class ChartPanel<C extends IChart> extends Panel {
 
 	private static final long serialVersionUID = -5882448897795445250L;
 	private final WebMarkupContainer wmc;
 
-	private D data;
-	private O options;
-	private final ObjectMapper mapper = new ObjectMapper();
+	private int width;
+	private int height;
+	private final C chart;
 
-	public ChartPanel(String id) {
+	public ChartPanel(String id, C c) {
 		super(id);
+		this.chart = c;
 		wmc = new WebMarkupContainer("chart");
 	}
 
-	public ChartPanel(String id, IModel<?> model) {
-		super(id, model);
-		wmc = new WebMarkupContainer("chart", model);
-	}
-
-	public ChartPanel(String id, IModel<?> model, final int width, final int height) {
-		super(id, model);
-		wmc = new WebMarkupContainer("chart") {
-			private static final long serialVersionUID = 3385419188467369696L;
-
-			@Override
-			protected void onComponentTag(ComponentTag tag) {
-				super.onComponentTag(tag);
-				tag.append("width", String.valueOf(width), " ");
-				tag.append("height", String.valueOf(height), " ");
-			}
-		};
-	}
-
-	public ChartPanel(String id, final int width, final int height) {
+	public ChartPanel(String id, C c, final int width, final int height) {
 		super(id);
+		this.chart = c;
+		this.width = width;
+		this.height = height;
 		wmc = new WebMarkupContainer("chart") {
 			private static final long serialVersionUID = 3385419188467369696L;
 
@@ -58,6 +42,28 @@ public abstract class ChartPanel<D extends AbstractChartData, O extends Abstract
 				tag.append("height", String.valueOf(height), " ");
 			}
 		};
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	//
+	// public void setWidth(int width) {
+	// this.width = width;
+	// }
+
+	public int getHeight() {
+		return height;
+	}
+
+	//
+	// public void setHeight(int height) {
+	// this.height = height;
+	// }
+
+	public C getChart() {
+		return chart;
 	}
 
 	@Override
@@ -67,6 +73,18 @@ public abstract class ChartPanel<D extends AbstractChartData, O extends Abstract
 		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(ChartPanel.class, "Chart.min.js")));
 		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(ChartPanel.class, "excanvas.compiled.js")));
 		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(ChartPanel.class, "bridge.js")));
+
+		String dataString = null;
+		try {
+			dataString = chart.getMapper().writeValueAsString(chart.getData());
+			System.out.println(dataString);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		response.render(OnDomReadyHeaderItem.forScript("WicketCharts['" + getChartCanvas().getMarkupId() + "']." + chart.getClass().getSimpleName() + "(" + dataString + ", " + chart.getOptions()
+				+ ");"));
+
 	}
 
 	@Override
@@ -77,27 +95,8 @@ public abstract class ChartPanel<D extends AbstractChartData, O extends Abstract
 		wmc.add(new BuildChartBehavior());
 	}
 
-	public ObjectMapper getMapper() {
-		return mapper;
-	}
-
 	public WebMarkupContainer getChartCanvas() {
 		return wmc;
 	}
 
-	public D getData() {
-		return data;
-	}
-
-	public void setData(D data) {
-		this.data = data;
-	}
-
-	public O getOptions() {
-		return options;
-	}
-
-	public void setOptions(O options) {
-		this.options = options;
-	}
 }
