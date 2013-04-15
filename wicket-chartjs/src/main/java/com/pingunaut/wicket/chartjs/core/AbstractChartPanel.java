@@ -3,16 +3,14 @@ package com.pingunaut.wicket.chartjs.core;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.resource.JQueryResourceReference;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pingunaut.wicket.chartjs.chart.IChart;
 
-public class ChartPanel<C extends IChart> extends Panel {
+public abstract class AbstractChartPanel<C extends IChart> extends Panel {
 
 	private static final long serialVersionUID = -5882448897795445250L;
 	private final WebMarkupContainer wmc;
@@ -21,13 +19,13 @@ public class ChartPanel<C extends IChart> extends Panel {
 	private int height;
 	private final C chart;
 
-	public ChartPanel(String id, C c) {
+	public AbstractChartPanel(String id, C c) {
 		super(id);
 		this.chart = c;
 		wmc = new WebMarkupContainer("chart");
 	}
 
-	public ChartPanel(String id, C c, final int width, final int height) {
+	public AbstractChartPanel(String id, C c, final int width, final int height) {
 		super(id);
 		this.chart = c;
 		this.width = width;
@@ -70,21 +68,9 @@ public class ChartPanel<C extends IChart> extends Panel {
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);
 		response.render(JavaScriptHeaderItem.forReference(JQueryResourceReference.get()));
-		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(ChartPanel.class, "Chart.min.js")));
-		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(ChartPanel.class, "excanvas.compiled.js")));
-		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(ChartPanel.class, "bridge.js")));
-
-		String dataString = null;
-		try {
-			dataString = chart.getMapper().writeValueAsString(chart.getData());
-			System.out.println(dataString);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		response.render(OnDomReadyHeaderItem.forScript("WicketCharts['" + getChartCanvas().getMarkupId() + "']." + chart.getClass().getSimpleName() + "(" + dataString + ", " + chart.getOptions()
-				+ ");"));
-
+		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "Chart.min.js")));
+		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "excanvas.compiled.js")));
+		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "bridge.js")));
 	}
 
 	@Override

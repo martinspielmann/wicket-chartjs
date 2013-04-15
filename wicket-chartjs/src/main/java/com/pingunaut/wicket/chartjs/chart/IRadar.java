@@ -4,6 +4,6 @@ import com.pingunaut.wicket.chartjs.data.RadarChartData;
 import com.pingunaut.wicket.chartjs.data.sets.RadarDataSet;
 import com.pingunaut.wicket.chartjs.options.RadarChartOptions;
 
-public interface IRadar extends IChart<RadarChartData<RadarDataSet>, RadarDataSet, RadarChartOptions> {
+public interface IRadar extends IDataSetChart<RadarChartData<RadarDataSet>, RadarChartOptions> {
 
 }

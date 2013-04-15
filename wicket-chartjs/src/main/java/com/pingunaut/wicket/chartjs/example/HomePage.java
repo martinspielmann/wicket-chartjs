@@ -7,12 +7,17 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.pingunaut.wicket.chartjs.chart.impl.Bar;
+import com.pingunaut.wicket.chartjs.chart.impl.Doughnut;
 import com.pingunaut.wicket.chartjs.chart.impl.Line;
+import com.pingunaut.wicket.chartjs.chart.impl.Pie;
+import com.pingunaut.wicket.chartjs.chart.impl.PolarArea;
 import com.pingunaut.wicket.chartjs.chart.impl.Radar;
-import com.pingunaut.wicket.chartjs.core.ChartPanel;
+import com.pingunaut.wicket.chartjs.core.DataSetChartPanel;
+import com.pingunaut.wicket.chartjs.core.SimpleChartPanel;
 import com.pingunaut.wicket.chartjs.data.BarChartData;
 import com.pingunaut.wicket.chartjs.data.LineChartData;
 import com.pingunaut.wicket.chartjs.data.RadarChartData;
+import com.pingunaut.wicket.chartjs.data.SimpleColorValueChartData;
 import com.pingunaut.wicket.chartjs.data.sets.BarDataSet;
 import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
 import com.pingunaut.wicket.chartjs.data.sets.RadarDataSet;
@@ -80,7 +85,7 @@ public class HomePage extends WebPage {
 		/*
 		 * Line Chart
 		 */
-		ChartPanel<Line> lineChart = new ChartPanel<Line>("lineChartPanel", new Line());
+		DataSetChartPanel<Line> lineChart = new DataSetChartPanel<Line>("lineChartPanel", new Line());
 		add(lineChart);
 
 		LineChartData<LineDataSet> lineData = new LineChartData<LineDataSet>();
@@ -94,7 +99,7 @@ public class HomePage extends WebPage {
 		 * Bar Chart
 		 */
 		// set a custom size
-		ChartPanel<Bar> bar = new ChartPanel<Bar>("barChartPanel", new Bar(), 400, 300);
+		DataSetChartPanel<Bar> bar = new DataSetChartPanel<Bar>("barChartPanel", new Bar(), 400, 300);
 		add(bar);
 
 		BarChartData<BarDataSet> barData = new BarChartData<BarDataSet>();
@@ -111,7 +116,7 @@ public class HomePage extends WebPage {
 		 * Radar Chart
 		 */
 		// set a custom size
-		ChartPanel<Radar> radar = new ChartPanel<Radar>("radarChartPanel", new Radar(), 400, 400);
+		DataSetChartPanel<Radar> radar = new DataSetChartPanel<Radar>("radarChartPanel", new Radar(), 400, 400);
 		add(radar);
 
 		RadarChartData<RadarDataSet> radarData = new RadarChartData<RadarDataSet>();
@@ -125,5 +130,44 @@ public class HomePage extends WebPage {
 		radarDataSet2.setPointColor("#234");
 		radarDataSet2.setPointStrokeColor("#123");
 		radarData.getDatasets().add(radarDataSet2);
+
+		/*
+		 * Pie Chart
+		 */
+		// set a custom size
+		SimpleChartPanel<Pie> pie = new SimpleChartPanel<Pie>("pieChartPanel", new Pie(), 400, 400);
+		add(pie);
+
+		List<SimpleColorValueChartData> pieData = new ArrayList<SimpleColorValueChartData>();
+		for (Integer i : values1) {
+			pieData.add(new SimpleColorValueChartData(i, "#" + i + i + i));
+		}
+		pie.getChart().setData(pieData);
+
+		/*
+		 * Polar Area Chart
+		 */
+		// set a custom size
+		SimpleChartPanel<PolarArea> polarArea = new SimpleChartPanel<PolarArea>("polarAreaChartPanel", new PolarArea(), 400, 400);
+		add(polarArea);
+
+		List<SimpleColorValueChartData> polarData = new ArrayList<SimpleColorValueChartData>();
+		for (Integer i : values1) {
+			polarData.add(new SimpleColorValueChartData(i, "#" + i + i + i));
+		}
+		polarArea.getChart().setData(polarData);
+
+		/*
+		 * Doughnut Chart
+		 */
+		// set a custom size
+		SimpleChartPanel<Doughnut> doughnut = new SimpleChartPanel<Doughnut>("doughnutChartPanel", new Doughnut(), 400, 400);
+		add(doughnut);
+
+		List<SimpleColorValueChartData> doughnutData = new ArrayList<SimpleColorValueChartData>();
+		for (Integer i : values1) {
+			doughnutData.add(new SimpleColorValueChartData(i, "#" + i + i + i));
+		}
+		doughnut.getChart().setData(doughnutData);
 	}
 }

@@ -4,6 +4,6 @@ import com.pingunaut.wicket.chartjs.data.LineChartData;
 import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
 import com.pingunaut.wicket.chartjs.options.LineChartOptions;
 
-public interface ILine extends IChart<LineChartData<LineDataSet>, LineDataSet, LineChartOptions> {
+public interface ILine extends IDataSetChart<LineChartData<LineDataSet>, LineChartOptions> {
 
 }

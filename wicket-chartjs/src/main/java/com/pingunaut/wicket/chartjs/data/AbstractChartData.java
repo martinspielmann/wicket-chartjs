@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.pingunaut.wicket.chartjs.data.sets.AbstractDataSet;
 
 // TODO: Auto-generated Javadoc
@@ -14,17 +16,19 @@ import com.pingunaut.wicket.chartjs.data.sets.AbstractDataSet;
  * @param <T>
  *            the dataset type (has to extend {@link AbstractDataSet}
  */
-public abstract class AbstractChartData<T extends AbstractDataSet> implements Serializable {
+public abstract class AbstractChartData<T extends AbstractDataSet> extends SimpleColorValueChartData implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	@JsonIgnore
 	private static final long serialVersionUID = -5230056951310645070L;
 
 	/** The labels. */
-	List<String> labels = new ArrayList<String>();
+	@JsonInclude(Include.NON_NULL)
+	private List<String> labels;
 
 	/** The datasets. */
-	List<T> datasets = new ArrayList<T>();
+	@JsonInclude(Include.NON_NULL)
+	private List<T> datasets;
 
 	/**
 	 * Instantiates a new base chart data.
@@ -39,6 +43,9 @@ public abstract class AbstractChartData<T extends AbstractDataSet> implements Se
 	 * @return the labels
 	 */
 	public List<String> getLabels() {
+		if (labels == null) {
+			labels = new ArrayList<String>();
+		}
 		return labels;
 	}
 
@@ -58,6 +65,9 @@ public abstract class AbstractChartData<T extends AbstractDataSet> implements Se
 	 * @return the datasets
 	 */
 	public List<T> getDatasets() {
+		if (datasets == null) {
+			datasets = new ArrayList<T>();
+		}
 		return datasets;
 	}
 
