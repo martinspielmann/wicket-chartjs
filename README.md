@@ -4,7 +4,7 @@
 Create beautiful charts and graphs in your wicket project. 
 No Flash, just html, css and javascript.</small></h3>
 <h3>Examples</h3>
-See the [examples](https://wicket-chartjs.pingunaut.com/wicket-chartjs/).
+See the [examples](http://wicket-chartjs.pingunaut.com/wicket-chartjs/).
 
 
 
