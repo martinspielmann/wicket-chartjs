@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.pingunaut</groupId>
 	<artifactId>wicket-chartjs</artifactId>
-	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<version>0.0.1</version>
 	<!-- TODO project name -->
 	<name>wicket-chartjs</name>
 	<description></description>
