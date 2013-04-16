@@ -8,4 +8,9 @@ import com.pingunaut.wicket.chartjs.options.RadarChartOptions;
 
 public class Radar extends AbstractDataSetChart<RadarChartData<RadarDataSet>, RadarChartOptions> implements IRadar {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 123723866473637510L;
+
 }

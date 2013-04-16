@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.pingunaut.wicket.chartjs.chart.impl.Bar;
@@ -27,7 +28,10 @@ import com.pingunaut.wicket.chartjs.data.sets.RadarDataSet;
  */
 public class HomePage extends WebPage {
 
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6334467490104772803L;
 
 	/**
 	 * Constructor that is invoked when page is invoked without a session.
@@ -85,25 +89,30 @@ public class HomePage extends WebPage {
 		/*
 		 * Line Chart
 		 */
-		DataSetChartPanel<Line> lineChart = new DataSetChartPanel<Line>("lineChartPanel", new Line());
-		add(lineChart);
-
+		Line line = new Line();
 		LineChartData<LineDataSet> lineData = new LineChartData<LineDataSet>();
-		lineChart.getChart().setData(lineData);
+		line.setData(lineData);
 		lineData.setLabels(labels);
 
 		lineData.getDatasets().add(new LineDataSet(values1));
-		lineData.getDatasets().add(new LineDataSet(values2));
+
+		// Set custom colors
+		LineDataSet lineDataSet2 = new LineDataSet(values2);
+		lineDataSet2.setPointColor("rgba(151,187,205,1)").setPointStrokeColor("#fff").setFillColor("rgba(151,187,205,0.5)").setStrokeColor("rgba(151,187,205,1)");
+		lineData.getDatasets().add(lineDataSet2);
+
+		DataSetChartPanel<Line> lineChart = new DataSetChartPanel<Line>("lineChartPanel", Model.of(line), 400, 300);
+		add(lineChart);
 
 		/*
 		 * Bar Chart
 		 */
-		// set a custom size
-		DataSetChartPanel<Bar> bar = new DataSetChartPanel<Bar>("barChartPanel", new Bar(), 400, 300);
-		add(bar);
+
+		DataSetChartPanel<Bar> barChart = new DataSetChartPanel<Bar>("barChartPanel", Model.of(new Bar()), 400, 300);
+		add(barChart);
 
 		BarChartData<BarDataSet> barData = new BarChartData<BarDataSet>();
-		bar.getChart().setData(barData);
+		barChart.getChart().setData(barData);
 		barData.setLabels(labels);
 
 		barData.getDatasets().add(new BarDataSet(values1));
@@ -116,7 +125,7 @@ public class HomePage extends WebPage {
 		 * Radar Chart
 		 */
 		// set a custom size
-		DataSetChartPanel<Radar> radar = new DataSetChartPanel<Radar>("radarChartPanel", new Radar(), 400, 400);
+		DataSetChartPanel<Radar> radar = new DataSetChartPanel<Radar>("radarChartPanel", Model.of(new Radar()), 400, 400);
 		add(radar);
 
 		RadarChartData<RadarDataSet> radarData = new RadarChartData<RadarDataSet>();
@@ -135,7 +144,7 @@ public class HomePage extends WebPage {
 		 * Pie Chart
 		 */
 		// set a custom size
-		SimpleChartPanel<Pie> pie = new SimpleChartPanel<Pie>("pieChartPanel", new Pie(), 400, 400);
+		SimpleChartPanel<Pie> pie = new SimpleChartPanel<Pie>("pieChartPanel", Model.of(new Pie()), 400, 400);
 		add(pie);
 
 		List<SimpleColorValueChartData> pieData = new ArrayList<SimpleColorValueChartData>();
@@ -148,7 +157,7 @@ public class HomePage extends WebPage {
 		 * Polar Area Chart
 		 */
 		// set a custom size
-		SimpleChartPanel<PolarArea> polarArea = new SimpleChartPanel<PolarArea>("polarAreaChartPanel", new PolarArea(), 400, 400);
+		SimpleChartPanel<PolarArea> polarArea = new SimpleChartPanel<PolarArea>("polarAreaChartPanel", Model.of(new PolarArea()), 400, 400);
 		add(polarArea);
 
 		List<SimpleColorValueChartData> polarData = new ArrayList<SimpleColorValueChartData>();
@@ -161,7 +170,7 @@ public class HomePage extends WebPage {
 		 * Doughnut Chart
 		 */
 		// set a custom size
-		SimpleChartPanel<Doughnut> doughnut = new SimpleChartPanel<Doughnut>("doughnutChartPanel", new Doughnut(), 400, 400);
+		SimpleChartPanel<Doughnut> doughnut = new SimpleChartPanel<Doughnut>("doughnutChartPanel", Model.of(new Doughnut()), 400, 400);
 		add(doughnut);
 
 		List<SimpleColorValueChartData> doughnutData = new ArrayList<SimpleColorValueChartData>();
@@ -169,5 +178,6 @@ public class HomePage extends WebPage {
 			doughnutData.add(new SimpleColorValueChartData(i, "#" + i + i + i));
 		}
 		doughnut.getChart().setData(doughnutData);
+
 	}
 }

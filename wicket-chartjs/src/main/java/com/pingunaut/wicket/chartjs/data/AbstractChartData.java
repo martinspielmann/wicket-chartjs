@@ -7,16 +7,16 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.pingunaut.wicket.chartjs.data.sets.AbstractDataSet;
+import com.pingunaut.wicket.chartjs.data.sets.AbstractBaseDataSet;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class BaseChartData.
  * 
  * @param <T>
- *            the dataset type (has to extend {@link AbstractDataSet}
+ *            the dataset type (has to extend {@link AbstractBaseDataSet}
  */
-public abstract class AbstractChartData<T extends AbstractDataSet> extends SimpleColorValueChartData implements Serializable {
+public abstract class AbstractChartData<T extends AbstractBaseDataSet> extends SimpleColorValueChartData implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	@JsonIgnore

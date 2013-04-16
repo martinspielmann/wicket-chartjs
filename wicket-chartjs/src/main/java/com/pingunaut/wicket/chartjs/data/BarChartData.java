@@ -1,8 +1,8 @@
 package com.pingunaut.wicket.chartjs.data;
 
-import com.pingunaut.wicket.chartjs.data.sets.BarDataSet;
+import com.pingunaut.wicket.chartjs.data.sets.AbstractBaseDataSet;
 
-public class BarChartData<T extends BarDataSet> extends AbstractChartData<T> {
+public class BarChartData<T extends AbstractBaseDataSet> extends AbstractChartData<T> {
 
 	/**
 	 * 

@@ -5,6 +5,7 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.resource.JQueryResourceReference;
 
@@ -17,15 +18,15 @@ public abstract class AbstractChartPanel<C extends IChart> extends Panel {
 
 	private int width;
 	private int height;
-	private final C chart;
+	private final IModel<C> chart;
 
-	public AbstractChartPanel(String id, C c) {
-		super(id);
+	public AbstractChartPanel(String id, IModel<C> c) {
+		super(id, c);
 		this.chart = c;
 		wmc = new WebMarkupContainer("chart");
 	}
 
-	public AbstractChartPanel(String id, C c, final int width, final int height) {
+	public AbstractChartPanel(String id, IModel<C> c, final int width, final int height) {
 		super(id);
 		this.chart = c;
 		this.width = width;
@@ -61,7 +62,7 @@ public abstract class AbstractChartPanel<C extends IChart> extends Panel {
 	// }
 
 	public C getChart() {
-		return chart;
+		return chart.getObject();
 	}
 
 	@Override

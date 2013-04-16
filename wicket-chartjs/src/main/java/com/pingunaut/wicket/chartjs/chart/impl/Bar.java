@@ -8,4 +8,9 @@ import com.pingunaut.wicket.chartjs.options.BarChartOptions;
 
 public class Bar extends AbstractDataSetChart<BarChartData<BarDataSet>, BarChartOptions> implements IBar {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -332976997065056554L;
+
 }

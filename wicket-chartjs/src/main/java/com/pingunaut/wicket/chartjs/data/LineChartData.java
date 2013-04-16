@@ -1,8 +1,8 @@
 package com.pingunaut.wicket.chartjs.data;
 
-import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
+import com.pingunaut.wicket.chartjs.data.sets.AbstractPointColorDataSet;
 
-public class LineChartData<T extends LineDataSet> extends AbstractChartData<T> {
+public class LineChartData<T extends AbstractPointColorDataSet> extends AbstractChartData<T> {
 
 	/**
 	 * 

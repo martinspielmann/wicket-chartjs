@@ -2,18 +2,18 @@ package com.pingunaut.wicket.chartjs.data.sets;
 
 import java.util.List;
 
-public class PolarAreaDataSet extends AbstractBaseDataSet {
+public class PieDataSet extends AbstractBaseDataSet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2725927051375323692L;
 
-	public PolarAreaDataSet() {
+	public PieDataSet() {
 		super();
 	}
 
-	public PolarAreaDataSet(List<Integer> values) {
+	public PieDataSet(List<Integer> values) {
 		super(values);
 	}
 

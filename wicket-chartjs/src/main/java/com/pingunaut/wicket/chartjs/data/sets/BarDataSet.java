@@ -2,21 +2,19 @@ package com.pingunaut.wicket.chartjs.data.sets;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-public class BarDataSet extends AbstractDataSet {
+public class BarDataSet extends AbstractBaseDataSet {
 
 	/**
 	 * 
 	 */
-	@JsonIgnore
-	private static final long serialVersionUID = 1581171902504828797L;
+	private static final long serialVersionUID = 3095383371272813559L;
 
 	public BarDataSet() {
-
+		super();
 	}
 
 	public BarDataSet(List<Integer> values) {
-		setData(values);
+		super(values);
 	}
+
 }
