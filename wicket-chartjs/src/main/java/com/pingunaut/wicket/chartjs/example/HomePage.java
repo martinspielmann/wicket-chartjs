@@ -134,10 +134,7 @@ public class HomePage extends WebPage {
 
 		radarData.getDatasets().add(new RadarDataSet(values1));
 		RadarDataSet radarDataSet2 = new RadarDataSet(values2);
-		radarDataSet2.setFillColor("#456");
-		radarDataSet2.setStrokeColor("#345");
-		radarDataSet2.setPointColor("#234");
-		radarDataSet2.setPointStrokeColor("#123");
+		radarDataSet2.setPointColor("rgba(151,187,205,1)").setPointStrokeColor("#fff").setFillColor("rgba(151,187,205,0.5)").setStrokeColor("rgba(151,187,205,1)");
 		radarData.getDatasets().add(radarDataSet2);
 
 		/*
@@ -149,7 +146,7 @@ public class HomePage extends WebPage {
 
 		List<SimpleColorValueChartData> pieData = new ArrayList<SimpleColorValueChartData>();
 		for (Integer i : values1) {
-			pieData.add(new SimpleColorValueChartData(i, "#" + i + i + i));
+			pieData.add(new SimpleColorValueChartData(i, "#" + (i + 2) + i + i));
 		}
 		pie.getChart().setData(pieData);
 
@@ -162,7 +159,7 @@ public class HomePage extends WebPage {
 
 		List<SimpleColorValueChartData> polarData = new ArrayList<SimpleColorValueChartData>();
 		for (Integer i : values1) {
-			polarData.add(new SimpleColorValueChartData(i, "#" + i + i + i));
+			polarData.add(new SimpleColorValueChartData(i, "#" + i + (i + 2) + i));
 		}
 		polarArea.getChart().setData(polarData);
 
@@ -175,7 +172,7 @@ public class HomePage extends WebPage {
 
 		List<SimpleColorValueChartData> doughnutData = new ArrayList<SimpleColorValueChartData>();
 		for (Integer i : values1) {
-			doughnutData.add(new SimpleColorValueChartData(i, "#" + i + i + i));
+			doughnutData.add(new SimpleColorValueChartData(i, "#" + i + i + (i + 3)));
 		}
 		doughnut.getChart().setData(doughnutData);
 
