@@ -3,6 +3,10 @@
 <h3><small>It's the first one which is completely open source and free to use.
 Create beautiful charts and graphs in your wicket project. 
 No Flash, just html, css and javascript.</small></h3>
+<h3>Examples</h3>
+See the [examples](http://wicket-chartjs.pingunaut.com/wicket-chartjs/).
+
+
 
 <h3>How to use</h3>
 
