@@ -1,10 +1,12 @@
 <h1>This project combines Wicket with chart.js</h1>
 <hr />
-<h3><small>It's the first one which is completely open source and free to use.
-Create beautiful charts and graphs in your wicket project. 
-No Flash, just html, css and javascript.</small></h3>
+<h3><small>it's the first library combining charts with wicket, which is completely open source and free to use.
+create beautiful charts and graphs in your wicket project. 
+no flash, just html, css and javascript.</small></h3>
+<h2>project homepage</h2>
+[homepage](http://wicket-chartjs.pingunaut.com/start).
 <h3>Examples</h3>
-See the [examples](http://wicket-chartjs.pingunaut.com/wicket-chartjs/).
+See the [examples](http://wicket-chartjs.pingunaut.com/start/examples).
 
 
 
