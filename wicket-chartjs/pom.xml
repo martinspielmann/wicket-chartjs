@@ -6,13 +6,15 @@
 	<artifactId>wicket-chartjs</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1</version>
-	<!-- TODO project name -->
 	<name>wicket-chartjs</name>
-	<description></description>
-
-	<!-- TODO <organization> <name>company name</name> <url>company url</url> 
-		</organization> -->
-
+	<description>chart.js for wicket projects. simple but nice looking charts with html5/css/js</description>
+	<organization>
+		<name>pingunaut.com</name>
+		<url>http://pingunaut.com</url>
+	</organization>
+	<scm>
+		<url>https://github.com/pingunaut/wicket-chartjs.git</url>
+	</scm>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>

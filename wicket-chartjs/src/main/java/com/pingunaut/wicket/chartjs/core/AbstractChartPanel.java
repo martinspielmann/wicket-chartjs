@@ -47,19 +47,9 @@ public abstract class AbstractChartPanel<C extends IChart> extends Panel {
 		return width;
 	}
 
-	//
-	// public void setWidth(int width) {
-	// this.width = width;
-	// }
-
 	public int getHeight() {
 		return height;
 	}
-
-	//
-	// public void setHeight(int height) {
-	// this.height = height;
-	// }
 
 	public C getChart() {
 		return chart.getObject();
@@ -86,4 +76,5 @@ public abstract class AbstractChartPanel<C extends IChart> extends Panel {
 		return wmc;
 	}
 
+	public abstract String generateChart();
 }
