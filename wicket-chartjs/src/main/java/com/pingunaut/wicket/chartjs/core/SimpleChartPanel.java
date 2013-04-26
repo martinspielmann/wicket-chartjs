@@ -5,7 +5,7 @@ import org.apache.wicket.model.IModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pingunaut.wicket.chartjs.chart.ISimpleChart;
 
-public class SimpleChartPanel<C extends ISimpleChart> extends AbstractChartPanel<C> {
+public abstract class SimpleChartPanel<C extends ISimpleChart> extends AbstractChartPanel<C> {
 
 	/**
 	 * 
@@ -19,12 +19,6 @@ public class SimpleChartPanel<C extends ISimpleChart> extends AbstractChartPanel
 	public SimpleChartPanel(String id, IModel<C> c, int width, int height) {
 		super(id, c, width, height);
 	}
-
-	// @Override
-	// public void renderHead(IHeaderResponse response) {
-	// super.renderHead(response);
-	// response.render(OnDomReadyHeaderItem.forScript(generateChart()));
-	// }
 
 	@Override
 	public String generateChart() {

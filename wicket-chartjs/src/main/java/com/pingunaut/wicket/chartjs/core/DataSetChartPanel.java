@@ -5,7 +5,7 @@ import org.apache.wicket.model.IModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pingunaut.wicket.chartjs.chart.IDataSetChart;
 
-public class DataSetChartPanel<C extends IDataSetChart> extends AbstractChartPanel<C> {
+public abstract class DataSetChartPanel<C extends IDataSetChart> extends AbstractChartPanel<C> {
 
 	/**
 	 * 
@@ -19,12 +19,6 @@ public class DataSetChartPanel<C extends IDataSetChart> extends AbstractChartPan
 	public DataSetChartPanel(String id, IModel<C> c, int width, int height) {
 		super(id, c, width, height);
 	}
-
-	// @Override
-	// public void renderHead(IHeaderResponse response) {
-	// super.renderHead(response);
-	// response.render(OnDomReadyHeaderItem.forScript(generateChart()));
-	// }
 
 	@Override
 	public String generateChart() {

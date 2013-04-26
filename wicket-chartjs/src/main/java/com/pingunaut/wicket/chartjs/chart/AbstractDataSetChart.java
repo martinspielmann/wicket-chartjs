@@ -8,12 +8,10 @@ public class AbstractDataSetChart<D extends AbstractChartData, O extends Abstrac
 	private D data;
 
 	public D getData() {
-		// TODO Auto-generated method stub
 		return data;
 	}
 
 	public void setData(D data) {
-		// TODO Auto-generated method stub
 		this.data = data;
 	}
 
