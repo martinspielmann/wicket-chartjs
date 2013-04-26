@@ -120,11 +120,10 @@ public abstract class AbstractChartPanel<C extends IChart> extends Panel {
 		boolean isIE = session.getClientInfo().getProperties().isBrowserInternetExplorer();
 		boolean isLowerThan9 = session.getClientInfo().getProperties().getBrowserVersionMajor() < 9;
 		if (isIE && isLowerThan9) {
-			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "excanvas.compiled.js")));
+			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "modernizr-2.6.2-respond-1.1.0.min.js")));
+			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "excanvas.js")));
 		}
-		// response.render(JavaScriptHeaderItem.forReference(new
-		// JavaScriptResourceReference(AbstractChartPanel.class,
-		// "excanvas.compiled.js")));
+
 		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "Chart.min.js")));
 		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "bridge.js")));
 

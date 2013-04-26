@@ -4,7 +4,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
+import org.apache.wicket.markup.head.OnLoadHeaderItem;
 
 public class BuildChartBehavior extends AbstractDefaultAjaxBehavior {
 
@@ -21,9 +21,15 @@ public class BuildChartBehavior extends AbstractDefaultAjaxBehavior {
 	@Override
 	public void renderHead(Component component, IHeaderResponse response) {
 		super.renderHead(component, response);
-		response.render(OnDomReadyHeaderItem.forScript("WicketCharts['" + component.getMarkupId() + "']=buildChart('" + component.getMarkupId() + "');"));
+		// response.render(OnDomReadyHeaderItem.forScript("WicketCharts['" +
+		// component.getMarkupId() + "']=buildChart('" + component.getMarkupId()
+		// + "');"));
+		response.render(OnLoadHeaderItem.forScript("WicketCharts['" + component.getMarkupId() + "']=buildChart('" + component.getMarkupId() + "');"));
+
 		if (component.getParent() instanceof AbstractChartPanel) {
-			response.render(OnDomReadyHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
+			// response.render(OnDomReadyHeaderItem.forScript(((AbstractChartPanel)
+			// component.getParent()).generateChart()));
+			response.render(OnLoadHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
 		}
 	}
 
