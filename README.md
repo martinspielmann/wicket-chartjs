@@ -4,9 +4,9 @@
 create beautiful charts and graphs in your wicket project. 
 no flash, just html, css and javascript.</small></h3>
 <h2>project homepage</h2>
-[homepage](http://wicket-chartjs.pingunaut.com/start).
+[homepage](http://wicket-chartjs.pingunaut.com/).
 <h3>Examples</h3>
-See the [examples](http://wicket-chartjs.pingunaut.com/start/examples).
+See the [examples](http://wicket-chartjs.pingunaut.com/examples).
 
 
 
@@ -19,7 +19,7 @@ See the [examples](http://wicket-chartjs.pingunaut.com/start/examples).
 /*
  * Line Chart
  */
-ChartPanel&lt;Line&gt; lineChart = new ChartPanel&lt;Line&gt;("lineChartPanel", new Line());
+LineChartPanel lineChart = new LineChartPanel("lineChartPanel", Model.of(new Line()));
 add(lineChart);
 </pre>
 
