@@ -15,10 +15,6 @@ public class SimpleColorValueChartData implements Serializable {
 	@JsonIgnore
 	private static final long serialVersionUID = -3393548464561735841L;
 
-	public SimpleColorValueChartData() {
-
-	}
-
 	public SimpleColorValueChartData(Integer value, String color) {
 		this.value = value;
 		this.color = color;

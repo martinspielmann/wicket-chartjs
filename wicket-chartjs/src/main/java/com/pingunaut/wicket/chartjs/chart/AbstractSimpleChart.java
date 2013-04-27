@@ -11,10 +11,9 @@ public abstract class AbstractSimpleChart<D extends SimpleColorValueChartData, O
 	 * 
 	 */
 	private static final long serialVersionUID = 4176838766615656412L;
-	private List<D> data;
+	protected List<D> data;
 
 	public List<D> getData() {
-		// TODO Auto-generated method stub
 		return data;
 	}
 

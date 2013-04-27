@@ -1,11 +1,16 @@
 package com.pingunaut.wicket.chartjs.chart;
 
 import com.pingunaut.wicket.chartjs.data.AbstractChartData;
+import com.pingunaut.wicket.chartjs.data.sets.AbstractBaseDataSet;
 import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
 
-public class AbstractDataSetChart<D extends AbstractChartData, O extends AbstractChartOptions> extends AbstractChart<O> implements IDataSetChart<D, O> {
+public abstract class AbstractDataSetChart<D extends AbstractChartData<S>, O extends AbstractChartOptions, S extends AbstractBaseDataSet> extends AbstractChart<O> implements IDataSetChart<D, O, S> {
 
-	private D data;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 999846601210465414L;
+	protected D data;
 
 	public D getData() {
 		return data;

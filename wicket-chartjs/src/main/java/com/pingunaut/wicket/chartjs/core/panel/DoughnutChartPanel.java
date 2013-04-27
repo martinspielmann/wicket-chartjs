@@ -4,8 +4,10 @@ import org.apache.wicket.model.IModel;
 
 import com.pingunaut.wicket.chartjs.chart.impl.Doughnut;
 import com.pingunaut.wicket.chartjs.core.SimpleChartPanel;
+import com.pingunaut.wicket.chartjs.data.DoughnutChartData;
+import com.pingunaut.wicket.chartjs.options.DoughnutChartOptions;
 
-public class DoughnutChartPanel extends SimpleChartPanel<Doughnut> {
+public class DoughnutChartPanel extends SimpleChartPanel<Doughnut, DoughnutChartData, DoughnutChartOptions> {
 
 	/**
 	 * 

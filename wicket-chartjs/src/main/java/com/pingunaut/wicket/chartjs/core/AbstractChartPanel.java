@@ -6,11 +6,10 @@ import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.protocol.http.WebSession;
-import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.resource.JQueryResourceReference;
 
 import com.pingunaut.wicket.chartjs.chart.IChart;
+import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
 
 /**
  * The Class AbstractChartPanel provides .
@@ -18,7 +17,7 @@ import com.pingunaut.wicket.chartjs.chart.IChart;
  * @param <C>
  *            the generic type
  */
-public abstract class AbstractChartPanel<C extends IChart> extends Panel {
+public abstract class AbstractChartPanel<C extends IChart<O>, O extends AbstractChartOptions> extends Panel {
 
 	private static final long serialVersionUID = -5882448897795445250L;
 
@@ -115,17 +114,6 @@ public abstract class AbstractChartPanel<C extends IChart> extends Panel {
 	public void renderHead(IHeaderResponse response) {
 		super.renderHead(response);
 		response.render(JavaScriptHeaderItem.forReference(JQueryResourceReference.get()));
-		getApplication().getRequestCycleSettings().setGatherExtendedBrowserInfo(true);
-		WebSession session = (WebSession) getSession();
-		boolean isIE = session.getClientInfo().getProperties().isBrowserInternetExplorer();
-		boolean isLowerThan9 = session.getClientInfo().getProperties().getBrowserVersionMajor() < 9;
-		if (isIE && isLowerThan9) {
-			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "modernizr-2.6.2-respond-1.1.0.min.js")));
-			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "excanvas.js")));
-		}
-
-		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "Chart.min.js")));
-		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "bridge.js")));
 
 	}
 

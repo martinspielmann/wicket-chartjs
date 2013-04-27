@@ -16,18 +16,18 @@ import com.pingunaut.wicket.chartjs.data.sets.AbstractBaseDataSet;
  * @param <T>
  *            the dataset type (has to extend {@link AbstractBaseDataSet}
  */
-public abstract class AbstractChartData<T extends AbstractBaseDataSet> extends SimpleColorValueChartData implements Serializable {
+@JsonInclude(Include.NON_NULL)
+public abstract class AbstractChartData<T extends AbstractBaseDataSet> implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	@JsonIgnore
 	private static final long serialVersionUID = -5230056951310645070L;
 
 	/** The labels. */
-	@JsonInclude(Include.NON_NULL)
+
 	private List<String> labels;
 
 	/** The datasets. */
-	@JsonInclude(Include.NON_NULL)
 	private List<T> datasets;
 
 	/**

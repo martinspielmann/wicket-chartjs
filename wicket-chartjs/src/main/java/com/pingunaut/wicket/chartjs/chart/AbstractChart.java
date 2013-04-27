@@ -18,10 +18,10 @@ public abstract class AbstractChart<O extends AbstractChartOptions> implements I
 	private static final long serialVersionUID = 4054134008352228006L;
 
 	/** The options. */
-	private O options;
+	protected O options;
 
 	/** The mapper. */
-	private ObjectMapper mapper;
+	private static ObjectMapper mapper;
 
 	/*
 	 * (non-Javadoc)
@@ -43,7 +43,7 @@ public abstract class AbstractChart<O extends AbstractChartOptions> implements I
 	 * .databind.ObjectMapper)
 	 */
 	public void setMapper(ObjectMapper mapper) {
-		this.mapper = mapper;
+		AbstractChart.mapper = mapper;
 	}
 
 	/*
@@ -54,16 +54,4 @@ public abstract class AbstractChart<O extends AbstractChartOptions> implements I
 	public O getOptions() {
 		return options;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.pingunaut.wicket.chartjs.chart.IChart#setOptions(com.pingunaut.wicket
-	 * .chartjs.options.AbstractChartOptions)
-	 */
-	public void setOptions(O options) {
-		this.options = options;
-	}
-
 }

@@ -22,5 +22,5 @@ public interface IChart<O extends AbstractChartOptions> extends Serializable {
 
 	O getOptions();
 
-	void setOptions(O options);
+	// void setOptions(O options);
 }

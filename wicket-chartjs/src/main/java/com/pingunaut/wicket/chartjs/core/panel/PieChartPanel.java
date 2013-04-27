@@ -4,8 +4,10 @@ import org.apache.wicket.model.IModel;
 
 import com.pingunaut.wicket.chartjs.chart.impl.Pie;
 import com.pingunaut.wicket.chartjs.core.SimpleChartPanel;
+import com.pingunaut.wicket.chartjs.data.PieChartData;
+import com.pingunaut.wicket.chartjs.options.PieChartOptions;
 
-public class PieChartPanel extends SimpleChartPanel<Pie> {
+public class PieChartPanel extends SimpleChartPanel<Pie, PieChartData, PieChartOptions> {
 
 	/**
 	 * 

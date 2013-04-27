@@ -4,8 +4,11 @@ import org.apache.wicket.model.IModel;
 
 import com.pingunaut.wicket.chartjs.chart.impl.Radar;
 import com.pingunaut.wicket.chartjs.core.DataSetChartPanel;
+import com.pingunaut.wicket.chartjs.data.RadarChartData;
+import com.pingunaut.wicket.chartjs.data.sets.RadarDataSet;
+import com.pingunaut.wicket.chartjs.options.RadarChartOptions;
 
-public class RadarChartPanel extends DataSetChartPanel<Radar> {
+public class RadarChartPanel extends DataSetChartPanel<Radar, RadarChartData<RadarDataSet>, RadarChartOptions, RadarDataSet> {
 
 	/**
 	 * 

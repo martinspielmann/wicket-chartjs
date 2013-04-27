@@ -4,8 +4,11 @@ import org.apache.wicket.model.IModel;
 
 import com.pingunaut.wicket.chartjs.chart.impl.Bar;
 import com.pingunaut.wicket.chartjs.core.DataSetChartPanel;
+import com.pingunaut.wicket.chartjs.data.BarChartData;
+import com.pingunaut.wicket.chartjs.data.sets.BarDataSet;
+import com.pingunaut.wicket.chartjs.options.BarChartOptions;
 
-public class BarChartPanel extends DataSetChartPanel<Bar> {
+public class BarChartPanel extends DataSetChartPanel<Bar, BarChartData<BarDataSet>, BarChartOptions, BarDataSet> {
 
 	/**
 	 * 
