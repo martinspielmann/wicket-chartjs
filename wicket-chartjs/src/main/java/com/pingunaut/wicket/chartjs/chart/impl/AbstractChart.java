@@ -1,10 +1,12 @@
-package com.pingunaut.wicket.chartjs.chart;
+package com.pingunaut.wicket.chartjs.chart.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pingunaut.wicket.chartjs.chart.IChart;
 import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
 
 /**
- * AbstractChart provides chart options and a pojo-json mapper.
+ * AbstractChart provides chart options and a pojo-json mapper to communicate
+ * with javascript.
  * 
  * @param <O>
  *            the generic type of options (has to extend
@@ -14,7 +16,6 @@ import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
  */
 public abstract class AbstractChart<O extends AbstractChartOptions> implements IChart<O> {
 
-	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 4054134008352228006L;
 
 	/** The options. */

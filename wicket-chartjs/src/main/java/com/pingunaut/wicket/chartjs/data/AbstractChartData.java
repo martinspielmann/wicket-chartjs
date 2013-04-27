@@ -7,19 +7,21 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.pingunaut.wicket.chartjs.chart.impl.AbstractDataSetChart;
 import com.pingunaut.wicket.chartjs.data.sets.AbstractBaseDataSet;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class BaseChartData.
+ * The Class AbstractChartData provides labels and datasets. this type of data
+ * is used by every {@link AbstractDataSetChart}
  * 
  * @param <T>
  *            the dataset type (has to extend {@link AbstractBaseDataSet}
+ * 
+ * @author Martin Spielmann
  */
 @JsonInclude(Include.NON_NULL)
 public abstract class AbstractChartData<T extends AbstractBaseDataSet> implements Serializable {
 
-	/** The Constant serialVersionUID. */
 	@JsonIgnore
 	private static final long serialVersionUID = -5230056951310645070L;
 
@@ -29,13 +31,6 @@ public abstract class AbstractChartData<T extends AbstractBaseDataSet> implement
 
 	/** The datasets. */
 	private List<T> datasets;
-
-	/**
-	 * Instantiates a new base chart data.
-	 */
-	public AbstractChartData() {
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * Gets the labels.

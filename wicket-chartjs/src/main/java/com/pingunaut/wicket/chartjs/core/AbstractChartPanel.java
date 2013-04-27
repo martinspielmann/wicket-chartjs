@@ -1,21 +1,20 @@
 package com.pingunaut.wicket.chartjs.core;
 
 import org.apache.wicket.markup.ComponentTag;
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.JavaScriptHeaderItem;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.resource.JQueryResourceReference;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pingunaut.wicket.chartjs.chart.IChart;
 import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
 
 /**
- * The Class AbstractChartPanel provides .
+ * The Class AbstractChartPanel provides the base panel holding the chart
+ * rendering canvas element.
  * 
  * @param <C>
- *            the generic type
+ *            the generic type of the chart
  */
 public abstract class AbstractChartPanel<C extends IChart<O>, O extends AbstractChartOptions> extends Panel {
 
@@ -37,9 +36,9 @@ public abstract class AbstractChartPanel<C extends IChart<O>, O extends Abstract
 	 * Instantiates a new abstract chart panel.
 	 * 
 	 * @param id
-	 *            the id
+	 *            the markup id
 	 * @param c
-	 *            the c
+	 *            the IModel of the chart, rendered in this panel
 	 */
 	public AbstractChartPanel(String id, IModel<C> c) {
 		super(id, c);
@@ -51,9 +50,9 @@ public abstract class AbstractChartPanel<C extends IChart<O>, O extends Abstract
 	 * Instantiates a new abstract chart panel.
 	 * 
 	 * @param id
-	 *            the id
+	 *            the markup id
 	 * @param c
-	 *            the c
+	 *            the IModel of the chart, rendered in this panel
 	 * @param width
 	 *            the width
 	 * @param height
@@ -106,20 +105,6 @@ public abstract class AbstractChartPanel<C extends IChart<O>, O extends Abstract
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.apache.wicket.Component#renderHead(org.apache.wicket.markup.head.
-	 * IHeaderResponse)
-	 */
-	@Override
-	public void renderHead(IHeaderResponse response) {
-		super.renderHead(response);
-		response.render(JavaScriptHeaderItem.forReference(JQueryResourceReference.get()));
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see org.apache.wicket.Component#onInitialize()
 	 */
 	@Override
@@ -127,7 +112,7 @@ public abstract class AbstractChartPanel<C extends IChart<O>, O extends Abstract
 		super.onInitialize();
 		add(wmc);
 		wmc.setOutputMarkupId(true);
-		wmc.add(new BuildChartBehavior());
+		wmc.add(new ChartBehavior());
 	}
 
 	/**
@@ -140,9 +125,17 @@ public abstract class AbstractChartPanel<C extends IChart<O>, O extends Abstract
 	}
 
 	/**
-	 * Generate chart.
+	 * Generates chart.
 	 * 
-	 * @return the string
+	 * @return the JavaScript which generates the canvas.
+	 *         {@link SimpleChartPanel} and {@link DataSetChartPanel} implement
+	 *         this method and do nearly the same:
+	 *         <ul>
+	 *         <li>the charts {@link ObjectMapper} converts data to js object</li>
+	 *         <li>the charts {@link ObjectMapper} converts options to js object
+	 *         </li>
+	 *         <li>initialize the chart canvas with the just created js objects</li>
+	 *         </ul>
 	 */
 	public abstract String generateChart();
 }
