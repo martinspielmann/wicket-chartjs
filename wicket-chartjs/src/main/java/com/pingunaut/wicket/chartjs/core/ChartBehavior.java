@@ -79,8 +79,8 @@ public class ChartBehavior extends AbstractDefaultAjaxBehavior {
 			// another IE crap... animation is deactivated for versions < 9
 			// because it's not working anyway
 			if (isIE && isLowerThan9) {
-				response.render(OnLoadHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
 				((AbstractChartPanel) component.getParent()).getChart().getOptions().setAnimation(false);
+				response.render(OnLoadHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
 			} else {
 				response.render(OnDomReadyHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
 			}

@@ -3,7 +3,6 @@ package com.pingunaut.wicket.chartjs.core;
 import org.apache.wicket.model.IModel;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.pingunaut.wicket.chartjs.chart.IDataSetChart;
 import com.pingunaut.wicket.chartjs.chart.ISimpleChart;
 import com.pingunaut.wicket.chartjs.core.panel.DoughnutChartPanel;
 import com.pingunaut.wicket.chartjs.core.panel.PieChartPanel;
@@ -70,7 +69,6 @@ public abstract class SimpleChartPanel<C extends ISimpleChart<D, O>, D extends S
 		try {
 			dataString = getChart().getMapper().writeValueAsString(getChart().getData());
 			optionString = getChart().getMapper().writeValueAsString(getChart().getOptions());
-			System.out.println(getChart().getOptions().getAnimation());
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

@@ -13,13 +13,21 @@ import com.pingunaut.wicket.chartjs.core.panel.PieChartPanel;
 import com.pingunaut.wicket.chartjs.data.PieChartData;
 import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
 
+/**
+ * The Class ExamplePage provides a tiny little running example of
+ * wicket-chartjs. to use it, just type mvn jetty:run
+ * 
+ * @author Martin Spielmann
+ */
 public class ExamplePage extends WebPage {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8484356423313672843L;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.apache.wicket.Component#onInitialize()
+	 */
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
