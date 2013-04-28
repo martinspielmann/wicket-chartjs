@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * The Class SimpleColorValueChartData is what it's named. it has a color and a
- * value.
+ * value. it's used by doughnut, pie and radar charts.
  * 
  * @author Martin Spielmann
  */

@@ -3,263 +3,173 @@ package com.pingunaut.wicket.chartjs.options;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.pingunaut.wicket.chartjs.chart.impl.Line;
 
+/**
+ * The Class LineChartOptions provides options, that are available for
+ * {@link Line}.
+ * 
+ * @author Martin Spielmann
+ */
 @JsonInclude(Include.NON_NULL)
-public class LineChartOptions extends AbstractChartOptions {
+public class LineChartOptions extends AbstractScalableChartOptions {
 
-	/**
-	 * 
-	 */
 	@JsonIgnore
 	private static final long serialVersionUID = -5356780831848556616L;
-	// Boolean - If we show the scale above the chart data
-	private Boolean scaleOverlay;
 
-	// Boolean - If we want to override with a hard coded scale
-	private Boolean scaleOverride;
-
-	// ** Required if scaleOverride is true **
-	// Number - The number of steps in a hard coded scale
-	private Integer scaleSteps;
-	// Number - The value jump in the hard coded scale
-	private Integer scaleStepWidth;
-	// Number - The scale starting value
-	private Integer scaleStartValue;
-
-	// String - Colour of the scale line
-	private String scaleLineColor;
-
-	// Number - Pixel width of the scale line
-	private Integer scaleLineWidth;
-
-	// Boolean - Whether to show labels on the scale
-	private Boolean scaleShowLabels;
-
-	// Interpolated JS string - can access value
-	private String scaleLabel;
-
-	// String - Scale label font declaration for the scale label
-	private String scaleFontFamily;
-
-	// Number - Scale label font size in pixels
-	private Integer scaleFontSize;
-
-	// String - Scale label font weight style
-	private String scaleFontStyle;
-
-	// String - Scale label font colour
-	private String scaleFontColor;
-
-	// /Boolean - Whether grid lines are shown across the chart
-	private Boolean scaleShowGridLines;
-
-	// String - Colour of the grid lines
-	private String scaleGridLineColor;
-
-	// Number - Width of the grid lines
-	private Integer scaleGridLineWidth;
-
-	// Boolean - Whether the line is curved between points
+	/** The bezier curve. */
 	private Boolean bezierCurve;
 
-	// Boolean - Whether to show a dot for each point
+	/** The point dot. */
 	private Boolean pointDot;
 
-	// Number - Radius of each point dot in pixels
+	/** The point dot radius. */
 	private Integer pointDotRadius;
 
-	// Number - Pixel width of point dot stroke
+	/** The point dot stroke width. */
 	private Integer pointDotStrokeWidth;
 
-	// Boolean - Whether to show a stroke for datasets
+	/** The dataset stroke. */
 	private Boolean datasetStroke;
 
-	// Number - Pixel width of dataset stroke
+	/** The dataset stroke width. */
 	private Integer datasetStrokeWidth;
 
-	// Boolean - Whether to fill the dataset with a colour
+	/** The dataset fill. */
 	private Boolean datasetFill;
 
-	public Boolean getScaleOverlay() {
-		return scaleOverlay;
-	}
-
-	public void setScaleOverlay(Boolean scaleOverlay) {
-		this.scaleOverlay = scaleOverlay;
-	}
-
-	public Boolean getScaleOverride() {
-		return scaleOverride;
-	}
-
-	public void setScaleOverride(Boolean scaleOverride) {
-		this.scaleOverride = scaleOverride;
-	}
-
-	public Integer getScaleSteps() {
-		return scaleSteps;
-	}
-
-	public void setScaleSteps(Integer scaleSteps) {
-		this.scaleSteps = scaleSteps;
-	}
-
-	public Integer getScaleStepWidth() {
-		return scaleStepWidth;
-	}
-
-	public void setScaleStepWidth(Integer scaleStepWidth) {
-		this.scaleStepWidth = scaleStepWidth;
-	}
-
-	public Integer getScaleStartValue() {
-		return scaleStartValue;
-	}
-
-	public void setScaleStartValue(Integer scaleStartValue) {
-		this.scaleStartValue = scaleStartValue;
-	}
-
-	public String getScaleLineColor() {
-		return scaleLineColor;
-	}
-
-	public void setScaleLineColor(String scaleLineColor) {
-		this.scaleLineColor = scaleLineColor;
-	}
-
-	public Integer getScaleLineWidth() {
-		return scaleLineWidth;
-	}
-
-	public void setScaleLineWidth(Integer scaleLineWidth) {
-		this.scaleLineWidth = scaleLineWidth;
-	}
-
-	public Boolean getScaleShowLabels() {
-		return scaleShowLabels;
-	}
-
-	public void setScaleShowLabels(Boolean scaleShowLabels) {
-		this.scaleShowLabels = scaleShowLabels;
-	}
-
-	public String getScaleLabel() {
-		return scaleLabel;
-	}
-
-	public void setScaleLabel(String scaleLabel) {
-		this.scaleLabel = scaleLabel;
-	}
-
-	public String getScaleFontFamily() {
-		return scaleFontFamily;
-	}
-
-	public void setScaleFontFamily(String scaleFontFamily) {
-		this.scaleFontFamily = scaleFontFamily;
-	}
-
-	public Integer getScaleFontSize() {
-		return scaleFontSize;
-	}
-
-	public void setScaleFontSize(Integer scaleFontSize) {
-		this.scaleFontSize = scaleFontSize;
-	}
-
-	public String getScaleFontStyle() {
-		return scaleFontStyle;
-	}
-
-	public void setScaleFontStyle(String scaleFontStyle) {
-		this.scaleFontStyle = scaleFontStyle;
-	}
-
-	public String getScaleFontColor() {
-		return scaleFontColor;
-	}
-
-	public void setScaleFontColor(String scaleFontColor) {
-		this.scaleFontColor = scaleFontColor;
-	}
-
-	public Boolean getScaleShowGridLines() {
-		return scaleShowGridLines;
-	}
-
-	public void setScaleShowGridLines(Boolean scaleShowGridLines) {
-		this.scaleShowGridLines = scaleShowGridLines;
-	}
-
-	public String getScaleGridLineColor() {
-		return scaleGridLineColor;
-	}
-
-	public void setScaleGridLineColor(String scaleGridLineColor) {
-		this.scaleGridLineColor = scaleGridLineColor;
-	}
-
-	public Integer getScaleGridLineWidth() {
-		return scaleGridLineWidth;
-	}
-
-	public void setScaleGridLineWidth(Integer scaleGridLineWidth) {
-		this.scaleGridLineWidth = scaleGridLineWidth;
-	}
-
+	/**
+	 * Gets the bezier curve.
+	 * 
+	 * @return the bezier curve
+	 */
 	public Boolean getBezierCurve() {
 		return bezierCurve;
 	}
 
+	/**
+	 * Sets the bezier curve.
+	 * 
+	 * @param bezierCurve
+	 *            decides whether the line is curved between points (default is
+	 *            true).
+	 */
 	public void setBezierCurve(Boolean bezierCurve) {
 		this.bezierCurve = bezierCurve;
 	}
 
+	/**
+	 * Gets the point dot.
+	 * 
+	 * @return the point dot
+	 */
 	public Boolean getPointDot() {
 		return pointDot;
 	}
 
+	/**
+	 * Sets the point dot.
+	 * 
+	 * @param pointDot
+	 *            decides whether to show a dot for each point (default is
+	 *            true).
+	 */
 	public void setPointDot(Boolean pointDot) {
 		this.pointDot = pointDot;
 	}
 
+	/**
+	 * Gets the point dot radius.
+	 * 
+	 * @return the point dot radius
+	 */
 	public Integer getPointDotRadius() {
 		return pointDotRadius;
 	}
 
+	/**
+	 * Sets the point dot radius.
+	 * 
+	 * @param pointDotRadius
+	 *            the new point dot radius (default is 3).
+	 */
 	public void setPointDotRadius(Integer pointDotRadius) {
 		this.pointDotRadius = pointDotRadius;
 	}
 
+	/**
+	 * Gets the point dot stroke width.
+	 * 
+	 * @return the point dot stroke width
+	 */
 	public Integer getPointDotStrokeWidth() {
 		return pointDotStrokeWidth;
 	}
 
+	/**
+	 * Sets the point dot stroke width.
+	 * 
+	 * @param pointDotStrokeWidth
+	 *            the new point dot stroke width (default is 1).
+	 */
 	public void setPointDotStrokeWidth(Integer pointDotStrokeWidth) {
 		this.pointDotStrokeWidth = pointDotStrokeWidth;
 	}
 
+	/**
+	 * Gets the dataset stroke.
+	 * 
+	 * @return the dataset stroke
+	 */
 	public Boolean getDatasetStroke() {
 		return datasetStroke;
 	}
 
+	/**
+	 * Sets the dataset stroke.
+	 * 
+	 * @param datasetStroke
+	 *            decides whether to show a stroke for datasets (default is
+	 *            true)
+	 */
 	public void setDatasetStroke(Boolean datasetStroke) {
 		this.datasetStroke = datasetStroke;
 	}
 
+	/**
+	 * Gets the dataset stroke width.
+	 * 
+	 * @return the dataset stroke width
+	 */
 	public Integer getDatasetStrokeWidth() {
 		return datasetStrokeWidth;
 	}
 
+	/**
+	 * Sets the dataset stroke width.
+	 * 
+	 * @param datasetStrokeWidth
+	 *            the new dataset stroke width (default is 2).
+	 */
 	public void setDatasetStrokeWidth(Integer datasetStrokeWidth) {
 		this.datasetStrokeWidth = datasetStrokeWidth;
 	}
 
+	/**
+	 * Gets the dataset fill.
+	 * 
+	 * @return the dataset fill
+	 */
 	public Boolean getDatasetFill() {
 		return datasetFill;
 	}
 
+	/**
+	 * Sets the dataset fill.
+	 * 
+	 * @param datasetFill
+	 *            whether to fill the dataset with a color (default is true)
+	 */
 	public void setDatasetFill(Boolean datasetFill) {
 		this.datasetFill = datasetFill;
 	}

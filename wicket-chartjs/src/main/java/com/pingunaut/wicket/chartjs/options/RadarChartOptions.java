@@ -3,352 +3,399 @@ package com.pingunaut.wicket.chartjs.options;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.pingunaut.wicket.chartjs.chart.impl.Radar;
 
+/**
+ * The Class RadarChartOptions provides options, that are available for.
+ * 
+ * {@link Radar}.
+ * 
+ * @author Martin Spielmann
+ */
 @JsonInclude(Include.NON_NULL)
 public class RadarChartOptions extends AbstractChartOptions {
 
-	/**
-	 * 
-	 */
 	@JsonIgnore
 	private static final long serialVersionUID = -5356780831848556616L;
 
-	// Boolean - If we show the scale above the chart data
-	private Boolean scaleOverlay;
-
-	// Boolean - If we want to override with a hard coded scale
-	private Boolean scaleOverride;
-
-	// ** Required if scaleOverride is true **
-	// Number - The number of steps in a hard coded scale
-	private Integer scaleSteps;
-	// Number - The value jump in the hard coded scale
-	private Integer scaleStepWidth;
-	// Number - The centre starting value
-	private Integer scaleStartValue;
-
-	// Boolean - Whether to show lines for each scale point
-	private Boolean scaleShowLine;
-
-	// String - Colour of the scale line
-	private String scaleLineColor;
-
-	// Number - Pixel width of the scale line
-	private Integer scaleLineWidth;
-
-	// Boolean - Whether to show labels on the scale
-	private Boolean scaleShowLabels;
-
-	// Interpolated JS string - can access value
-	private String scaleLabel;
-
-	// String - Scale label font declaration for the scale label
-	private String scaleFontFamily;
-
-	// Number - Scale label font size in pixels
-	private Integer scaleFontSize;
-
-	// String - Scale label font weight style
-	private String scaleFontStyle;
-
-	// String - Scale label font colour
-	private String scaleFontColor;
-
-	// Boolean - Show a backdrop to the scale label
+	/** The scale show label backdrop. */
 	private Boolean scaleShowLabelBackdrop;
 
-	// String - The colour of the label backdrop
+	/** The scale backdrop color. */
 	private String scaleBackdropColor;
 
-	// Number - The backdrop padding above & below the label in pixels
+	/** The scale backdrop padding y. */
 	private Integer scaleBackdropPaddingY;
 
-	// Number - The backdrop padding to the side of the label in pixels
+	/** The scale backdrop padding x. */
 	private Integer scaleBackdropPaddingX;
 
-	// Boolean - Whether we show the angle lines out of the radar
+	/** The angle show line out. */
 	private Boolean angleShowLineOut;
 
-	// String - Colour of the angle line
+	/** The angle line color. */
 	private String angleLineColor;
 
-	// Number - Pixel width of the angle line
+	/** The angle line width. */
 	private Integer angleLineWidth;
 
-	// String - Point label font declaration
+	/** The point label font family. */
 	private String pointLabelFontFamily;
 
-	// String - Point label font weight
+	/** The point label font style. */
 	private String pointLabelFontStyle;
 
-	// Number - Point label font size in pixels
+	/** The point label font size. */
 	private Integer pointLabelFontSize;
 
-	// String - Point label font colour
+	/** The point label font color. */
 	private String pointLabelFontColor;
 
-	// Boolean - Whether to show a dot for each point
+	/** The point dot. */
 	private Boolean pointDot;
 
-	// Number - Radius of each point dot in pixels
+	/** The point dot radius. */
 	private Integer pointDotRadius;
 
-	// Number - Pixel width of point dot stroke
+	/** The point dot stroke width. */
 	private Integer pointDotStrokeWidth;
 
-	// Boolean - Whether to show a stroke for datasets
+	/** The dataset stroke. */
 	private Boolean datasetStroke;
 
-	// Number - Pixel width of dataset stroke
+	/** The dataset stroke width. */
 	private Integer datasetStrokeWidth;
 
-	// Boolean - Whether to fill the dataset with a colour
+	/** The dataset fill. */
 	private Boolean datasetFill;
 
-	public Boolean getScaleOverlay() {
-		return scaleOverlay;
-	}
-
-	public void setScaleOverlay(Boolean scaleOverlay) {
-		this.scaleOverlay = scaleOverlay;
-	}
-
-	public Boolean getScaleOverride() {
-		return scaleOverride;
-	}
-
-	public void setScaleOverride(Boolean scaleOverride) {
-		this.scaleOverride = scaleOverride;
-	}
-
-	public Integer getScaleSteps() {
-		return scaleSteps;
-	}
-
-	public void setScaleSteps(Integer scaleSteps) {
-		this.scaleSteps = scaleSteps;
-	}
-
-	public Integer getScaleStepWidth() {
-		return scaleStepWidth;
-	}
-
-	public void setScaleStepWidth(Integer scaleStepWidth) {
-		this.scaleStepWidth = scaleStepWidth;
-	}
-
-	public Integer getScaleStartValue() {
-		return scaleStartValue;
-	}
-
-	public void setScaleStartValue(Integer scaleStartValue) {
-		this.scaleStartValue = scaleStartValue;
-	}
-
-	public Boolean getScaleShowLine() {
-		return scaleShowLine;
-	}
-
-	public void setScaleShowLine(Boolean scaleShowLine) {
-		this.scaleShowLine = scaleShowLine;
-	}
-
-	public String getScaleLineColor() {
-		return scaleLineColor;
-	}
-
-	public void setScaleLineColor(String scaleLineColor) {
-		this.scaleLineColor = scaleLineColor;
-	}
-
-	public Integer getScaleLineWidth() {
-		return scaleLineWidth;
-	}
-
-	public void setScaleLineWidth(Integer scaleLineWidth) {
-		this.scaleLineWidth = scaleLineWidth;
-	}
-
-	public Boolean getScaleShowLabels() {
-		return scaleShowLabels;
-	}
-
-	public void setScaleShowLabels(Boolean scaleShowLabels) {
-		this.scaleShowLabels = scaleShowLabels;
-	}
-
-	public String getScaleLabel() {
-		return scaleLabel;
-	}
-
-	public void setScaleLabel(String scaleLabel) {
-		this.scaleLabel = scaleLabel;
-	}
-
-	public String getScaleFontFamily() {
-		return scaleFontFamily;
-	}
-
-	public void setScaleFontFamily(String scaleFontFamily) {
-		this.scaleFontFamily = scaleFontFamily;
-	}
-
-	public Integer getScaleFontSize() {
-		return scaleFontSize;
-	}
-
-	public void setScaleFontSize(Integer scaleFontSize) {
-		this.scaleFontSize = scaleFontSize;
-	}
-
-	public String getScaleFontStyle() {
-		return scaleFontStyle;
-	}
-
-	public void setScaleFontStyle(String scaleFontStyle) {
-		this.scaleFontStyle = scaleFontStyle;
-	}
-
-	public String getScaleFontColor() {
-		return scaleFontColor;
-	}
-
-	public void setScaleFontColor(String scaleFontColor) {
-		this.scaleFontColor = scaleFontColor;
-	}
-
+	/**
+	 * Gets the scale show label backdrop.
+	 * 
+	 * @return the scale show label backdrop
+	 */
 	public Boolean getScaleShowLabelBackdrop() {
 		return scaleShowLabelBackdrop;
 	}
 
+	/**
+	 * Sets the scale show label backdrop.
+	 * 
+	 * @param scaleShowLabelBackdrop
+	 *            decides whether to show a backdrop to the scale label (default
+	 *            is true).
+	 */
 	public void setScaleShowLabelBackdrop(Boolean scaleShowLabelBackdrop) {
 		this.scaleShowLabelBackdrop = scaleShowLabelBackdrop;
 	}
 
+	/**
+	 * Gets the scale backdrop color.
+	 * 
+	 * @return the scale backdrop color
+	 */
 	public String getScaleBackdropColor() {
 		return scaleBackdropColor;
 	}
 
+	/**
+	 * Sets the scale backdrop color.
+	 * 
+	 * @param scaleBackdropColor
+	 *            the new scale backdrop color (default is
+	 *            "rgba(255,255,255,0.75)").
+	 */
 	public void setScaleBackdropColor(String scaleBackdropColor) {
 		this.scaleBackdropColor = scaleBackdropColor;
 	}
 
+	/**
+	 * Gets the scale backdrop padding y.
+	 * 
+	 * @return the scale backdrop padding y
+	 */
 	public Integer getScaleBackdropPaddingY() {
 		return scaleBackdropPaddingY;
 	}
 
+	/**
+	 * Sets the scale backdrop padding y.
+	 * 
+	 * @param scaleBackdropPaddingY
+	 *            the backdrop padding above & below the label in pixels
+	 *            (default is 2).
+	 */
 	public void setScaleBackdropPaddingY(Integer scaleBackdropPaddingY) {
 		this.scaleBackdropPaddingY = scaleBackdropPaddingY;
 	}
 
+	/**
+	 * Gets the scale backdrop padding x.
+	 * 
+	 * @return the scale backdrop padding x
+	 */
 	public Integer getScaleBackdropPaddingX() {
 		return scaleBackdropPaddingX;
 	}
 
+	/**
+	 * Sets the scale backdrop padding x.
+	 * 
+	 * @param scaleBackdropPaddingX
+	 *            the backdrop padding to the side of the label in pixels
+	 *            (default is 2)
+	 */
 	public void setScaleBackdropPaddingX(Integer scaleBackdropPaddingX) {
 		this.scaleBackdropPaddingX = scaleBackdropPaddingX;
 	}
 
+	/**
+	 * Gets the angle show line out.
+	 * 
+	 * @return the angle show line out
+	 */
 	public Boolean getAngleShowLineOut() {
 		return angleShowLineOut;
 	}
 
+	/**
+	 * Sets the angle show line out.
+	 * 
+	 * @param angleShowLineOut
+	 *            decides whether to show the angle lines out of the radar
+	 *            (default is true)
+	 */
 	public void setAngleShowLineOut(Boolean angleShowLineOut) {
 		this.angleShowLineOut = angleShowLineOut;
 	}
 
+	/**
+	 * Gets the angle line color.
+	 * 
+	 * @return the angle line color
+	 */
 	public String getAngleLineColor() {
 		return angleLineColor;
 	}
 
+	/**
+	 * Sets the angle line color.
+	 * 
+	 * @param angleLineColor
+	 *            the new angle line color (default is "rgba(0,0,0,.1)").
+	 */
 	public void setAngleLineColor(String angleLineColor) {
 		this.angleLineColor = angleLineColor;
 	}
 
+	/**
+	 * Gets the angle line width.
+	 * 
+	 * @return the angle line width
+	 */
 	public Integer getAngleLineWidth() {
 		return angleLineWidth;
 	}
 
+	/**
+	 * Sets the angle line width.
+	 * 
+	 * @param angleLineWidth
+	 *            the new angle line width (default is 1)
+	 */
 	public void setAngleLineWidth(Integer angleLineWidth) {
 		this.angleLineWidth = angleLineWidth;
 	}
 
+	/**
+	 * Gets the point label font family.
+	 * 
+	 * @return the point label font family
+	 */
 	public String getPointLabelFontFamily() {
 		return pointLabelFontFamily;
 	}
 
+	/**
+	 * Sets the point label font family.
+	 * 
+	 * @param pointLabelFontFamily
+	 *            the new point label font family (default is "'Arial'").
+	 */
 	public void setPointLabelFontFamily(String pointLabelFontFamily) {
 		this.pointLabelFontFamily = pointLabelFontFamily;
 	}
 
+	/**
+	 * Gets the point label font style.
+	 * 
+	 * @return the point label font style
+	 */
 	public String getPointLabelFontStyle() {
 		return pointLabelFontStyle;
 	}
 
+	/**
+	 * Sets the point label font style.
+	 * 
+	 * @param pointLabelFontStyle
+	 *            the new point label font style (default is "normal").
+	 */
 	public void setPointLabelFontStyle(String pointLabelFontStyle) {
 		this.pointLabelFontStyle = pointLabelFontStyle;
 	}
 
+	/**
+	 * Gets the point label font size.
+	 * 
+	 * @return the point label font size
+	 */
 	public Integer getPointLabelFontSize() {
 		return pointLabelFontSize;
 	}
 
+	/**
+	 * Sets the point label font size.
+	 * 
+	 * @param pointLabelFontSize
+	 *            the new point label font size (default is 12).
+	 */
 	public void setPointLabelFontSize(Integer pointLabelFontSize) {
 		this.pointLabelFontSize = pointLabelFontSize;
 	}
 
+	/**
+	 * Gets the point label font color.
+	 * 
+	 * @return the point label font color
+	 */
 	public String getPointLabelFontColor() {
 		return pointLabelFontColor;
 	}
 
+	/**
+	 * Sets the point label font color.
+	 * 
+	 * @param pointLabelFontColor
+	 *            the new point label font color (default is "#666").
+	 */
 	public void setPointLabelFontColor(String pointLabelFontColor) {
 		this.pointLabelFontColor = pointLabelFontColor;
 	}
 
+	/**
+	 * Gets the point dot.
+	 * 
+	 * @return the point dot
+	 */
 	public Boolean getPointDot() {
 		return pointDot;
 	}
 
+	/**
+	 * Sets the point dot.
+	 * 
+	 * @param pointDot
+	 *            decides whether to show a dot for each point (default is
+	 *            true).
+	 */
 	public void setPointDot(Boolean pointDot) {
 		this.pointDot = pointDot;
 	}
 
+	/**
+	 * Gets the point dot radius.
+	 * 
+	 * @return the point dot radius
+	 */
 	public Integer getPointDotRadius() {
 		return pointDotRadius;
 	}
 
+	/**
+	 * Sets the point dot radius.
+	 * 
+	 * @param pointDotRadius
+	 *            the new point dot radius (default is 3)
+	 */
 	public void setPointDotRadius(Integer pointDotRadius) {
 		this.pointDotRadius = pointDotRadius;
 	}
 
+	/**
+	 * Gets the point dot stroke width.
+	 * 
+	 * @return the point dot stroke width
+	 */
 	public Integer getPointDotStrokeWidth() {
 		return pointDotStrokeWidth;
 	}
 
+	/**
+	 * Sets the point dot stroke width.
+	 * 
+	 * @param pointDotStrokeWidth
+	 *            the new point dot stroke width (default is 1)
+	 */
 	public void setPointDotStrokeWidth(Integer pointDotStrokeWidth) {
 		this.pointDotStrokeWidth = pointDotStrokeWidth;
 	}
 
+	/**
+	 * Gets the dataset stroke.
+	 * 
+	 * @return the dataset stroke
+	 */
 	public Boolean getDatasetStroke() {
 		return datasetStroke;
 	}
 
+	/**
+	 * Sets the dataset stroke.
+	 * 
+	 * @param datasetStroke
+	 *            decides whether to show a stroke for datasets (default is
+	 *            true)
+	 */
 	public void setDatasetStroke(Boolean datasetStroke) {
 		this.datasetStroke = datasetStroke;
 	}
 
+	/**
+	 * Gets the dataset stroke width.
+	 * 
+	 * @return the dataset stroke width
+	 */
 	public Integer getDatasetStrokeWidth() {
 		return datasetStrokeWidth;
 	}
 
+	/**
+	 * Sets the dataset stroke width.
+	 * 
+	 * @param datasetStrokeWidth
+	 *            the new dataset stroke width (default is 2)
+	 */
 	public void setDatasetStrokeWidth(Integer datasetStrokeWidth) {
 		this.datasetStrokeWidth = datasetStrokeWidth;
 	}
 
+	/**
+	 * Gets the dataset fill.
+	 * 
+	 * @return the dataset fill
+	 */
 	public Boolean getDatasetFill() {
 		return datasetFill;
 	}
 
+	/**
+	 * Sets the dataset fill.
+	 * 
+	 * @param datasetFill
+	 *            decides whether to fill the dataset with a color (default is
+	 *            true).
+	 */
 	public void setDatasetFill(Boolean datasetFill) {
 		this.datasetFill = datasetFill;
 	}

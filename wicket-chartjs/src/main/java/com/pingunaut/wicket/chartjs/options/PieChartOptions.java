@@ -3,66 +3,129 @@ package com.pingunaut.wicket.chartjs.options;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.pingunaut.wicket.chartjs.chart.impl.Pie;
 
+/**
+ * The Class PieChartOptions provides options, that are available for
+ * {@link Pie}.
+ * 
+ * @author Martin Spielmann
+ */
 @JsonInclude(Include.NON_NULL)
 public class PieChartOptions extends AbstractChartOptions {
 
-	/**
-	 * 
-	 */
 	@JsonIgnore
 	private static final long serialVersionUID = -5356780831848556616L;
 
+	/** The segment show stroke. */
 	private Boolean segmentShowStroke;
 
-	// String - The colour of each segment stroke
+	/** The segment stroke color. */
 	private String segmentStrokeColor;
 
-	// Number - The width of each segment stroke
+	/** The segment stroke width. */
 	private Integer segmentStrokeWidth;
 
-	// Boolean - Whether we animate the rotation of the Pie
+	/** The animate rotate. */
 	private Boolean animateRotate;
 
-	// Boolean - Whether we animate scaling the Pie from the centre
+	/** The animate scale. */
 	private Boolean animateScale;
 
+	/**
+	 * Gets the segment show stroke.
+	 * 
+	 * @return the segment show stroke
+	 */
 	public Boolean getSegmentShowStroke() {
 		return segmentShowStroke;
 	}
 
+	/**
+	 * Sets the segment show stroke.
+	 * 
+	 * @param segmentShowStroke
+	 *            decides whether we should show a stroke on each segment
+	 *            (default is true)
+	 */
 	public void setSegmentShowStroke(Boolean segmentShowStroke) {
 		this.segmentShowStroke = segmentShowStroke;
 	}
 
+	/**
+	 * Gets the segment stroke color.
+	 * 
+	 * @return the segment stroke color
+	 */
 	public String getSegmentStrokeColor() {
 		return segmentStrokeColor;
 	}
 
+	/**
+	 * Sets the segment stroke color.
+	 * 
+	 * @param segmentStrokeColor
+	 *            the new segment stroke color (default is "#fff").
+	 */
 	public void setSegmentStrokeColor(String segmentStrokeColor) {
 		this.segmentStrokeColor = segmentStrokeColor;
 	}
 
+	/**
+	 * Gets the segment stroke width.
+	 * 
+	 * @return the segment stroke width
+	 */
 	public Integer getSegmentStrokeWidth() {
 		return segmentStrokeWidth;
 	}
 
+	/**
+	 * Sets the segment stroke width.
+	 * 
+	 * @param segmentStrokeWidth
+	 *            the new segment stroke width (default is 2).
+	 */
 	public void setSegmentStrokeWidth(Integer segmentStrokeWidth) {
 		this.segmentStrokeWidth = segmentStrokeWidth;
 	}
 
+	/**
+	 * Gets the animate rotate.
+	 * 
+	 * @return the animate rotate
+	 */
 	public Boolean getAnimateRotate() {
 		return animateRotate;
 	}
 
+	/**
+	 * Sets the animate rotate.
+	 * 
+	 * @param animateRotate
+	 *            decides whether we animate the rotation of the pie (default is
+	 *            true).
+	 */
 	public void setAnimateRotate(Boolean animateRotate) {
 		this.animateRotate = animateRotate;
 	}
 
+	/**
+	 * Gets the animate scale.
+	 * 
+	 * @return the animate scale
+	 */
 	public Boolean getAnimateScale() {
 		return animateScale;
 	}
 
+	/**
+	 * Sets the animate scale.
+	 * 
+	 * @param animateScale
+	 *            decides whether we animate scaling the Pie from the center
+	 *            (default is false).
+	 */
 	public void setAnimateScale(Boolean animateScale) {
 		this.animateScale = animateScale;
 	}

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 /**
  * The Class AbstractChartOptions provides some basic options, that are
- * available for all kind of charts.
+ * available for all kinds of charts.
  * 
  * @author Martin Spielmann
  */

@@ -3,243 +3,223 @@ package com.pingunaut.wicket.chartjs.options;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.pingunaut.wicket.chartjs.chart.impl.PolarArea;
 
+/**
+ * The Class PolarAreaChartOptions provides options, that are available for.
+ * 
+ * {@link PolarArea}.
+ * 
+ * @author Martin Spielmann
+ */
 @JsonInclude(Include.NON_NULL)
-public class PolarAreaChartOptions extends AbstractChartOptions {
+public class PolarAreaChartOptions extends AbstractScalableChartOptions {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	@JsonIgnore
 	private static final long serialVersionUID = -5356780831848556616L;
 
-	// Boolean - Whether we show the scale above or below the chart segments
-	private Boolean scaleOverlay;
-
-	// Boolean - If we want to override with a hard coded scale
-	private Boolean scaleOverride;
-
-	// ** Required if scaleOverride is true **
-	// Number - The number of steps in a hard coded scale
-	private Integer scaleSteps;
-	// Number - The value jump in the hard coded scale
-	private Integer scaleStepWidth;
-	// Number - The centre starting value
-	private Integer scaleStartValue;
-
-	// Boolean - Show line for each value in the scale
-	private Boolean scaleShowLine;
-
-	// String - The colour of the scale line
-	private String scaleLineColor;
-
-	// Number - The width of the line - in pixels
-	private Integer scaleLineWidth;
-
-	// Boolean - whether we should show text labels
-	private Boolean scaleShowLabels;
-
-	// Interpolated JS string - can access value
-	private String scaleLabel;
-
-	// String - Scale label font declaration for the scale label
-	private String scaleFontFamily;
-
-	// Number - Scale label font size in pixels
-	private Integer scaleFontSize;
-
-	// String - Scale label font weight style
-	private String scaleFontStyle;
-
-	// String - Scale label font colour
-	private String scaleFontColor;
-
-	// Boolean - Show a backdrop to the scale label
+	/** The scale show label backdrop. */
 	private Boolean scaleShowLabelBackdrop;
 
-	// String - The colour of the label backdrop
+	/** The scale backdrop color. */
 	private String scaleBackdropColor;
 
-	// Number - The backdrop padding above & below the label in pixels
+	/** The scale backdrop padding y. */
 	private Integer scaleBackdropPaddingY;
 
-	// Number - The backdrop padding to the side of the label in pixels
+	/** The scale backdrop padding x. */
 	private Integer scaleBackdropPaddingX;
 
-	// Boolean - Stroke a line around each segment in the chart
+	/** The segment show stroke. */
 	private Boolean segmentShowStroke;
 
-	// String - The colour of the stroke on each segement.
+	/** The segment stroke color. */
 	private String segmentStrokeColor;
 
-	// Number - The width of the stroke value in pixels
+	/** The segment stroke width. */
 	private Integer segmentStrokeWidth;
 
-	public Boolean getScaleOverlay() {
-		return scaleOverlay;
-	}
+	/** The animate rotate. */
+	private Boolean animateRotate;
 
-	public void setScaleOverlay(Boolean scaleOverlay) {
-		this.scaleOverlay = scaleOverlay;
-	}
+	/** The animate scale. */
+	private Boolean animateScale;
 
-	public Boolean getScaleOverride() {
-		return scaleOverride;
-	}
-
-	public void setScaleOverride(Boolean scaleOverride) {
-		this.scaleOverride = scaleOverride;
-	}
-
-	public Integer getScaleSteps() {
-		return scaleSteps;
-	}
-
-	public void setScaleSteps(Integer scaleSteps) {
-		this.scaleSteps = scaleSteps;
-	}
-
-	public Integer getScaleStepWidth() {
-		return scaleStepWidth;
-	}
-
-	public void setScaleStepWidth(Integer scaleStepWidth) {
-		this.scaleStepWidth = scaleStepWidth;
-	}
-
-	public Integer getScaleStartValue() {
-		return scaleStartValue;
-	}
-
-	public void setScaleStartValue(Integer scaleStartValue) {
-		this.scaleStartValue = scaleStartValue;
-	}
-
-	public Boolean getScaleShowLine() {
-		return scaleShowLine;
-	}
-
-	public void setScaleShowLine(Boolean scaleShowLine) {
-		this.scaleShowLine = scaleShowLine;
-	}
-
-	public String getScaleLineColor() {
-		return scaleLineColor;
-	}
-
-	public void setScaleLineColor(String scaleLineColor) {
-		this.scaleLineColor = scaleLineColor;
-	}
-
-	public Integer getScaleLineWidth() {
-		return scaleLineWidth;
-	}
-
-	public void setScaleLineWidth(Integer scaleLineWidth) {
-		this.scaleLineWidth = scaleLineWidth;
-	}
-
-	public Boolean getScaleShowLabels() {
-		return scaleShowLabels;
-	}
-
-	public void setScaleShowLabels(Boolean scaleShowLabels) {
-		this.scaleShowLabels = scaleShowLabels;
-	}
-
-	public String getScaleLabel() {
-		return scaleLabel;
-	}
-
-	public void setScaleLabel(String scaleLabel) {
-		this.scaleLabel = scaleLabel;
-	}
-
-	public String getScaleFontFamily() {
-		return scaleFontFamily;
-	}
-
-	public void setScaleFontFamily(String scaleFontFamily) {
-		this.scaleFontFamily = scaleFontFamily;
-	}
-
-	public Integer getScaleFontSize() {
-		return scaleFontSize;
-	}
-
-	public void setScaleFontSize(Integer scaleFontSize) {
-		this.scaleFontSize = scaleFontSize;
-	}
-
-	public String getScaleFontStyle() {
-		return scaleFontStyle;
-	}
-
-	public void setScaleFontStyle(String scaleFontStyle) {
-		this.scaleFontStyle = scaleFontStyle;
-	}
-
-	public String getScaleFontColor() {
-		return scaleFontColor;
-	}
-
-	public void setScaleFontColor(String scaleFontColor) {
-		this.scaleFontColor = scaleFontColor;
-	}
-
+	/**
+	 * Gets the scale show label backdrop.
+	 * 
+	 * @return the scale show label backdrop
+	 */
 	public Boolean getScaleShowLabelBackdrop() {
 		return scaleShowLabelBackdrop;
 	}
 
+	/**
+	 * Sets the scale show label backdrop.
+	 * 
+	 * @param scaleShowLabelBackdrop
+	 *            decides whether to show a backdrop to the scale label
+	 */
 	public void setScaleShowLabelBackdrop(Boolean scaleShowLabelBackdrop) {
 		this.scaleShowLabelBackdrop = scaleShowLabelBackdrop;
 	}
 
+	/**
+	 * Gets the scale backdrop color.
+	 * 
+	 * @return the scale backdrop color
+	 */
 	public String getScaleBackdropColor() {
 		return scaleBackdropColor;
 	}
 
+	/**
+	 * Sets the scale backdrop color.
+	 * 
+	 * @param scaleBackdropColor
+	 *            the new scale backdrop color (default is
+	 *            "rgba(255,255,255,0.75)").
+	 */
 	public void setScaleBackdropColor(String scaleBackdropColor) {
 		this.scaleBackdropColor = scaleBackdropColor;
 	}
 
+	/**
+	 * Gets the scale backdrop padding y.
+	 * 
+	 * @return the scale backdrop padding y
+	 */
 	public Integer getScaleBackdropPaddingY() {
 		return scaleBackdropPaddingY;
 	}
 
+	/**
+	 * Sets the scale backdrop padding y.
+	 * 
+	 * @param scaleBackdropPaddingY
+	 *            the backdrop padding above & below the label in pixels
+	 *            (default is 2).
+	 */
 	public void setScaleBackdropPaddingY(Integer scaleBackdropPaddingY) {
 		this.scaleBackdropPaddingY = scaleBackdropPaddingY;
 	}
 
+	/**
+	 * Gets the scale backdrop padding x.
+	 * 
+	 * @return the scale backdrop padding x
+	 */
 	public Integer getScaleBackdropPaddingX() {
 		return scaleBackdropPaddingX;
 	}
 
+	/**
+	 * Sets the scale backdrop padding x.
+	 * 
+	 * @param scaleBackdropPaddingX
+	 *            the backdrop padding to the side of the label in pixels
+	 *            (default is 2).
+	 */
 	public void setScaleBackdropPaddingX(Integer scaleBackdropPaddingX) {
 		this.scaleBackdropPaddingX = scaleBackdropPaddingX;
 	}
 
+	/**
+	 * Gets the segment show stroke.
+	 * 
+	 * @return the segment show stroke
+	 */
 	public Boolean getSegmentShowStroke() {
 		return segmentShowStroke;
 	}
 
+	/**
+	 * Sets the segment show stroke.
+	 * 
+	 * @param segmentShowStroke
+	 *            decides whether we should show a stroke on each segment
+	 *            (default is true)
+	 */
 	public void setSegmentShowStroke(Boolean segmentShowStroke) {
 		this.segmentShowStroke = segmentShowStroke;
 	}
 
+	/**
+	 * Gets the segment stroke color.
+	 * 
+	 * @return the segment stroke color
+	 */
 	public String getSegmentStrokeColor() {
 		return segmentStrokeColor;
 	}
 
+	/**
+	 * Sets the segment stroke color.
+	 * 
+	 * @param segmentStrokeColor
+	 *            the new segment stroke color (default is "#fff").
+	 */
 	public void setSegmentStrokeColor(String segmentStrokeColor) {
 		this.segmentStrokeColor = segmentStrokeColor;
 	}
 
+	/**
+	 * Gets the segment stroke width.
+	 * 
+	 * @return the segment stroke width
+	 */
 	public Integer getSegmentStrokeWidth() {
 		return segmentStrokeWidth;
 	}
 
+	/**
+	 * Sets the segment stroke width.
+	 * 
+	 * @param segmentStrokeWidth
+	 *            the new segment stroke width (default is 2).
+	 */
 	public void setSegmentStrokeWidth(Integer segmentStrokeWidth) {
 		this.segmentStrokeWidth = segmentStrokeWidth;
+	}
+
+	/**
+	 * Gets the animate rotate.
+	 * 
+	 * @return the animate rotate
+	 */
+	public Boolean getAnimateRotate() {
+		return animateRotate;
+	}
+
+	/**
+	 * Sets the animate rotate.
+	 * 
+	 * @param animateRotate
+	 *            decides whether we animate the rotation of the pie (default is
+	 *            true).
+	 */
+	public void setAnimateRotate(Boolean animateRotate) {
+		this.animateRotate = animateRotate;
+	}
+
+	/**
+	 * Gets the animate scale.
+	 * 
+	 * @return the animate scale
+	 */
+	public Boolean getAnimateScale() {
+		return animateScale;
+	}
+
+	/**
+	 * Sets the animate scale.
+	 * 
+	 * @param animateScale
+	 *            decides whether we animate scaling the Pie from the center
+	 *            (default is false).
+	 */
+	public void setAnimateScale(Boolean animateScale) {
+		this.animateScale = animateScale;
 	}
 }
