@@ -1,6 +1,5 @@
 package com.pingunaut.wicket.chartjs.core;
 
-import org.apache.wicket.Application;
 import org.apache.wicket.Component;
 import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
@@ -31,6 +30,16 @@ public class ChartBehavior extends AbstractDefaultAjaxBehavior {
 	 * org.apache.wicket.ajax.AbstractDefaultAjaxBehavior#respond(org.apache
 	 * .wicket.ajax.AjaxRequestTarget)
 	 */
+	private boolean isCanvasSupported;
+
+	public boolean isCanvasSupported() {
+		return isCanvasSupported;
+	}
+
+	public void setCanvasSupported(boolean isCanvasSupported) {
+		this.isCanvasSupported = isCanvasSupported;
+	}
+
 	@Override
 	protected void respond(AjaxRequestTarget target) {
 
@@ -50,15 +59,13 @@ public class ChartBehavior extends AbstractDefaultAjaxBehavior {
 		// ok, we need jQuery
 		response.render(JavaScriptHeaderItem.forReference(JQueryResourceReference.get()));
 
-		// and we need some browser information too
-		Application.get().getRequestCycleSettings().setGatherExtendedBrowserInfo(true);
 		ClientProperties clientProperties = ((WebSession) Session.get()).getClientInfo().getProperties();
 		boolean isIE = clientProperties.isBrowserInternetExplorer();
 		boolean isLowerThan9 = clientProperties.getBrowserVersionMajor() < 9;
-
+		isCanvasSupported = !(isIE && isLowerThan9);
 		// ie lower than 9 doesn't know what to do with canvas and some js... so
 		// we'll teach him...
-		if (isIE && isLowerThan9) {
+		if (!isCanvasSupported) {
 			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "modernizr-2.6.2-respond-1.1.0.min.js")));
 			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "excanvas.js")));
 		}
@@ -69,20 +76,21 @@ public class ChartBehavior extends AbstractDefaultAjaxBehavior {
 		// chart.js docs describe a problem with initializing canvas context
 		// onDomReady in IE < 9. to avoid that, onLoad is used in that case
 		// instead
-		if (isIE && isLowerThan9) {
-			response.render(OnLoadHeaderItem.forScript("WicketCharts['" + component.getMarkupId() + "']=buildChart('" + component.getMarkupId() + "');"));
-		} else {
+		if (isCanvasSupported) {
 			response.render(OnDomReadyHeaderItem.forScript("WicketCharts['" + component.getMarkupId() + "']=buildChart('" + component.getMarkupId() + "');"));
+		} else {
+			response.render(OnLoadHeaderItem.forScript("WicketCharts['" + component.getMarkupId() + "']=buildChart('" + component.getMarkupId() + "');"));
+
 		}
 
 		if (component.getParent() instanceof AbstractChartPanel) {
 			// another IE crap... animation is deactivated for versions < 9
 			// because it's not working anyway
-			if (isIE && isLowerThan9) {
+			if (isCanvasSupported) {
+				response.render(OnDomReadyHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
+			} else {
 				((AbstractChartPanel) component.getParent()).getChart().getOptions().setAnimation(false);
 				response.render(OnLoadHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
-			} else {
-				response.render(OnDomReadyHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
 			}
 
 		}
