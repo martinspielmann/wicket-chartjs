@@ -1,12 +1,11 @@
 <h1>This project combines Wicket with chart.js</h1>
-<hr />
-<h3><small>it's the first library combining charts with wicket, which is completely open source and free to use.
-create beautiful charts and graphs in your wicket project. 
-no flash, just html, css and javascript.</small></h3>
+<p>this project provides all chart.js charts. 
+it is completely open source and free to use (also in commercial projects). 
+create beautiful charts and graphs in your wicket project. no flash, just html, css and javascript.</p>
 <h2>project homepage</h2>
-[homepage](http://wicket-chartjs.pingunaut.com/).
+[homepage](http://pingunaut.com/wicket-chartjs).
 <h3>Examples</h3>
-See the [examples](http://wicket-chartjs.pingunaut.com/examples).
+See the [examples](http://pingunaut.com/wicket-chartjs/examples).
 
 
 
@@ -37,15 +36,8 @@ values1.add(2);
 values1.add(6);
 values1.add(7);
 
-List<Integer> values2 = new ArrayList<Integer>();
-values2.add(3);
-values2.add(4);
-values2.add(8);
-values2.add(3);
-
 LineChartData<LineDataSet> lineData = new LineChartData<LineDataSet>();
 lineData.getDatasets().add(new LineDataSet(values1));
-lineData.getDatasets().add(new LineDataSet(values2));
 
 lineChart.getChart().setData(lineData);
 lineData.setLabels(labels);
@@ -60,6 +52,6 @@ lineData.setLabels(labels);
 <h3>Compatibility</h3>
 <ul>
 <li>IE 9 and upwards</li>
-<li>IE 7 and 8 will be available soon</li>
+<li>IE 7 and 8 in parts</li>
 <li>the rest isn't a problem ;)</li>
 <ul>
