@@ -12,7 +12,8 @@ See the [examples](http://pingunaut.com/wicket-chartjs/examples).
 <h3>How to use</h3>
 
 <ol>
-<li>using maven? include artifact in your pom.  NOT using maven? download the jar and add it to your classpath (artifact and jar coming soon)</li>
+<li>using maven? include artifact in your pom (artifact and jar coming soon). <br />
+NOT using maven? download the jar from the homepage and add it to your classpath</li>
 <li>add a new ChartPanel to your Page</li>
 <pre>
 /*
