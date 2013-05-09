@@ -20,7 +20,7 @@
 	<groupId>com.pingunaut</groupId>
 	<artifactId>wicket-chartjs</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>wicket-chartjs</name>
 	<description>chart.js for wicket projects. simple but nice looking charts with html5/css/js</description>
 	<organization>
@@ -83,11 +83,10 @@
 			<version>1.2.17</version>
 		</dependency>
 
-		<!-- JUNIT DEPENDENCY FOR TESTING -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.2</version>
+			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
 
