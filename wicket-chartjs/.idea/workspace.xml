@@ -4,6 +4,7 @@
     <list default="true" id="f3b4cefb-2767-435c-82e7-89cd90556fd6" name="Default" comment="" />
     <ignored path="wicket-chartjs.iws" />
     <ignored path=".idea/workspace.xml" />
+    <file path="/.gitignore" changelist="f3b4cefb-2767-435c-82e7-89cd90556fd6" time="1383436046010" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,10 +65,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="157" column="28" selection-start="4421" selection-end="4421" vertical-scroll-proportion="0.73170733">
+            <state line="157" column="28" selection-start="4421" selection-end="4421" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="5" selection-start="39" selection-end="39" vertical-scroll-proportion="0.10221465">
               <folding />
             </state>
           </provider>
@@ -84,6 +94,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -380,7 +391,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="28" selection-start="4421" selection-end="4421" vertical-scroll-proportion="0.73170733">
+        <state line="157" column="28" selection-start="4421" selection-end="4421" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="5" selection-start="39" selection-end="39" vertical-scroll-proportion="0.10221465">
           <folding />
         </state>
       </provider>
