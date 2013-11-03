@@ -20,7 +20,7 @@
     <groupId>com.pingunaut</groupId>
     <artifactId>wicket-chartjs</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
     <name>wicket-chartjs</name>
     <description>chart.js for wicket projects. simple but nice looking charts with html5/css/js</description>
     <organization>
@@ -157,6 +157,20 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
