@@ -11,7 +11,7 @@
 	<groupId>com.pingunaut</groupId>
 	<artifactId>wicket-chartjs</artifactId>
 	<packaging>jar</packaging>
-	<version>6.14.1-SNAPSHOT</version>
+	<version>6.18.0-SNAPSHOT</version>
 	<name>wicket-chartjs</name>
 	<description>chart.js for wicket projects. simple but nice looking charts with html5/css/js</description>
 
@@ -54,12 +54,6 @@
 			<version>${wicket.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-extensions</artifactId>
-			<version>${wicket.version}</version>
-		</dependency>
-
 		<!-- JSON DEPENDENCIES - JACKSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -82,7 +76,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.5</version>
+			<version>1.7.10</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -157,7 +151,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.2</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -185,9 +179,9 @@
 	</build>
 
 	<properties>
-		<wicket.version>6.14.0</wicket.version>
+		<wicket.version>6.18.0</wicket.version>
 		<jetty.version>6.1.26</jetty.version>
-		<jackson.version>2.1.4</jackson.version>
+		<jackson.version>2.5.0</jackson.version>
 	</properties>
 
 </project>
