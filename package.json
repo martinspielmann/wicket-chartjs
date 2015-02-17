@@ -1,0 +1,22 @@
+{
+  "name": "wicket-chartjs",
+  "version": "6.19.0",
+  "description": "<h1>This project combines Wicket with chart.js</h1> <p>this project provides all chart.js charts.  it is completely open source and free to use (also in commercial projects).  create beautiful charts and graphs in your wicket project. no flash, just html, css and javascript.</p> <h2>project homepage</h2> [homepage](http://pingunaut.com/wicket-chartjs). <h3>Examples</h3> See the [examples](http://pingunaut.com/wicket-chartjs/examples).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pingunaut/wicket-chartjs.git"
+  },
+  "author": "martin spielmann",
+  "license": "Apache License, Version 2.0",
+  "bugs": {
+    "url": "https://github.com/pingunaut/wicket-chartjs/issues"
+  },
+  "homepage": "https://github.com/pingunaut/wicket-chartjs",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+  }
+}

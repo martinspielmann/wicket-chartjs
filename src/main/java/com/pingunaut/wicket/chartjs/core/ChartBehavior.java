@@ -85,7 +85,7 @@ public class ChartBehavior extends AbstractDefaultAjaxBehavior {
 			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "excanvas.js")));
 		}
 
-		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "Chart.min.js")));
+		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "chartjs/Chart.min.js")));
 		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "bridge.js")));
 
 		// chart.js docs describe a problem with initializing canvas context
