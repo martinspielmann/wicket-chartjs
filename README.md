@@ -4,16 +4,11 @@ it is completely open source and free to use (also in commercial projects).
 create beautiful charts and graphs in your wicket project. no flash, just html, css and javascript.</p>
 <h2>project homepage</h2>
 [homepage](http://pingunaut.com/wicket-chartjs).
-<h3>Examples</h3>
-See the [examples](http://pingunaut.com/wicket-chartjs/examples).
-
-
 
 <h3>How to use</h3>
 
 <ol>
-<li>using maven? include artifact in your pom (artifact and jar coming soon). <br />
-NOT using maven? download the jar from the homepage and add it to your classpath</li>
+<li>include maven artifact in your pom</li>
 <li>add a new ChartPanel to your Page</li>
 <pre>
 /*
