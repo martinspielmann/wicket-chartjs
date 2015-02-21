@@ -32,6 +32,16 @@ public class RadarChartOptions extends AbstractChartOptions {
 
 	@JsonIgnore
 	private static final long serialVersionUID = -5356780831848556616L;
+	
+  private Boolean scaleShowLine = true;
+
+  private Boolean scaleShowLabels = false;
+
+  private Boolean scaleBeginAtZero = true;
+
+  private Integer pointHitDetectionRadius = 20;
+
+  private String legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>";
 
 	/** The scale show label backdrop. */
 	private Boolean scaleShowLabelBackdrop;
@@ -84,7 +94,47 @@ public class RadarChartOptions extends AbstractChartOptions {
 	/** The dataset fill. */
 	private Boolean datasetFill;
 
-	/**
+	public Boolean getScaleShowLine() {
+    return scaleShowLine;
+  }
+
+  public void setScaleShowLine(Boolean scaleShowLine) {
+    this.scaleShowLine = scaleShowLine;
+  }
+
+  public Boolean getScaleShowLabels() {
+    return scaleShowLabels;
+  }
+
+  public void setScaleShowLabels(Boolean scaleShowLabels) {
+    this.scaleShowLabels = scaleShowLabels;
+  }
+
+  public Boolean getScaleBeginAtZero() {
+    return scaleBeginAtZero;
+  }
+
+  public void setScaleBeginAtZero(Boolean scaleBeginAtZero) {
+    this.scaleBeginAtZero = scaleBeginAtZero;
+  }
+
+  public Integer getPointHitDetectionRadius() {
+    return pointHitDetectionRadius;
+  }
+
+  public void setPointHitDetectionRadius(Integer pointHitDetectionRadius) {
+    this.pointHitDetectionRadius = pointHitDetectionRadius;
+  }
+
+  public String getLegendTemplate() {
+    return legendTemplate;
+  }
+
+  public void setLegendTemplate(String legendTemplate) {
+    this.legendTemplate = legendTemplate;
+  }
+
+  /**
 	 * Gets the scale show label backdrop.
 	 * 
 	 * @return the scale show label backdrop

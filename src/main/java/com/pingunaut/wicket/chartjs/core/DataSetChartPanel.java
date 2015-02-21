@@ -91,6 +91,8 @@ public abstract class DataSetChartPanel<C extends IDataSetChart<D, O, S>, D exte
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		return "WicketCharts['" + getChartCanvas().getMarkupId() + "']." + getChart().getClass().getSimpleName() + "(" + dataString + ", " + optionString + ");";
+		
+		String js = "WicketCharts['" + getChartCanvas().getMarkupId() + "']." + getChart().getClass().getSimpleName() + "(" + dataString + ", " + optionString + ");";
+		return js;
 	}
 }

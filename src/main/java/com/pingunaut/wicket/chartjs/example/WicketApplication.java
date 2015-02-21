@@ -24,5 +24,4 @@ public class WicketApplication extends WebApplication {
 	public Class<? extends Page> getHomePage() {
 		return ExamplePage.class;
 	}
-
 }

@@ -36,78 +36,82 @@ import org.apache.wicket.resource.JQueryResourceReference;
  */
 public class ChartBehavior extends AbstractDefaultAjaxBehavior {
 
-	private static final long serialVersionUID = 5935294904099227859L;
+  private static final long serialVersionUID = 5935294904099227859L;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.apache.wicket.ajax.AbstractDefaultAjaxBehavior#respond(org.apache
-	 * .wicket.ajax.AjaxRequestTarget)
-	 */
-	private boolean isCanvasSupported;
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.apache.wicket.ajax.AbstractDefaultAjaxBehavior#respond(org.apache
+   * .wicket.ajax.AjaxRequestTarget)
+   */
+  private boolean isCanvasSupported;
 
-	public boolean isCanvasSupported() {
-		return isCanvasSupported;
-	}
+  public ChartBehavior() {
+    super();
+  }
 
-	public void setCanvasSupported(boolean isCanvasSupported) {
-		this.isCanvasSupported = isCanvasSupported;
-	}
+  public boolean isCanvasSupported() {
+    return isCanvasSupported;
+  }
 
-	@Override
-	protected void respond(AjaxRequestTarget target) {
+  public void setCanvasSupported(boolean isCanvasSupported) {
+    this.isCanvasSupported = isCanvasSupported;
+  }
 
-	}
+  @Override
+  protected void respond(AjaxRequestTarget target) {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.apache.wicket.ajax.AbstractDefaultAjaxBehavior#renderHead(org.apache
-	 * .wicket.Component, org.apache.wicket.markup.head.IHeaderResponse)
-	 */
-	@Override
-	public void renderHead(Component component, IHeaderResponse response) {
-		super.renderHead(component, response);
+  }
 
-		// ok, we need jQuery
-		response.render(JavaScriptHeaderItem.forReference(JQueryResourceReference.get()));
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.apache.wicket.ajax.AbstractDefaultAjaxBehavior#renderHead(org.apache
+   * .wicket.Component, org.apache.wicket.markup.head.IHeaderResponse)
+   */
+  @Override
+  public void renderHead(Component component, IHeaderResponse response) {
+    super.renderHead(component, response);
 
-		ClientProperties clientProperties = ((WebSession) Session.get()).getClientInfo().getProperties();
-		boolean isIE = clientProperties.isBrowserInternetExplorer();
-		boolean isLowerThan9 = clientProperties.getBrowserVersionMajor() < 9;
-		isCanvasSupported = !(isIE && isLowerThan9);
-		// ie lower than 9 doesn't know what to do with canvas and some js... so
-		// we'll teach him...
-		if (!isCanvasSupported) {
-			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "modernizr-2.6.2-respond-1.1.0.min.js")));
-			response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "excanvas.js")));
-		}
+    // ok, we need jQuery
+    response.render(JavaScriptHeaderItem.forReference(JQueryResourceReference.get()));
 
-		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "chartjs/Chart.min.js")));
-		response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "bridge.js")));
+    ClientProperties clientProperties = ((WebSession) Session.get()).getClientInfo().getProperties();
+    boolean isIE = clientProperties.isBrowserInternetExplorer();
+    boolean isLowerThan9 = clientProperties.getBrowserVersionMajor() < 9;
+    isCanvasSupported = !(isIE && isLowerThan9);
+    // ie lower than 9 doesn't know what to do with canvas and some js... so
+    // we'll teach him...
+    if (!isCanvasSupported) {
+      response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "modernizr-2.6.2-respond-1.1.0.min.js")));
+      response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "excanvas.js")));
+    }
 
-		// chart.js docs describe a problem with initializing canvas context
-		// onDomReady in IE < 9. to avoid that, onLoad is used in that case
-		// instead
-		if (isCanvasSupported) {
-			response.render(OnDomReadyHeaderItem.forScript("WicketCharts['" + component.getMarkupId() + "']=buildChart('" + component.getMarkupId() + "');"));
-		} else {
-			response.render(OnLoadHeaderItem.forScript("WicketCharts['" + component.getMarkupId() + "']=buildChart('" + component.getMarkupId() + "');"));
+    response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "chartjs/Chart.min.js")));
+    response.render(JavaScriptHeaderItem.forReference(new JavaScriptResourceReference(AbstractChartPanel.class, "bridge.js")));
 
-		}
+    // chart.js docs describe a problem with initializing canvas context
+    // onDomReady in IE < 9. to avoid that, onLoad is used in that case
+    // instead
+    if (isCanvasSupported) {
+      response.render(OnDomReadyHeaderItem.forScript("WicketCharts['" + component.getMarkupId() + "']=buildChart('" + component.getMarkupId() + "');"));
+    } else {
+      response.render(OnLoadHeaderItem.forScript("WicketCharts['" + component.getMarkupId() + "']=buildChart('" + component.getMarkupId() + "');"));
 
-		if (component.getParent() instanceof AbstractChartPanel) {
-			// another IE crap... animation is deactivated for versions < 9
-			// because it's not working anyway
-			if (isCanvasSupported) {
-				response.render(OnDomReadyHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
-			} else {
-				((AbstractChartPanel) component.getParent()).getChart().getOptions().setAnimation(false);
-				response.render(OnLoadHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
-			}
+    }
 
-		}
-	}
+    if (component.getParent() instanceof AbstractChartPanel) {
+      // another IE crap... animation is deactivated for versions < 9
+      // because it's not working anyway
+      if (isCanvasSupported) {
+        response.render(OnDomReadyHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
+      } else {
+        ((AbstractChartPanel) component.getParent()).getChart().getOptions().setAnimation(false);
+        response.render(OnLoadHeaderItem.forScript(((AbstractChartPanel) component.getParent()).generateChart()));
+      }
+
+    }
+  }
 }

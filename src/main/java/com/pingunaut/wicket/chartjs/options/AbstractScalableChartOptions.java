@@ -28,6 +28,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public abstract class AbstractScalableChartOptions extends AbstractChartOptions {
 
+  
+
+  
+  
 	@JsonIgnore
 	private static final long serialVersionUID = 5541028648375495668L;
 

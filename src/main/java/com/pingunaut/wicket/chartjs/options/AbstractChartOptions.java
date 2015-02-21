@@ -20,6 +20,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 
 /**
  * The Class AbstractChartOptions provides some basic options, that are
@@ -44,8 +45,19 @@ public abstract class AbstractChartOptions implements Serializable {
 
 	/** The on animation complete. */
 	private String onAnimationComplete;
+	
+	@JsonRawValue
+	private String customTooltips;
+	
+  public String getCustomTooltips() {
+    return customTooltips;
+  }
 
-	/**
+  public void setCustomTooltips(String customTooltips) {
+    this.customTooltips = customTooltips;
+  }
+
+  /**
 	 * Gets the animation.
 	 * 
 	 * @return the animation

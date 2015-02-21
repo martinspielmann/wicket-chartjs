@@ -32,6 +32,7 @@ public class DoughnutChartOptions extends PieChartOptions {
 	@JsonIgnore
 	private static final long serialVersionUID = -5356780831848556616L;
 
+	
 	/** The percentage inner cutout. */
 	private Integer percentageInnerCutout;
 

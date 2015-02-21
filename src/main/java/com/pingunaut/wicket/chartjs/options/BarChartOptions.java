@@ -31,6 +31,24 @@ public class BarChartOptions extends AbstractScalableChartOptions {
 
 	@JsonIgnore
 	private static final long serialVersionUID = -5356780831848556616L;
+	
+	
+	
+  //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+	private Boolean scaleBeginAtZero = true;
+
+  //Boolean - Whether to show horizontal lines (except X axis)
+	private Boolean scaleShowHorizontalLines = true;
+
+  //Boolean - Whether to show vertical lines (except Y axis)
+	private Boolean scaleShowVerticalLines = true;
+
+  //String - A legend template
+  private String legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>";
+
+	
+	
+	
 
 	/** The bar show stroke. */
 	private Boolean barShowStroke;

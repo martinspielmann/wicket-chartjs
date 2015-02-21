@@ -33,7 +33,7 @@ public class PolarAreaChartOptions extends AbstractScalableChartOptions {
 	/** The Constant serialVersionUID. */
 	@JsonIgnore
 	private static final long serialVersionUID = -5356780831848556616L;
-
+	
 	/** The scale show label backdrop. */
 	private Boolean scaleShowLabelBackdrop;
 
@@ -61,7 +61,39 @@ public class PolarAreaChartOptions extends AbstractScalableChartOptions {
 	/** The animate scale. */
 	private Boolean animateScale;
 
-	/**
+	private Boolean scaleBeginAtZero = true;
+
+  private Boolean scaleShowLine = true;
+
+  private String legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>";
+
+  
+	
+	public Boolean getScaleBeginAtZero() {
+    return scaleBeginAtZero;
+  }
+
+  public void setScaleBeginAtZero(Boolean scaleBeginAtZero) {
+    this.scaleBeginAtZero = scaleBeginAtZero;
+  }
+
+  public Boolean getScaleShowLine() {
+    return scaleShowLine;
+  }
+
+  public void setScaleShowLine(Boolean scaleShowLine) {
+    this.scaleShowLine = scaleShowLine;
+  }
+
+  public String getLegendTemplate() {
+    return legendTemplate;
+  }
+
+  public void setLegendTemplate(String legendTemplate) {
+    this.legendTemplate = legendTemplate;
+  }
+
+  /**
 	 * Gets the scale show label backdrop.
 	 * 
 	 * @return the scale show label backdrop

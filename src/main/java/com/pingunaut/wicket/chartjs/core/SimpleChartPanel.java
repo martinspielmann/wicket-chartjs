@@ -42,51 +42,53 @@ import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
  */
 public abstract class SimpleChartPanel<C extends ISimpleChart<D, O>, D extends SimpleColorValueChartData, O extends AbstractChartOptions> extends AbstractChartPanel<C, O> {
 
-	private static final long serialVersionUID = 2899070514574123978L;
+  private static final long serialVersionUID = 2899070514574123978L;
 
-	/**
-	 * Instantiates a new simple chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link ISimpleChart}
-	 */
-	public SimpleChartPanel(String id, IModel<C> c) {
-		super(id, c);
-	}
+  /**
+   * Instantiates a new simple chart panel.
+   * 
+   * @param id
+   *            the markup id
+   * @param c
+   *            the IModel of a {@link ISimpleChart}
+   */
+  public SimpleChartPanel(String id, IModel<C> c) {
+    super(id, c);
+  }
 
-	/**
-	 * Instantiates a new simple chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link ISimpleChart}
-	 * @param width
-	 *            the width
-	 * @param height
-	 *            the height
-	 */
-	public SimpleChartPanel(String id, IModel<C> c, int width, int height) {
-		super(id, c, width, height);
-	}
+  /**
+   * Instantiates a new simple chart panel.
+   * 
+   * @param id
+   *            the markup id
+   * @param c
+   *            the IModel of a {@link ISimpleChart}
+   * @param width
+   *            the width
+   * @param height
+   *            the height
+   */
+  public SimpleChartPanel(String id, IModel<C> c, int width, int height) {
+    super(id, c, width, height);
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.pingunaut.wicket.chartjs.core.AbstractChartPanel#generateChart()
-	 */
-	@Override
-	public String generateChart() {
-		String dataString = null;
-		String optionString = null;
-		try {
-			dataString = getChart().getMapper().writeValueAsString(getChart().getData());
-			optionString = getChart().getMapper().writeValueAsString(getChart().getOptions());
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return "WicketCharts['" + getChartCanvas().getMarkupId() + "']." + getChart().getClass().getSimpleName() + "(" + dataString + ", " + optionString + ");";
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see com.pingunaut.wicket.chartjs.core.AbstractChartPanel#generateChart()
+   */
+  @Override
+  public String generateChart() {
+    String dataString = null;
+    String optionString = null;
+    try {
+      dataString = getChart().getMapper().writeValueAsString(getChart().getData());
+      optionString = getChart().getMapper().writeValueAsString(getChart().getOptions());
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+    }
+    String js = "var " + getChartCanvas().getMarkupId() + " = WicketCharts['" + getChartCanvas().getMarkupId() + "']." + getChart().getClass().getSimpleName() + "(" + dataString
+      + ", " + optionString + ");";
+    return js;
+  }
 }

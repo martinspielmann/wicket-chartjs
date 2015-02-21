@@ -29,164 +29,214 @@ import com.pingunaut.wicket.chartjs.chart.impl.Line;
 @JsonInclude(Include.NON_NULL)
 public class LineChartOptions extends AbstractScalableChartOptions {
 
-	@JsonIgnore
-	private static final long serialVersionUID = -5356780831848556616L;
+  @JsonIgnore
+  private static final long serialVersionUID = -5356780831848556616L;
 
-	/** The bezier curve. */
-	private Boolean bezierCurve;
+  private Boolean scaleShowHorizontalLines = true;
 
-	/** The point dot. */
-	private Boolean pointDot;
+  private Boolean scaleShowVerticalLines = true;
 
-	/** The point dot radius. */
-	private Integer pointDotRadius;
+  private Double bezierCurveTension = 0.4;
 
-	/** The point dot stroke width. */
-	private Integer pointDotStrokeWidth;
+  private Integer pointHitDetectionRadius = 20;
 
-	/** The dataset stroke. */
-	private Boolean datasetStroke;
+  private String legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>";
 
-	/** The dataset stroke width. */
-	private Integer datasetStrokeWidth;
+  /** The bezier curve. */
+  private Boolean bezierCurve;
 
-	/** The dataset fill. */
-	private Boolean datasetFill;
+  /** The point dot. */
+  private Boolean pointDot;
 
-	/**
-	 * Gets the bezier curve.
-	 * 
-	 * @return the bezier curve
-	 */
-	public Boolean getBezierCurve() {
-		return bezierCurve;
-	}
+  /** The point dot radius. */
+  private Integer pointDotRadius;
 
-	/**
-	 * Sets the bezier curve.
-	 * 
-	 * @param bezierCurve
-	 *            decides whether the line is curved between points (default is
-	 *            true).
-	 */
-	public void setBezierCurve(Boolean bezierCurve) {
-		this.bezierCurve = bezierCurve;
-	}
+  /** The point dot stroke width. */
+  private Integer pointDotStrokeWidth;
 
-	/**
-	 * Gets the point dot.
-	 * 
-	 * @return the point dot
-	 */
-	public Boolean getPointDot() {
-		return pointDot;
-	}
+  /** The dataset stroke. */
+  private Boolean datasetStroke;
 
-	/**
-	 * Sets the point dot.
-	 * 
-	 * @param pointDot
-	 *            decides whether to show a dot for each point (default is
-	 *            true).
-	 */
-	public void setPointDot(Boolean pointDot) {
-		this.pointDot = pointDot;
-	}
+  /** The dataset stroke width. */
+  private Integer datasetStrokeWidth;
 
-	/**
-	 * Gets the point dot radius.
-	 * 
-	 * @return the point dot radius
-	 */
-	public Integer getPointDotRadius() {
-		return pointDotRadius;
-	}
+  /** The dataset fill. */
+  private Boolean datasetFill;
 
-	/**
-	 * Sets the point dot radius.
-	 * 
-	 * @param pointDotRadius
-	 *            the new point dot radius (default is 3).
-	 */
-	public void setPointDotRadius(Integer pointDotRadius) {
-		this.pointDotRadius = pointDotRadius;
-	}
+  public Boolean getScaleShowHorizontalLines() {
+    return scaleShowHorizontalLines;
+  }
 
-	/**
-	 * Gets the point dot stroke width.
-	 * 
-	 * @return the point dot stroke width
-	 */
-	public Integer getPointDotStrokeWidth() {
-		return pointDotStrokeWidth;
-	}
+  public void setScaleShowHorizontalLines(Boolean scaleShowHorizontalLines) {
+    this.scaleShowHorizontalLines = scaleShowHorizontalLines;
+  }
 
-	/**
-	 * Sets the point dot stroke width.
-	 * 
-	 * @param pointDotStrokeWidth
-	 *            the new point dot stroke width (default is 1).
-	 */
-	public void setPointDotStrokeWidth(Integer pointDotStrokeWidth) {
-		this.pointDotStrokeWidth = pointDotStrokeWidth;
-	}
+  public Boolean getScaleShowVerticalLines() {
+    return scaleShowVerticalLines;
+  }
 
-	/**
-	 * Gets the dataset stroke.
-	 * 
-	 * @return the dataset stroke
-	 */
-	public Boolean getDatasetStroke() {
-		return datasetStroke;
-	}
+  public void setScaleShowVerticalLines(Boolean scaleShowVerticalLines) {
+    this.scaleShowVerticalLines = scaleShowVerticalLines;
+  }
 
-	/**
-	 * Sets the dataset stroke.
-	 * 
-	 * @param datasetStroke
-	 *            decides whether to show a stroke for datasets (default is
-	 *            true)
-	 */
-	public void setDatasetStroke(Boolean datasetStroke) {
-		this.datasetStroke = datasetStroke;
-	}
+  public Double getBezierCurveTension() {
+    return bezierCurveTension;
+  }
 
-	/**
-	 * Gets the dataset stroke width.
-	 * 
-	 * @return the dataset stroke width
-	 */
-	public Integer getDatasetStrokeWidth() {
-		return datasetStrokeWidth;
-	}
+  public void setBezierCurveTension(Double bezierCurveTension) {
+    this.bezierCurveTension = bezierCurveTension;
+  }
 
-	/**
-	 * Sets the dataset stroke width.
-	 * 
-	 * @param datasetStrokeWidth
-	 *            the new dataset stroke width (default is 2).
-	 */
-	public void setDatasetStrokeWidth(Integer datasetStrokeWidth) {
-		this.datasetStrokeWidth = datasetStrokeWidth;
-	}
+  public Integer getPointHitDetectionRadius() {
+    return pointHitDetectionRadius;
+  }
 
-	/**
-	 * Gets the dataset fill.
-	 * 
-	 * @return the dataset fill
-	 */
-	public Boolean getDatasetFill() {
-		return datasetFill;
-	}
+  public void setPointHitDetectionRadius(Integer pointHitDetectionRadius) {
+    this.pointHitDetectionRadius = pointHitDetectionRadius;
+  }
 
-	/**
-	 * Sets the dataset fill.
-	 * 
-	 * @param datasetFill
-	 *            whether to fill the dataset with a color (default is true)
-	 */
-	public void setDatasetFill(Boolean datasetFill) {
-		this.datasetFill = datasetFill;
-	}
+  public String getLegendTemplate() {
+    return legendTemplate;
+  }
+
+  public void setLegendTemplate(String legendTemplate) {
+    this.legendTemplate = legendTemplate;
+  }
+
+  /**
+   * Gets the bezier curve.
+   * 
+   * @return the bezier curve
+   */
+  public Boolean getBezierCurve() {
+    return bezierCurve;
+  }
+
+  /**
+   * Sets the bezier curve.
+   * 
+   * @param bezierCurve
+   *            decides whether the line is curved between points (default is
+   *            true).
+   */
+  public void setBezierCurve(Boolean bezierCurve) {
+    this.bezierCurve = bezierCurve;
+  }
+
+  /**
+   * Gets the point dot.
+   * 
+   * @return the point dot
+   */
+  public Boolean getPointDot() {
+    return pointDot;
+  }
+
+  /**
+   * Sets the point dot.
+   * 
+   * @param pointDot
+   *            decides whether to show a dot for each point (default is
+   *            true).
+   */
+  public void setPointDot(Boolean pointDot) {
+    this.pointDot = pointDot;
+  }
+
+  /**
+   * Gets the point dot radius.
+   * 
+   * @return the point dot radius
+   */
+  public Integer getPointDotRadius() {
+    return pointDotRadius;
+  }
+
+  /**
+   * Sets the point dot radius.
+   * 
+   * @param pointDotRadius
+   *            the new point dot radius (default is 3).
+   */
+  public void setPointDotRadius(Integer pointDotRadius) {
+    this.pointDotRadius = pointDotRadius;
+  }
+
+  /**
+   * Gets the point dot stroke width.
+   * 
+   * @return the point dot stroke width
+   */
+  public Integer getPointDotStrokeWidth() {
+    return pointDotStrokeWidth;
+  }
+
+  /**
+   * Sets the point dot stroke width.
+   * 
+   * @param pointDotStrokeWidth
+   *            the new point dot stroke width (default is 1).
+   */
+  public void setPointDotStrokeWidth(Integer pointDotStrokeWidth) {
+    this.pointDotStrokeWidth = pointDotStrokeWidth;
+  }
+
+  /**
+   * Gets the dataset stroke.
+   * 
+   * @return the dataset stroke
+   */
+  public Boolean getDatasetStroke() {
+    return datasetStroke;
+  }
+
+  /**
+   * Sets the dataset stroke.
+   * 
+   * @param datasetStroke
+   *            decides whether to show a stroke for datasets (default is
+   *            true)
+   */
+  public void setDatasetStroke(Boolean datasetStroke) {
+    this.datasetStroke = datasetStroke;
+  }
+
+  /**
+   * Gets the dataset stroke width.
+   * 
+   * @return the dataset stroke width
+   */
+  public Integer getDatasetStrokeWidth() {
+    return datasetStrokeWidth;
+  }
+
+  /**
+   * Sets the dataset stroke width.
+   * 
+   * @param datasetStrokeWidth
+   *            the new dataset stroke width (default is 2).
+   */
+  public void setDatasetStrokeWidth(Integer datasetStrokeWidth) {
+    this.datasetStrokeWidth = datasetStrokeWidth;
+  }
+
+  /**
+   * Gets the dataset fill.
+   * 
+   * @return the dataset fill
+   */
+  public Boolean getDatasetFill() {
+    return datasetFill;
+  }
+
+  /**
+   * Sets the dataset fill.
+   * 
+   * @param datasetFill
+   *            whether to fill the dataset with a color (default is true)
+   */
+  public void setDatasetFill(Boolean datasetFill) {
+    this.datasetFill = datasetFill;
+  }
 
 }

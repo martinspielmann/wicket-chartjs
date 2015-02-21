@@ -33,124 +33,124 @@ import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
  */
 public abstract class AbstractChartPanel<C extends IChart<O>, O extends AbstractChartOptions> extends Panel {
 
-	private static final long serialVersionUID = -5882448897795445250L;
+  private static final long serialVersionUID = -5882448897795445250L;
 
-	/** The container holding the canvas. */
-	private final WebMarkupContainer wmc;
+  /** The container holding the canvas. */
+  private final WebMarkupContainer wmc;
 
-	/** The width. */
-	private int width;
+  /** The width. */
+  private int width;
 
-	/** The height. */
-	private int height;
+  /** The height. */
+  private int height;
 
-	/** The chart. */
-	private final IModel<C> chart;
+  /** The chart. */
+  private final IModel<C> chart;
 
-	/**
-	 * Instantiates a new abstract chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of the chart, rendered in this panel
-	 */
-	public AbstractChartPanel(String id, IModel<C> c) {
-		super(id, c);
-		this.chart = c;
-		wmc = new WebMarkupContainer("chart");
-	}
+  /**
+   * Instantiates a new abstract chart panel.
+   * 
+   * @param id
+   *            the markup id
+   * @param c
+   *            the IModel of the chart, rendered in this panel
+   */
+  public AbstractChartPanel(String id, IModel<C> c) {
+    super(id, c);
+    this.chart = c;
+    wmc = new WebMarkupContainer("chart");
+  }
 
-	/**
-	 * Instantiates a new abstract chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of the chart, rendered in this panel
-	 * @param width
-	 *            the width
-	 * @param height
-	 *            the height
-	 */
-	public AbstractChartPanel(String id, IModel<C> c, final int width, final int height) {
-		super(id);
-		this.chart = c;
-		this.width = width;
-		this.height = height;
-		wmc = new WebMarkupContainer("chart") {
-			private static final long serialVersionUID = 3385419188467369696L;
+  /**
+   * Instantiates a new abstract chart panel.
+   * 
+   * @param id
+   *            the markup id
+   * @param c
+   *            the IModel of the chart, rendered in this panel
+   * @param width
+   *            the width
+   * @param height
+   *            the height
+   */
+  public AbstractChartPanel(String id, IModel<C> c, final int width, final int height) {
+    super(id);
+    this.chart = c;
+    this.width = width;
+    this.height = height;
+    wmc = new WebMarkupContainer("chart") {
+      private static final long serialVersionUID = 3385419188467369696L;
 
-			@Override
-			protected void onComponentTag(ComponentTag tag) {
-				super.onComponentTag(tag);
-				tag.append("width", String.valueOf(width), " ");
-				tag.append("height", String.valueOf(height), " ");
-			}
-		};
-	}
+      @Override
+      protected void onComponentTag(ComponentTag tag) {
+        super.onComponentTag(tag);
+        tag.append("width", String.valueOf(width), " ");
+        tag.append("height", String.valueOf(height), " ");
+      }
+    };
+  }
 
-	/**
-	 * Gets the width.
-	 * 
-	 * @return the width
-	 */
-	public int getWidth() {
-		return width;
-	}
+  /**
+   * Gets the width.
+   * 
+   * @return the width
+   */
+  public int getWidth() {
+    return width;
+  }
 
-	/**
-	 * Gets the height.
-	 * 
-	 * @return the height
-	 */
-	public int getHeight() {
-		return height;
-	}
+  /**
+   * Gets the height.
+   * 
+   * @return the height
+   */
+  public int getHeight() {
+    return height;
+  }
 
-	/**
-	 * Gets the chart.
-	 * 
-	 * @return the chart
-	 */
-	public C getChart() {
-		return chart.getObject();
-	}
+  /**
+   * Gets the chart.
+   * 
+   * @return the chart
+   */
+  public C getChart() {
+    return chart.getObject();
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.apache.wicket.Component#onInitialize()
-	 */
-	@Override
-	protected void onInitialize() {
-		super.onInitialize();
-		add(wmc);
-		wmc.setOutputMarkupId(true);
-		wmc.add(new ChartBehavior());
-	}
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.apache.wicket.Component#onInitialize()
+   */
+  @Override
+  protected void onInitialize() {
+    super.onInitialize();
+    add(wmc);
+    wmc.setOutputMarkupId(true);
+    wmc.add(new ChartBehavior());
+  }
 
-	/**
-	 * Gets the chart canvas.
-	 * 
-	 * @return the chart canvas
-	 */
-	public WebMarkupContainer getChartCanvas() {
-		return wmc;
-	}
+  /**
+   * Gets the chart canvas.
+   * 
+   * @return the chart canvas
+   */
+  public WebMarkupContainer getChartCanvas() {
+    return wmc;
+  }
 
-	/**
-	 * Generates chart.
-	 * 
-	 * @return the JavaScript which generates the canvas.
-	 *         {@link SimpleChartPanel} and {@link DataSetChartPanel} implement
-	 *         this method and do nearly the same:
-	 *         <ul>
-	 *         <li>the charts {@link ObjectMapper} converts data to js object</li>
-	 *         <li>the charts {@link ObjectMapper} converts options to js object
-	 *         </li>
-	 *         <li>initialize the chart canvas with the just created js objects</li>
-	 *         </ul>
-	 */
-	public abstract String generateChart();
+  /**
+   * Generates chart.
+   * 
+   * @return the JavaScript which generates the canvas.
+   *         {@link SimpleChartPanel} and {@link DataSetChartPanel} implement
+   *         this method and do nearly the same:
+   *         <ul>
+   *         <li>the charts {@link ObjectMapper} converts data to js object</li>
+   *         <li>the charts {@link ObjectMapper} converts options to js object
+   *         </li>
+   *         <li>initialize the chart canvas with the just created js objects</li>
+   *         </ul>
+   */
+   public abstract String generateChart();
 }
