@@ -46,6 +46,9 @@ public abstract class AbstractChartOptions implements Serializable {
 	/** The on animation complete. */
 	private String onAnimationComplete;
 	
+    /** Responsive option. */
+    private boolean responsive;
+    
 	@JsonRawValue
 	private String customTooltips;
 	
@@ -132,5 +135,23 @@ public abstract class AbstractChartOptions implements Serializable {
 	public void setOnAnimationComplete(String onAnimationComplete) {
 		this.onAnimationComplete = onAnimationComplete;
 	}
+
+    /**
+     * Tests whether this chart is responsive or not.
+     * 
+     * @return true if its responsive, false otherwise.
+     */
+    public boolean isResponsive() {
+        return responsive;
+    }
+
+    /**
+     * Sets the responsive option for this chart.
+     * 
+     * @param responsive the responsive option value.
+     */
+    public void setResponsive(boolean responsive) {
+        this.responsive = responsive;
+    }
 
 }
