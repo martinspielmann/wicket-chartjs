@@ -48,7 +48,9 @@ public class LineChartPanel extends DataSetChartPanel<Line, LineChartData<LineDa
 	 * @param height
 	 *            the height
 	 */
-	public LineChartPanel(String id, IModel<Line> c, int width, int height) {
+	public LineChartPanel(String id, IModel<? extends Line> c, 
+            int width, int height) {
+        
 		super(id, c, width, height);
 	}
 
@@ -60,7 +62,7 @@ public class LineChartPanel extends DataSetChartPanel<Line, LineChartData<LineDa
 	 * @param c
 	 *            the IModel of a {@link Line}
 	 */
-	public LineChartPanel(String id, IModel<Line> c) {
+	public LineChartPanel(String id, IModel<? extends Line> c) {
 		super(id, c);
 	}
 }

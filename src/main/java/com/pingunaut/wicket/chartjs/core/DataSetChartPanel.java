@@ -56,7 +56,7 @@ public abstract class DataSetChartPanel<C extends IDataSetChart<D, O, S>, D exte
 	 * @param c
 	 *            the IModel of a {@link IDataSetChart}
 	 */
-	public DataSetChartPanel(String id, IModel<C> c) {
+	public DataSetChartPanel(String id, IModel<? extends C> c) {
 		super(id, c);
 	}
 
@@ -72,7 +72,9 @@ public abstract class DataSetChartPanel<C extends IDataSetChart<D, O, S>, D exte
 	 * @param height
 	 *            the height
 	 */
-	public DataSetChartPanel(String id, IModel<C> c, int width, int height) {
+	public DataSetChartPanel(String id, IModel<? extends C> c, 
+            int width, int height) {
+        
 		super(id, c, width, height);
 	}
 

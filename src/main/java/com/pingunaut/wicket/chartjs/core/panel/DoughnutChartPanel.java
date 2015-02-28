@@ -47,7 +47,9 @@ public class DoughnutChartPanel extends SimpleChartPanel<Doughnut, DoughnutChart
 	 * @param height
 	 *            the height
 	 */
-	public DoughnutChartPanel(String id, IModel<Doughnut> c, int width, int height) {
+	public DoughnutChartPanel(String id, IModel<? extends Doughnut> c, 
+            int width, int height) {
+        
 		super(id, c, width, height);
 	}
 
@@ -59,7 +61,7 @@ public class DoughnutChartPanel extends SimpleChartPanel<Doughnut, DoughnutChart
 	 * @param c
 	 *            the IModel of a {@link Doughnut}
 	 */
-	public DoughnutChartPanel(String id, IModel<Doughnut> c) {
+	public DoughnutChartPanel(String id, IModel<? extends Doughnut> c) {
 		super(id, c);
 	}
 }

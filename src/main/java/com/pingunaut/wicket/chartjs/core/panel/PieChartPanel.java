@@ -47,7 +47,9 @@ public class PieChartPanel extends SimpleChartPanel<Pie, PieChartData, PieChartO
 	 * @param height
 	 *            the height
 	 */
-	public PieChartPanel(String id, IModel<Pie> c, int width, int height) {
+	public PieChartPanel(String id, IModel<? extends Pie> c, 
+            int width, int height) {
+        
 		super(id, c, width, height);
 	}
 
@@ -59,7 +61,7 @@ public class PieChartPanel extends SimpleChartPanel<Pie, PieChartData, PieChartO
 	 * @param c
 	 *            the IModel of a {@link Pie}
 	 */
-	public PieChartPanel(String id, IModel<Pie> c) {
+	public PieChartPanel(String id, IModel<? extends Pie> c) {
 		super(id, c);
 	}
 }

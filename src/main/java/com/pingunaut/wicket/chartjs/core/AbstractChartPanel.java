@@ -45,7 +45,7 @@ public abstract class AbstractChartPanel<C extends IChart<O>, O extends Abstract
   private int height;
 
   /** The chart. */
-  private final IModel<C> chart;
+  private final IModel<? extends C> chart;
 
   /**
    * Instantiates a new abstract chart panel.
@@ -55,7 +55,7 @@ public abstract class AbstractChartPanel<C extends IChart<O>, O extends Abstract
    * @param c
    *            the IModel of the chart, rendered in this panel
    */
-  public AbstractChartPanel(String id, IModel<C> c) {
+  public AbstractChartPanel(String id, IModel<? extends C> c) {
     super(id, c);
     this.chart = c;
     wmc = new WebMarkupContainer("chart");
@@ -73,7 +73,9 @@ public abstract class AbstractChartPanel<C extends IChart<O>, O extends Abstract
    * @param height
    *            the height
    */
-  public AbstractChartPanel(String id, IModel<C> c, final int width, final int height) {
+  public AbstractChartPanel(String id, IModel<? extends C> c, 
+          final int width, final int height) {
+      
     super(id);
     this.chart = c;
     this.width = width;

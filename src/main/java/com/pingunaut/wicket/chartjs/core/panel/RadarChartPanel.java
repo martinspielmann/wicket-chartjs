@@ -48,7 +48,9 @@ public class RadarChartPanel extends DataSetChartPanel<Radar, RadarChartData<Rad
 	 * @param height
 	 *            the height
 	 */
-	public RadarChartPanel(String id, IModel<Radar> c, int width, int height) {
+	public RadarChartPanel(String id, IModel<? extends Radar> c, 
+            int width, int height) {
+        
 		super(id, c, width, height);
 	}
 
@@ -60,7 +62,7 @@ public class RadarChartPanel extends DataSetChartPanel<Radar, RadarChartData<Rad
 	 * @param c
 	 *            the IModel of a {@link Radar}
 	 */
-	public RadarChartPanel(String id, IModel<Radar> c) {
+	public RadarChartPanel(String id, IModel<? extends Radar> c) {
 		super(id, c);
 	}
 }

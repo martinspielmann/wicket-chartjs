@@ -48,7 +48,9 @@ public class BarChartPanel extends DataSetChartPanel<Bar, BarChartData<BarDataSe
 	 * @param height
 	 *            the height
 	 */
-	public BarChartPanel(String id, IModel<Bar> c, int width, int height) {
+	public BarChartPanel(String id, IModel<? extends Bar> c, 
+            int width, int height) {
+        
 		super(id, c, width, height);
 	}
 
@@ -60,7 +62,7 @@ public class BarChartPanel extends DataSetChartPanel<Bar, BarChartData<BarDataSe
 	 * @param c
 	 *            the IModel of a {@link Bar}
 	 */
-	public BarChartPanel(String id, IModel<Bar> c) {
+	public BarChartPanel(String id, IModel<? extends Bar> c) {
 		super(id, c);
 	}
 }
