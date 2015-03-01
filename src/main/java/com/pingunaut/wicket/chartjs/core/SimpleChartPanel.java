@@ -52,7 +52,7 @@ public abstract class SimpleChartPanel<C extends ISimpleChart<D, O>, D extends S
    * @param c
    *            the IModel of a {@link ISimpleChart}
    */
-  public SimpleChartPanel(String id, IModel<C> c) {
+  public SimpleChartPanel(String id, IModel<? extends C> c) {
     super(id, c);
   }
 
@@ -68,7 +68,9 @@ public abstract class SimpleChartPanel<C extends ISimpleChart<D, O>, D extends S
    * @param height
    *            the height
    */
-  public SimpleChartPanel(String id, IModel<C> c, int width, int height) {
+  public SimpleChartPanel(String id, IModel<? extends C> c, 
+          int width, int height) {
+      
     super(id, c, width, height);
   }
 
