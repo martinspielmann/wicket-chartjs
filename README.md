@@ -49,5 +49,5 @@ lineData.setLabels(labels);
 <ul>
 <li>IE 9 and upwards</li>
 <li>IE 7 and 8 in parts</li>
-<li>the rest isn't a problem ;)</li>
+<li>others are not a problem ;)</li>
 <ul>
