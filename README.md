@@ -3,7 +3,7 @@
 it is completely open source and free to use (also in commercial projects). 
 create beautiful charts and graphs in your wicket project. no flash, just html, css and javascript.</p>
 
-<img src="https://pingunaut.com/jenkins/buildStatus/icon?job=wicket-chartjs" />
+[![Build Status](https://pingunaut.com/jenkins/buildStatus/icon?job=wicket-chartjs)](https://pingunaut.com/jenkins/job/wicket-chartjs/)
 
 <h2>project homepage</h2>
 [homepage](https://pingunaut.com/wicket-chartjs)
