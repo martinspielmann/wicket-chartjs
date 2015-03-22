@@ -2,8 +2,12 @@
 <p>this project provides all chart.js charts. 
 it is completely open source and free to use (also in commercial projects). 
 create beautiful charts and graphs in your wicket project. no flash, just html, css and javascript.</p>
+
+[![Build Status](https://pingunaut.com/jenkins/buildStatus/icon?job=wicket-chartjs)](https://pingunaut.com/jenkins/job/wicket-chartjs/)
+
 <h2>project homepage</h2>
-[homepage](http://pingunaut.com/wicket-chartjs).
+[homepage](https://pingunaut.com/wicket-chartjs)
+
 
 <h3>How to use</h3>
 
