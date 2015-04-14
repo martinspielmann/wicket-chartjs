@@ -145,7 +145,7 @@ public class PolarAreaChartOptions extends AbstractScalableChartOptions {
 	 * Sets the scale backdrop padding y.
 	 * 
 	 * @param scaleBackdropPaddingY
-	 *            the backdrop padding above & below the label in pixels
+	 *            the backdrop padding above and below the label in pixels
 	 *            (default is 2).
 	 */
 	public void setScaleBackdropPaddingY(Integer scaleBackdropPaddingY) {
