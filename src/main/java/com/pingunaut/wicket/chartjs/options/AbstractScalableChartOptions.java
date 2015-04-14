@@ -126,4 +126,5 @@ public abstract class AbstractScalableChartOptions extends AbstractChartOptions 
    public void setScaleGridLineWidth(final Integer scaleGridLineWidth) {
       this.scaleGridLineWidth = scaleGridLineWidth;
    }
+
 }

@@ -47,7 +47,9 @@ public class PolarAreaChartPanel extends SimpleChartPanel<PolarArea, PolarAreaCh
 	 * @param height
 	 *            the height
 	 */
-	public PolarAreaChartPanel(String id, IModel<PolarArea> c, int width, int height) {
+	public PolarAreaChartPanel(String id, IModel<? extends PolarArea> c, 
+            int width, int height) {
+        
 		super(id, c, width, height);
 	}
 
@@ -59,7 +61,7 @@ public class PolarAreaChartPanel extends SimpleChartPanel<PolarArea, PolarAreaCh
 	 * @param c
 	 *            the IModel of a {@link PolarArea}
 	 */
-	public PolarAreaChartPanel(String id, IModel<PolarArea> c) {
+	public PolarAreaChartPanel(String id, IModel<? extends PolarArea> c) {
 		super(id, c);
 	}
 }

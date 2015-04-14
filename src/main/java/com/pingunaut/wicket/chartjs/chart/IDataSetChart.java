@@ -28,7 +28,7 @@ import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
  * <li>{@link IRadar}</li>
  * </ul>
  * instead of simple color and value pairs, this type uses labels and datasets.
- *
+ * 
  * @param <D>
  *           the generic type of chart data (has to extend
  *           {@link AbstractChartData}

@@ -628,4 +628,23 @@ public abstract class AbstractChartOptions implements Serializable {
       this.onAnimationProgress = onAnimationProgress;
    }
 
+   /**
+    * Tests whether this chart is responsive or not.
+    *
+    * @return true if its responsive, false otherwise.
+    */
+   public boolean isResponsive() {
+      return responsive;
+   }
+
+   /**
+    * Sets the responsive option for this chart.
+    *
+    * @param responsive
+    *           the responsive option value.
+    */
+   public void setResponsive(final boolean responsive) {
+      this.responsive = responsive;
+   }
+
 }

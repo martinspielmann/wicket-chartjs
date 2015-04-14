@@ -44,7 +44,7 @@ import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
  *
  */
 public abstract class AbstractDataSetChart<D extends AbstractChartData<S>, O extends AbstractChartOptions, S extends AbstractBaseDataSet>
-      extends AbstractChart<O>implements IDataSetChart<D, O, S> {
+extends AbstractChart<O>implements IDataSetChart<D, O, S> {
 
    private static final long serialVersionUID = 999846601210465414L;
 
@@ -53,7 +53,7 @@ public abstract class AbstractDataSetChart<D extends AbstractChartData<S>, O ext
 
    /*
     * (non-Javadoc)
-    * 
+    *
     * @see com.pingunaut.wicket.chartjs.chart.IDataSetChart#getData()
     */
    @Override
@@ -63,7 +63,7 @@ public abstract class AbstractDataSetChart<D extends AbstractChartData<S>, O ext
 
    /*
     * (non-Javadoc)
-    * 
+    *
     * @see
     * com.pingunaut.wicket.chartjs.chart.IDataSetChart#setData(com.pingunaut
     * .wicket.chartjs.data.AbstractChartData)
