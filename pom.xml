@@ -12,7 +12,7 @@ the specific language governing permissions and limitations under the License. -
     <groupId>com.pingunaut</groupId>
     <artifactId>wicket-chartjs</artifactId>
     <packaging>jar</packaging>
-    <version>6.19.1</version>
+    <version>6.19.2</version>
     <name>wicket-chartjs</name>
     <description>chart.js for wicket projects. simple but nice looking charts with html5/css/js</description>
 
