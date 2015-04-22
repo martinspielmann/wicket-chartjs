@@ -352,8 +352,7 @@ public abstract class AbstractChartOptions implements Serializable {
     * Sets the scale label.
     *
     * @param scaleLabel
-    *           an interpolated js string that can access value. (default is
-    *           "<%=value%>").
+    *           an interpolated js string that can access value.
     */
    public void setScaleLabel(final String scaleLabel) {
       this.scaleLabel = scaleLabel;
