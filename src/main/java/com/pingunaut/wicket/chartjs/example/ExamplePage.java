@@ -18,14 +18,19 @@ package com.pingunaut.wicket.chartjs.example;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.Model;
 
+import com.pingunaut.wicket.chartjs.chart.impl.Bar;
 import com.pingunaut.wicket.chartjs.chart.impl.Line;
 import com.pingunaut.wicket.chartjs.chart.impl.Pie;
+import com.pingunaut.wicket.chartjs.core.panel.BarChartPanel;
 import com.pingunaut.wicket.chartjs.core.panel.LineChartPanel;
 import com.pingunaut.wicket.chartjs.core.panel.PieChartPanel;
 import com.pingunaut.wicket.chartjs.data.PieChartData;
+import com.pingunaut.wicket.chartjs.data.sets.BarDataSet;
 import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
 
 /**
@@ -51,7 +56,16 @@ public class ExamplePage extends WebPage {
       PieChartPanel pieChartPanel = new PieChartPanel("pieChart", Model.of(new Pie()));
       add(pieChartPanel);
 
-      PieChartPanel pieChartWithoutTooltips = new PieChartPanel("pieChartWithoutTooltips", Model.of(new Pie()));
+      PieChartPanel pieChartWithoutTooltips = new PieChartPanel("pieChartWithoutTooltips", Model.of(new Pie())) {
+         @Override
+         public void renderHead(final IHeaderResponse response) {
+            super.renderHead(response);
+            CharSequence showLegend = String.format("$('#%1$s').html(%2$s.generateLegend());", "pieChartLegend",
+                  getChartCanvas().getMarkupId());
+            response.render(OnDomReadyHeaderItem.forScript(showLegend));
+         }
+
+      };
       add(pieChartWithoutTooltips);
 
       List<String> labels = new ArrayList<String>();
@@ -65,6 +79,11 @@ public class ExamplePage extends WebPage {
       values1.add(2);
       values1.add(6);
       values1.add(7);
+
+      BarChartPanel barChartPanel = new BarChartPanel("bar", Model.of(new Bar()));
+      add(barChartPanel);
+      barChartPanel.getChart().getData().getDatasets().add(new BarDataSet(values1));
+      barChartPanel.getChart().getData().getLabels().addAll(labels);
 
       lineChartPanel.getChart().getData().getDatasets().add(new LineDataSet(values1));
       lineChartPanel.getChart().getData().getLabels().addAll(labels);
@@ -80,7 +99,7 @@ public class ExamplePage extends WebPage {
 
       for (Integer i : values1) {
          pieChartPanel.getChart().getData().add(new PieChartData(i, "#" + i + i + i));
-         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (i + 3) + i + i));
+         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (i + 3) + i + i, "label " + i));
          pieChartWithoutTooltips.getChart().getOptions().setShowTooltips(Boolean.FALSE);
       }
    }
