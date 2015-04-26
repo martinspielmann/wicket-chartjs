@@ -25,7 +25,16 @@
 	transform: translate(-50%, 0);
 }
 
-
+.pie-legend {
+	list-style: none;
+}
+.pie-legend li span {
+	background-color: #744;
+	height: 1em;
+	width: 1em;
+	display: inline-block;
+	margin-right: 1em;
+}
 </style>
 
 </head>
@@ -35,7 +44,7 @@
 	<div wicket:id="pieChartWithoutTooltips"></div>
 	<div id="pieChartLegend"></div>
 	<div id="chartjs-tooltip"></div>
-	
+
 	<div wicket:id="bar"></div>
 </body>
 </html>

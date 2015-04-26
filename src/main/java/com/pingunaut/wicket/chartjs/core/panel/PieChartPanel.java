@@ -18,6 +18,7 @@ package com.pingunaut.wicket.chartjs.core.panel;
 import org.apache.wicket.model.IModel;
 
 import com.pingunaut.wicket.chartjs.chart.impl.Pie;
+import com.pingunaut.wicket.chartjs.core.LegendGeneratingChartPanel;
 import com.pingunaut.wicket.chartjs.core.SimpleChartPanel;
 import com.pingunaut.wicket.chartjs.data.PieChartData;
 import com.pingunaut.wicket.chartjs.options.PieChartOptions;
@@ -31,7 +32,7 @@ import com.pingunaut.wicket.chartjs.options.PieChartOptions;
  * @author Martin Spielmann
  * 
  */
-public class PieChartPanel extends SimpleChartPanel<Pie, PieChartData, PieChartOptions> {
+public class PieChartPanel extends LegendGeneratingChartPanel<Pie, PieChartData, PieChartOptions> {
 
 	private static final long serialVersionUID = -7460695892808795726L;
 

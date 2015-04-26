@@ -56,17 +56,9 @@ public class ExamplePage extends WebPage {
       PieChartPanel pieChartPanel = new PieChartPanel("pieChart", Model.of(new Pie()));
       add(pieChartPanel);
 
-      PieChartPanel pieChartWithoutTooltips = new PieChartPanel("pieChartWithoutTooltips", Model.of(new Pie())) {
-         @Override
-         public void renderHead(final IHeaderResponse response) {
-            super.renderHead(response);
-            CharSequence showLegend = String.format("$('#%1$s').html(%2$s.generateLegend());", "pieChartLegend",
-                  getChartCanvas().getMarkupId());
-            response.render(OnDomReadyHeaderItem.forScript(showLegend));
-         }
-
-      };
+      PieChartPanel pieChartWithoutTooltips = new PieChartPanel("pieChartWithoutTooltips", Model.of(new Pie()));
       add(pieChartWithoutTooltips);
+      pieChartWithoutTooltips.setLegendMarkupId("pieChartLegend");
 
       List<String> labels = new ArrayList<String>();
       labels.add("jan");
@@ -99,7 +91,7 @@ public class ExamplePage extends WebPage {
 
       for (Integer i : values1) {
          pieChartPanel.getChart().getData().add(new PieChartData(i, "#" + i + i + i));
-         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (i + 3) + i + i, "label " + i));
+         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (i + 3) + i + i, "label for " + i));
          pieChartWithoutTooltips.getChart().getOptions().setShowTooltips(Boolean.FALSE);
       }
    }
