@@ -18,8 +18,6 @@ package com.pingunaut.wicket.chartjs.example;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.Model;
 

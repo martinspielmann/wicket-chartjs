@@ -1,54 +1,81 @@
 <!doctype html>
 <html>
-	<head>
-		<title>Line Chart</title>
-		<script src="../Chart.js"></script>
-	</head>
-	<body>
-		<div style="width:30%">
-			<div>
-				<canvas id="canvas" height="450" width="600"></canvas>
-			</div>
-		</div>
 
+<head>
+    <title>Line Chart</title>
+    <script src="../Chart.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <style>
+    canvas {
+        -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, .5);
+    }
+    </style>
+</head>
 
-	<script>
-		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-		var lineChartData = {
-			labels : ["January","February","March","April","May","June","July"],
-			datasets : [
-				{
-					label: "My First dataset",
-					fillColor : "rgba(220,220,220,0.2)",
-					strokeColor : "rgba(220,220,220,1)",
-					pointColor : "rgba(220,220,220,1)",
-					pointStrokeColor : "#fff",
-					pointHighlightFill : "#fff",
-					pointHighlightStroke : "rgba(220,220,220,1)",
-					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-				},
-				{
-					label: "My Second dataset",
-					fillColor : "rgba(151,187,205,0.2)",
-					strokeColor : "rgba(151,187,205,1)",
-					pointColor : "rgba(151,187,205,1)",
-					pointStrokeColor : "#fff",
-					pointHighlightFill : "#fff",
-					pointHighlightStroke : "rgba(151,187,205,1)",
-					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-				}
-			]
+<body>
+    <div style="width:50%;">
+        <canvas id="canvas" style="width:100%;height:100%"></canvas>
+    </div>
+    <br>
+    <br>
+    <button id="randomizeData">Randomize Data</button>
+    <script>
+    var randomScalingFactor = function() {
+        return Math.round(Math.random() * 100 * (Math.random() > 0.5 ? -1 : 1));
+    };
+    var randomColor = function(opacity) {
+        return 'rgba(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + (opacity || '.3') + ')';
+    };
 
-		}
+    var config = {
+        type: 'line',
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: "My First dataset",
+                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+                fill: false,
+            }, {
+                label: "My Second dataset",
+                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    display: true
+                }],
+                yAxes: [{
+                    display: true
+                }]
+            }
+        }
+    };
 
-	window.onload = function(){
-		var ctx = document.getElementById("canvas").getContext("2d");
-		window.myLine = new Chart(ctx).Line(lineChartData, {
-			responsive: true
-		});
-	}
+    $.each(config.data.datasets, function(i, dataset) {
+        dataset.borderColor = randomColor(0.4);
+        dataset.backgroundColor = randomColor(0.5);
+        dataset.pointBorderColor = randomColor(0.7);
+        dataset.pointBackgroundColor = randomColor(0.5);
+        dataset.pointBorderWidth = 1;
+    });
 
+    console.log(config.data);
 
-	</script>
-	</body>
+    window.onload = function() {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myLine = new Chart(ctx, config);
+    };
+
+    $('#randomizeData').click(function() {
+        config.data.datasets[0].data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
+
+        config.data.datasets[1].data = [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()];
+
+        window.myLine.update();
+    });
+    </script>
+</body>
+
 </html>
