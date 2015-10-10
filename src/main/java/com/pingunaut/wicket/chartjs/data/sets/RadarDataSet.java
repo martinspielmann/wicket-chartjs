@@ -44,7 +44,7 @@ public class RadarDataSet extends AbstractPointColorDataSet {
 	 * @param values
 	 *            the values
 	 */
-	public RadarDataSet(List<Integer> values) {
+	public RadarDataSet(List<Number> values) {
 		super(values);
 	}
 

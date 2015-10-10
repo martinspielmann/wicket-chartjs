@@ -18,8 +18,6 @@ package com.pingunaut.wicket.chartjs.example;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.Model;
 
@@ -65,12 +63,14 @@ public class ExamplePage extends WebPage {
       labels.add("feb");
       labels.add("mar");
       labels.add("apr");
+      labels.add("may");
 
-      List<Integer> values1 = new ArrayList<Integer>();
+      List<Number> values1 = new ArrayList<>();
       values1.add(4);
       values1.add(2);
       values1.add(6);
       values1.add(7);
+      values1.add(7.56);
 
       BarChartPanel barChartPanel = new BarChartPanel("bar", Model.of(new Bar()));
       add(barChartPanel);
@@ -89,9 +89,10 @@ public class ExamplePage extends WebPage {
                   + "opacity: 1,left: tooltip.chart.canvas.offsetLeft + tooltip.x + 'px',top: tooltip.chart.canvas.offsetTop + top + 'px',"
                   + "fontFamily: tooltip.fontFamily,fontSize: tooltip.fontSize,fontStyle: tooltip.fontStyle,});}");
 
-      for (Integer i : values1) {
+      for (Number i : values1) {
          pieChartPanel.getChart().getData().add(new PieChartData(i, "#" + i + i + i));
-         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (i + 3) + i + i, "label for " + i));
+         int intI = i instanceof Integer?(Integer)i : ((Double)i).intValue(); 
+         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (intI + 3) + intI + intI, "label for " + i));
          pieChartWithoutTooltips.getChart().getOptions().setShowTooltips(Boolean.FALSE);
       }
    }

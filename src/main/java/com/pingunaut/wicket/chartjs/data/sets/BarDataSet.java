@@ -44,7 +44,7 @@ public class BarDataSet extends AbstractBaseDataSet {
 	 * @param values
 	 *            the values
 	 */
-	public BarDataSet(List<Integer> values) {
+	public BarDataSet(List<Number> values) {
 		super(values);
 	}
 

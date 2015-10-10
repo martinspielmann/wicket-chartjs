@@ -44,7 +44,7 @@ public class PieDataSet extends AbstractBaseDataSet {
 	 * @param values
 	 *            the values
 	 */
-	public PieDataSet(List<Integer> values) {
+	public PieDataSet(List<Number> values) {
 		super(values);
 	}
 

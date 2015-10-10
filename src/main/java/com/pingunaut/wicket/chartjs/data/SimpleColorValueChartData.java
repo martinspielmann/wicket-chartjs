@@ -36,18 +36,18 @@ public class SimpleColorValueChartData implements Serializable {
 	/**
 	 * Instantiates new simple color value chart data.
 	 * 
-	 * @param value
+	 * @param value2
 	 *            the value
 	 * @param color
 	 *            the color
 	 */
-	public SimpleColorValueChartData(Integer value, String color) {
-		this.value = value;
+	public SimpleColorValueChartData(Number value2, String color) {
+		this.value = value2;
 		this.color = color;
 	}
 
 	/** The value. */
-	private Integer value;
+	private Number value;
 
 	/** The color. */
 	private String color;
@@ -76,7 +76,7 @@ public class SimpleColorValueChartData implements Serializable {
 	 * 
 	 * @return the value
 	 */
-	public Integer getValue() {
+	public Number getValue() {
 		return value;
 	}
 
