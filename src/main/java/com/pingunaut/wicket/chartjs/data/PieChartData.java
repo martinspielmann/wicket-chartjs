@@ -39,11 +39,11 @@ public class PieChartData extends SimpleColorValueChartData {
 	 * @param color
 	 *            the color
 	 */
-	public PieChartData(Integer value, String color) {
+	public PieChartData(Number value, String color) {
 		super(value, color);
 	}
 
-	public PieChartData(Integer value, String color, String label) {
+	public PieChartData(Number value, String color, String label) {
 		super(value, color);
 		this.label = label;
 	}

@@ -44,7 +44,7 @@ public class DoughnutDataSet extends AbstractBaseDataSet {
 	 * @param values
 	 *            the values
 	 */
-	public DoughnutDataSet(List<Integer> values) {
+	public DoughnutDataSet(List<? extends Number> values) {
 		super(values);
 	}
 

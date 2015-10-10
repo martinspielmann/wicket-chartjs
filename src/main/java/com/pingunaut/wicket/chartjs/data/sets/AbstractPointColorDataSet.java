@@ -52,7 +52,7 @@ public abstract class AbstractPointColorDataSet extends AbstractBaseDataSet {
 	 * @param values
 	 *            the values
 	 */
-	public AbstractPointColorDataSet(List<Integer> values) {
+	public AbstractPointColorDataSet(List<? extends Number> values) {
 		setData(values);
 	}
 
