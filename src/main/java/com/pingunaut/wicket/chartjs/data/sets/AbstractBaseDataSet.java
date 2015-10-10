@@ -43,7 +43,7 @@ public abstract class AbstractBaseDataSet implements Serializable {
 	private String strokeColor = "rgba(220,220,220,1)";
 
 	/** The data. */
-	private List<Number> data;
+	private List<? extends Number> data;
 
 	/**
 	 * Instantiates a new abstract base data set.
@@ -51,7 +51,7 @@ public abstract class AbstractBaseDataSet implements Serializable {
 	 * @param values
 	 *            the data values
 	 */
-	public AbstractBaseDataSet(List<Number> values) {
+	public AbstractBaseDataSet(List<? extends Number> values) {
 		data = values;
 	}
 
@@ -109,7 +109,7 @@ public abstract class AbstractBaseDataSet implements Serializable {
 	 * 
 	 * @return the data
 	 */
-	public List<Number> getData() {
+	public List<? extends Number> getData() {
 		if (data == null) {
 			data = new ArrayList<Number>();
 		}
@@ -123,7 +123,7 @@ public abstract class AbstractBaseDataSet implements Serializable {
 	 *            the data
 	 * @return the abstract base data set
 	 */
-	public AbstractBaseDataSet setData(List<Number> data) {
+	public AbstractBaseDataSet setData(List<? extends Number> data) {
 		this.data = data;
 		return this;
 	}
