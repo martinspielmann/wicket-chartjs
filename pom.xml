@@ -11,7 +11,7 @@
 	<groupId>com.pingunaut</groupId>
 	<artifactId>wicket-chartjs</artifactId>
 	<packaging>jar</packaging>
-	<version>6.20.1-SNAPSHOT</version>
+	<version>7.0.0-SNAPSHOT</version>
 	<name>wicket-chartjs</name>
 	<description>chart.js for wicket projects. simple but nice looking charts with html5/css/js</description>
 
@@ -197,7 +197,7 @@
 	</distributionManagement>
 
 	<properties>
-		<wicket.version>6.20.0</wicket.version>
+		<wicket.version>7.0.0</wicket.version>
 		<jackson.version>2.6.2</jackson.version>
 	</properties>
 
