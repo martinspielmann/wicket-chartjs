@@ -44,7 +44,7 @@ public class LineDataSet extends AbstractPointColorDataSet {
 	 * @param values
 	 *            the values
 	 */
-	public LineDataSet(List<Number> values) {
+	public LineDataSet(List<? extends Number> values) {
 		super(values);
 	}
 
