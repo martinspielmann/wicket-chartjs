@@ -51,12 +51,12 @@ public class ExamplePage extends WebPage {
       super.onInitialize();
       LineChartPanel lineChartPanel = new LineChartPanel("lineChart", Model.of(new Line()));
       add(lineChartPanel);
-      PieChartPanel pieChartPanel = new PieChartPanel("pieChart", Model.of(new Pie()));
-      add(pieChartPanel);
-
-      PieChartPanel pieChartWithoutTooltips = new PieChartPanel("pieChartWithoutTooltips", Model.of(new Pie()));
-      add(pieChartWithoutTooltips);
-      pieChartWithoutTooltips.setLegendMarkupId("pieChartLegend");
+//      PieChartPanel pieChartPanel = new PieChartPanel("pieChart", Model.of(new Pie()));
+//      add(pieChartPanel);
+//
+//      PieChartPanel pieChartWithoutTooltips = new PieChartPanel("pieChartWithoutTooltips", Model.of(new Pie()));
+//      add(pieChartWithoutTooltips);
+//      pieChartWithoutTooltips.setLegendMarkupId("pieChartLegend");
 
       List<String> labels = new ArrayList<String>();
       labels.add("jan");
@@ -91,9 +91,9 @@ public class ExamplePage extends WebPage {
 
       for (Double di : values1) {
     	  int i = di.intValue();
-         pieChartPanel.getChart().getData().add(new PieChartData(i, "#" + i + i + i));
-         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (i + 3) + i + i, "label for " + di));
-         pieChartWithoutTooltips.getChart().getOptions().setShowTooltips(Boolean.FALSE);
+//         pieChartPanel.getChart().getData().add(new PieChartData(i, "#" + i + i + i));
+//         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (i + 3) + i + i, "label for " + di));
+//         pieChartWithoutTooltips.getChart().getOptions().setShowTooltips(Boolean.FALSE);
       }
    }
 }

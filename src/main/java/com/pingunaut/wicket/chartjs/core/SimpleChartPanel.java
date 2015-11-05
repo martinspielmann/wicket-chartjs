@@ -89,8 +89,12 @@ public abstract class SimpleChartPanel<C extends ISimpleChart<D, O>, D extends S
     } catch (JsonProcessingException e) {
       e.printStackTrace();
     }
-    String js = "var " + getChartCanvas().getMarkupId() + " = WicketCharts['" + getChartCanvas().getMarkupId() + "']." + getChart().getClass().getSimpleName() + "(" + dataString
-      + ", " + optionString + ");";
+    
+    String js = "var " + getChartCanvas().getMarkupId() 
+  		  + " = Chart." + getChart().getClass().getSimpleName() 
+  		  + "(WicketCharts['" + getChartCanvas().getMarkupId() + "'], "
+            + "{data:" + dataString + ", "
+            + "options: " + optionString + "});";
     return js;
   }
 }

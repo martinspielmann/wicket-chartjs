@@ -13,7 +13,16 @@ Often, it is used to show trend data, and the comparison of two data sets.
 
 ###Example usage
 ```javascript
-var myLineChart = new Chart(ctx).Line({
+var myLineChart = new Chart(ctx, {
+	type: 'line',
+	data: data, 
+	options: options
+});
+```
+
+Alternatively a line chart can be created using syntax similar to the v1.0 syntax
+```javascript
+var myLineChart = Chart.Line(ctx, {
 	data: data, 
 	options: options
 });
@@ -38,6 +47,18 @@ var data = {
 			// String or array - Line color
 			borderColor: "rgba(220,220,220,1)",
 
+			// String - cap style of the line. See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap
+            borderCapStyle: 'butt',
+
+            // Array - Length and spacing of dashes. See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash
+            borderDash: [],
+
+            // Number - Offset for line dashes. See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset
+            borderDashOffset: 0.0,
+
+            // String - line join style. See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin
+            borderJoinStyle: 'miter',
+
 			// String or array - Point stroke color
 			pointBorderColor: "rgba(220,220,220,1)",
 
@@ -57,7 +78,7 @@ var data = {
 			pointHoverBorderColor: "rgba(220,220,220,1)",
 
 			// Number or array - border width of point when hovered
-			pointBorderWidth: 2,
+			pointHoverBorderWidth: 2,
 
 			// The actual data
 			data: [65, 59, 80, 81, 56, 55, 40],
@@ -76,7 +97,7 @@ var data = {
 			pointHoverRadius: 5,
 			pointHoverBackgroundColor: "rgba(220,220,220,1)",
 			pointHoverBorderColor: "rgba(220,220,220,1)",
-			pointBorderWidth: 2,
+			pointHoverBorderWidth: 2,
 			data: [28, 48, 40, 19, 86, 27, 90]
 		}
 	]
@@ -103,138 +124,22 @@ These are the customisation options specific to Line charts. These options are m
 	},
 
 	scales: {
-		// The line chart officially supports only 1 x-axis but uses an array to keep the API consistent. Use a scatter chart if you need multiple x axes. 
+		// Defines all of the x axes used in the chart. See the [scale documentation](#getting-started-scales) for details on the available options
 		xAxes: [{
-			// String - type of axis to use. Should not be changed from 'dataset'. To use a 'linear' axis on the x, use the scatter chart type
-			scaleType: "dataset", // scatter should not use a dataset axis
-
-			// Boolean - if true, show the scale
-			display: true,
-
-			// String - position of the scale. possible options are "top" and "bottom" for dataset scales
-			position: "bottom",
+			// String - type of scale. Built in types are 'category' and 'linear'
+			type: 'category', 
 
 			// String - id of the axis so that data can bind to it
-			id: "x-axis-1", // need an ID so datasets can reference the scale
-
-			// grid line settings
-			gridLines: {
-				// Boolean - if true, show the grid lines
-				show: true,
-
-				// String - color of the grid lines
-				color: "rgba(0, 0, 0, 0.05)",
-
-				// Number - width of the grid lines
-				lineWidth: 1,
-
-				// Boolean - if true draw lines on the chart area
-				drawOnChartArea: true,
-
-				// Boolean - if true draw ticks in the axis area
-				drawTicks: true,
-
-				// Number - width of the grid line for the first index (index 0)
-				zeroLineWidth: 1,
-
-				// String - color of the grid line for the first index
-				zeroLineColor: "rgba(0,0,0,0.25)",
-
-				// Boolean - if true, offset labels from grid lines
-				offsetGridLines: false,
-			},
-
-			// label settings
-			labels: {
-				// Boolean - if true show labels
-				show: true,
-
-				// String - template string for labels
-				template: "<%=value%>",
-
-				// Number - label font size
-				fontSize: 12,
-
-				// String - label font style
-				fontStyle: "normal",
-
-				// String - label font color
-				fontColor: "#666",
-
-				// String - label font family
-				fontFamily: "Helvetica Neue",
-			},
+    		id: "x-axis-1", // need an ID so datasets can reference the scale
 		}],
+
+		// Defines all of the y axes used in the chart.
+		// By default, the line chart uses a linear scale along the y axis
 		yAxes: [{
-			// String - type of axis. 'linear' is the default but extensions may provide other types such as logarithmic
-			scaleType: "linear",
+			type: 'linear',
 
-			// Boolean - if true, show the scale
-			display: true,
-
-			// String - position of axis. Vertical axes can have either "left" or "right"
-			position: "left",
-
-			// ID of the axis for data binding
-			id: "y-axis-1",
-
-			// grid line settings
-			gridLines: {
-				// Boolean - if true, show the grid lines
-				show: true,
-
-				// String - color of the grid lines
-				color: "rgba(0, 0, 0, 0.05)",
-
-				// Number - width of the grid lines
-				lineWidth: 1,
-
-				// Boolean - if true draw lines on the chart area
-				drawOnChartArea: true,
-
-				// Boolean - if true draw ticks in the axis area
-				drawTicks: true,
-
-				// Number - width of the grid line representing a numerical value of 0
-				zeroLineWidth: 1,
-
-				// String - color of the grid line representing a numerical value of 0
-				zeroLineColor: "rgba(0,0,0,0.25)",
-			},
-
-			// Boolean - if true ensures that the scale always has a 0 point
-			beginAtZero: false,
-
-			// Object - if specified, allows the user to override the step generation algorithm.
-			//			Contains the following values
-			//				start: // number to start at
-			//				stepWidth: // size of step
-			//				steps: // number of steps
-			override: null,
-
-			// label settings
-			labels: {
-				// Boolean - if true show labels
-				show: true,
-
-				// String - template string for labels
-				template: "<%=value%>",
-
-				// Function - if specified this is passed the tick value, index, and the array of all tick values. Returns a string that is used as the label for that value
-				userCallback: null,
-
-				// Number - label font size
-				fontSize: 12,
-
-				// String - label font style
-				fontStyle: "normal",
-
-				// String - label font color
-				fontColor: "#666",
-
-				// String - label font family
-				fontFamily: "Helvetica Neue",
-			},
+			// String - ID of the axis for data binding
+    		id: "y-axis-1",
 		}],
 	}
 };
@@ -245,7 +150,8 @@ You can override these for your `Chart` instance by passing a member `options` i
 For example, we could have a line chart display without an x axis by doing the following. The config merge is smart enough to handle arrays so that you do not need to specify all axis settings to change one thing.
 
 ```javascript
-new Chart(ctx).Line({
+new Chart(ctx, {
+	type: 'line',
 	data: data, 
 	options: {
 		xAxes: [{
@@ -262,13 +168,13 @@ We can also change these defaults values for each Line type that is created, thi
 
 ### Prototype methods
 
-#### .getPointsAtEvent( event )
+#### .getElementsAtEvent( event )
 
-Calling `getPointsAtEvent(event)` on your Chart instance passing an argument of an event, or jQuery event, will return the point elements that are at that the same position of that event.
+Calling `getElementsAtEvent(event)` on your Chart instance passing an argument of an event, or jQuery event, will return the point elements that are at that the same position of that event.
 
 ```javascript
 canvas.onclick = function(evt){
-	var activePoints = myLineChart.getPointsAtEvent(evt);
+	var activePoints = myLineChart.getElementsAtEvent(evt);
 	// => activePoints is an array of points on the canvas that are at the same position as the click event.
 };
 ```

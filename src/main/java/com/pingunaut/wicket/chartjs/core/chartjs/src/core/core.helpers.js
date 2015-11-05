@@ -4,7 +4,7 @@
 
 	//Declare root variable - window in the browser, global on the server
 	var root = this,
-		previous = root.Chart;
+		Chart = root.Chart;
 
 	//Global Chart helpers object for utility methods and classes
 	var helpers = Chart.helpers = {};
@@ -57,12 +57,6 @@
 			});
 			return base;
 		},
-		merge = helpers.merge = function(base, master) {
-			//Merge properties in left object over to a shallow clone of object right.
-			var args = Array.prototype.slice.call(arguments, 0);
-			args.unshift({});
-			return extend.apply(null, args);
-		},
 		// Need a special merge function to chart configs since they are now grouped
 		configMerge = helpers.configMerge = function(_base) {
 			var base = clone(_base);
@@ -84,7 +78,13 @@
 							helpers.each(value, function(valueObj, index) {
 
 								if (index < baseArray.length) {
-									baseArray[index] = helpers.configMerge(baseArray[index], valueObj);
+									if (typeof baseArray[index] == 'object' && baseArray[index] !== null && typeof valueObj == 'object' && valueObj !== null) {
+										// Two objects are coming together. Do a merge of them.
+										baseArray[index] = helpers.configMerge(baseArray[index], valueObj);
+									} else {
+										// Just overwrite in this case since there is nothing to merge
+										baseArray[index] = valueObj;
+									}
 								} else {
 									baseArray.push(valueObj); // nothing to merge
 								}
@@ -104,6 +104,24 @@
 
 			return base;
 		},
+		extendDeep = helpers.extendDeep = function(_base) {
+			return _extendDeep.apply(this, arguments);
+
+			function _extendDeep(dst) {
+				helpers.each(arguments, function(obj) {
+					if (obj !== dst) {
+						helpers.each(obj, function(value, key) {
+							if (dst[key] && dst[key].constructor && dst[key].constructor === Object) {
+								_extendDeep(dst[key], value);
+							} else {
+								dst[key] = value;
+							}
+						});
+					}
+				});
+				return dst;
+			}
+		},
 		scaleMerge = helpers.scaleMerge = function(_base, extension) {
 			var base = clone(_base);
 
@@ -117,7 +135,7 @@
 									base[key].push(helpers.configMerge(valueObj.type ? Chart.scaleService.getScaleDefaults(valueObj.type) : {}, valueObj));
 								} else if (valueObj.type !== base[key][index].type) {
 									// Type changed. Bring in the new defaults before we bring in valueObj so that valueObj can override the correct scale defaults
-									base[key][index] = helpers.configMerge(base[key][index], valueObj.type ? Chart.scaleService.getScaleDefaults(valueObj.type) : {}, valueObj)
+									base[key][index] = helpers.configMerge(base[key][index], valueObj.type ? Chart.scaleService.getScaleDefaults(valueObj.type) : {}, valueObj);
 								} else {
 									// Type is the same
 									base[key][index] = helpers.configMerge(base[key][index], valueObj);
@@ -143,12 +161,12 @@
 			return base;
 		},
 		getValueAtIndexOrDefault = helpers.getValueAtIndexOrDefault = function(value, index, defaultValue) {
-			if (!value) {
+			if (value === undefined || value === null) {
 				return defaultValue;
 			}
 
-			if (helpers.isArray(value) && index < value.length) {
-				return value[index];
+			if (helpers.isArray(value)) {
+				return index < value.length ? value[index] : defaultValue;
 			}
 
 			return value;
@@ -176,7 +194,7 @@
 		},
 		findNextWhere = helpers.findNextWhere = function(arrayToSearch, filterCallback, startIndex) {
 			// Default to start of the array
-			if (!startIndex) {
+			if (startIndex === undefined || startIndex === null) {
 				startIndex = -1;
 			}
 			for (var i = startIndex + 1; i < arrayToSearch.length; i++) {
@@ -188,7 +206,7 @@
 		},
 		findPreviousWhere = helpers.findPreviousWhere = function(arrayToSearch, filterCallback, startIndex) {
 			// Default to end of the array
-			if (!startIndex) {
+			if (startIndex === undefined || startIndex === null) {
 				startIndex = arrayToSearch.length;
 			}
 			for (var i = startIndex - 1; i >= 0; i--) {
@@ -254,22 +272,10 @@
 		},
 		log10 = helpers.log10 = function(x) {
 			if (Math.log10) {
-				return Math.log10(x)
+				return Math.log10(x);
 			} else {
 				return Math.log(x) / Math.LN10;
 			}
-		},
-		cap = helpers.cap = function(valueToCap, maxValue, minValue) {
-			if (isNumber(maxValue)) {
-				if (valueToCap > maxValue) {
-					return maxValue;
-				}
-			} else if (isNumber(minValue)) {
-				if (valueToCap < minValue) {
-					return minValue;
-				}
-			}
-			return valueToCap;
 		},
 		getDecimalPlaces = helpers.getDecimalPlaces = function(num) {
 			if (num % 1 !== 0 && isNumber(num)) {
@@ -318,111 +324,47 @@
 		splineCurve = helpers.splineCurve = function(FirstPoint, MiddlePoint, AfterPoint, t) {
 			//Props to Rob Spencer at scaled innovation for his post on splining between points
 			//http://scaledinnovation.com/analytics/splines/aboutSplines.html
-			var d01 = Math.sqrt(Math.pow(MiddlePoint.x - FirstPoint.x, 2) + Math.pow(MiddlePoint.y - FirstPoint.y, 2)),
-				d12 = Math.sqrt(Math.pow(AfterPoint.x - MiddlePoint.x, 2) + Math.pow(AfterPoint.y - MiddlePoint.y, 2)),
+
+			// This function must also respect "skipped" points
+
+			var previous = FirstPoint,
+				current = MiddlePoint,
+				next = AfterPoint;
+
+			if (previous.skip) {
+				previous = current;
+			}
+			if (next.skip) {
+				next = current;
+			}
+
+			var d01 = Math.sqrt(Math.pow(current.x - previous.x, 2) + Math.pow(current.y - previous.y, 2)),
+				d12 = Math.sqrt(Math.pow(next.x - current.x, 2) + Math.pow(next.y - current.y, 2)),
 				fa = t * d01 / (d01 + d12), // scaling factor for triangle Ta
 				fb = t * d12 / (d01 + d12);
 			return {
 				previous: {
-					x: MiddlePoint.x - fa * (AfterPoint.x - FirstPoint.x),
-					y: MiddlePoint.y - fa * (AfterPoint.y - FirstPoint.y)
+					x: current.x - fa * (next.x - previous.x),
+					y: current.y - fa * (next.y - previous.y)
 				},
 				next: {
-					x: MiddlePoint.x + fb * (AfterPoint.x - FirstPoint.x),
-					y: MiddlePoint.y + fb * (AfterPoint.y - FirstPoint.y)
+					x: current.x + fb * (next.x - previous.x),
+					y: current.y + fb * (next.y - previous.y)
 				}
 			};
 		},
 		nextItem = helpers.nextItem = function(collection, index, loop) {
 			if (loop) {
-				return collection[index + 1] || collection[0];
+				return index >= collection.length - 1 ? collection[0] : collection[index + 1];
 			}
-			return collection[index + 1] || collection[collection.length - 1];
+
+			return index >= collection.length - 1 ? collection[collection.length - 1] : collection[index + 1];
 		},
 		previousItem = helpers.previousItem = function(collection, index, loop) {
 			if (loop) {
-				return collection[index - 1] || collection[collection.length - 1];
+				return index <= 0 ? collection[collection.length - 1] : collection[index - 1];
 			}
-			return collection[index - 1] || collection[0];
-		},
-		calculateOrderOfMagnitude = helpers.calculateOrderOfMagnitude = function(val) {
-			return Math.floor(Math.log(val) / Math.LN10);
-		},
-		calculateScaleRange = helpers.calculateScaleRange = function(valuesArray, drawingSize, textSize, startFromZero, integersOnly) {
-
-			//Set a minimum step of two - a point at the top of the graph, and a point at the base
-			var minSteps = 2,
-				maxSteps = Math.floor(drawingSize / (textSize * 1.5)),
-				skipFitting = (minSteps >= maxSteps);
-
-			var maxValue = max(valuesArray),
-				minValue = min(valuesArray);
-
-			// We need some degree of seperation here to calculate the scales if all the values are the same
-			// Adding/minusing 0.5 will give us a range of 1.
-			if (maxValue === minValue) {
-				maxValue += 0.5;
-				// So we don't end up with a graph with a negative start value if we've said always start from zero
-				if (minValue >= 0.5 && !startFromZero) {
-					minValue -= 0.5;
-				} else {
-					// Make up a whole number above the values
-					maxValue += 0.5;
-				}
-			}
-
-			var valueRange = Math.abs(maxValue - minValue),
-				rangeOrderOfMagnitude = calculateOrderOfMagnitude(valueRange),
-				graphMax = Math.ceil(maxValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude),
-				graphMin = (startFromZero) ? 0 : Math.floor(minValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude),
-				graphRange = graphMax - graphMin,
-				stepValue = Math.pow(10, rangeOrderOfMagnitude),
-				numberOfSteps = Math.round(graphRange / stepValue);
-
-			//If we have more space on the graph we'll use it to give more definition to the data
-			while ((numberOfSteps > maxSteps || (numberOfSteps * 2) < maxSteps) && !skipFitting) {
-				if (numberOfSteps > maxSteps) {
-					stepValue *= 2;
-					numberOfSteps = Math.round(graphRange / stepValue);
-					// Don't ever deal with a decimal number of steps - cancel fitting and just use the minimum number of steps.
-					if (numberOfSteps % 1 !== 0) {
-						skipFitting = true;
-					}
-				}
-				//We can fit in double the amount of scale points on the scale
-				else {
-					//If user has declared ints only, and the step value isn't a decimal
-					if (integersOnly && rangeOrderOfMagnitude >= 0) {
-						//If the user has said integers only, we need to check that making the scale more granular wouldn't make it a float
-						if (stepValue / 2 % 1 === 0) {
-							stepValue /= 2;
-							numberOfSteps = Math.round(graphRange / stepValue);
-						}
-						//If it would make it a float break out of the loop
-						else {
-							break;
-						}
-					}
-					//If the scale doesn't have to be an int, make the scale more granular anyway.
-					else {
-						stepValue /= 2;
-						numberOfSteps = Math.round(graphRange / stepValue);
-					}
-
-				}
-			}
-
-			if (skipFitting) {
-				numberOfSteps = minSteps;
-				stepValue = graphRange / numberOfSteps;
-			}
-			return {
-				steps: numberOfSteps,
-				stepValue: stepValue,
-				min: graphMin,
-				max: graphMin + (numberOfSteps * stepValue)
-			};
-
+			return index <= 0 ? collection[0] : collection[index - 1];
 		},
 		// Implementation of the nice number algorithm used in determining where axis labels will go
 		niceNum = helpers.niceNum = function(range, round) {
@@ -454,64 +396,6 @@
 
 			return niceFraction * Math.pow(10, exponent);
 		},
-		/* jshint ignore:start */
-		// Blows up jshint errors based on the new Function constructor
-		//Templating methods
-		//Javascript micro templating by John Resig - source at http://ejohn.org/blog/javascript-micro-templating/
-		template = helpers.template = function(templateString, valuesObject) {
-
-			// If templateString is function rather than string-template - call the function for valuesObject
-
-			if (templateString instanceof Function) {
-				return templateString(valuesObject);
-			}
-
-			var cache = {};
-
-			function tmpl(str, data) {
-				// Figure out if we're getting a template, or if we need to
-				// load the template - and be sure to cache the result.
-				var fn = !/\W/.test(str) ?
-					cache[str] = cache[str] :
-
-					// Generate a reusable function that will serve as a template
-					// generator (and which will be cached).
-					new Function("obj",
-						"var p=[],print=function(){p.push.apply(p,arguments);};" +
-
-						// Introduce the data as local variables using with(){}
-						"with(obj){p.push('" +
-
-						// Convert the template into pure JavaScript
-						str
-						.replace(/[\r\t\n]/g, " ")
-						.split("<%").join("\t")
-						.replace(/((^|%>)[^\t]*)'/g, "$1\r")
-						.replace(/\t=(.*?)%>/g, "',$1,'")
-						.split("\t").join("');")
-						.split("%>").join("p.push('")
-						.split("\r").join("\\'") +
-						"');}return p.join('');"
-					);
-
-				// Provide some basic currying to the user
-				return data ? fn(data) : fn;
-			}
-			return tmpl(templateString, valuesObject);
-		},
-		/* jshint ignore:end */
-		generateLabels = helpers.generateLabels = function(templateString, numberOfSteps, graphMin, stepValue) {
-			var labelsArray = new Array(numberOfSteps);
-			if (templateString) {
-				each(labelsArray, function(val, index) {
-					labelsArray[index] = template(templateString, {
-						value: (graphMin + (stepValue * (index + 1)))
-					});
-				});
-			}
-			return labelsArray;
-		},
-		//--Animation methods
 		//Easing functions adapted from Robert Penner's easing equations
 		//http://www.robertpenner.com/easing/
 		easingEffects = helpers.easingEffects = {
@@ -732,20 +616,29 @@
 				};
 		})(),
 		//-- DOM methods
-		getRelativePosition = helpers.getRelativePosition = function(evt) {
+		getRelativePosition = helpers.getRelativePosition = function(evt, chart) {
 			var mouseX, mouseY;
 			var e = evt.originalEvent || evt,
 				canvas = evt.currentTarget || evt.srcElement,
 				boundingRect = canvas.getBoundingClientRect();
 
 			if (e.touches) {
-				mouseX = e.touches[0].clientX - boundingRect.left;
-				mouseY = e.touches[0].clientY - boundingRect.top;
+				mouseX = e.touches[0].clientX;
+				mouseY = e.touches[0].clientY;
 
 			} else {
-				mouseX = e.clientX - boundingRect.left;
-				mouseY = e.clientY - boundingRect.top;
+				mouseX = e.clientX;
+				mouseY = e.clientY;
 			}
+
+			// Scale mouse coordinates into canvas coordinates
+			// by following the pattern laid out by 'jerryj' in the comments of 
+			// http://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
+
+			// We divide by the current device pixel ratio, because the canvas is scaled up by that amount in each direction. However
+			// the backend model is in unscaled coordinates. Since we are going to deal with our model coordinates, we go back here
+			mouseX = Math.round((mouseX - boundingRect.left) / (boundingRect.right - boundingRect.left) * canvas.width / chart.currentDevicePixelRatio);
+			mouseY = Math.round((mouseY - boundingRect.top) / (boundingRect.bottom - boundingRect.top) * canvas.height / chart.currentDevicePixelRatio);
 
 			return {
 				x: mouseX,
@@ -787,17 +680,54 @@
 				removeEvent(chartInstance.chart.canvas, eventName, handler);
 			});
 		},
+		getConstraintWidth = helpers.getConstraintWidth = function(domNode) { // returns Number or undefined if no constraint
+			var constrainedWidth;
+			var constrainedWNode = document.defaultView.getComputedStyle(domNode)['max-width'];
+			var constrainedWContainer = document.defaultView.getComputedStyle(domNode.parentNode)['max-width'];
+			var hasCWNode = constrainedWNode !== null && constrainedWNode !== "none";
+			var hasCWContainer = constrainedWContainer !== null && constrainedWContainer !== "none";
+
+			if (hasCWNode || hasCWContainer) {
+				constrainedWidth = Math.min((hasCWNode ? parseInt(constrainedWNode, 10) : Number.POSITIVE_INFINITY), (hasCWContainer ? parseInt(constrainedWContainer, 10) : Number.POSITIVE_INFINITY));
+			}
+			return constrainedWidth;
+		},
+		getConstraintHeight = helpers.getConstraintHeight = function(domNode) { // returns Number or undefined if no constraint
+
+			var constrainedHeight;
+			var constrainedHNode = document.defaultView.getComputedStyle(domNode)['max-height'];
+			var constrainedHContainer = document.defaultView.getComputedStyle(domNode.parentNode)['max-height'];
+			var hasCHNode = constrainedHNode !== null && constrainedHNode !== "none";
+			var hasCHContainer = constrainedHContainer !== null && constrainedHContainer !== "none";
+
+			if (constrainedHNode || constrainedHContainer) {
+				constrainedHeight = Math.min((hasCHNode ? parseInt(constrainedHNode, 10) : Number.POSITIVE_INFINITY), (hasCHContainer ? parseInt(constrainedHContainer, 10) : Number.POSITIVE_INFINITY));
+			}
+			return constrainedHeight;
+		},
 		getMaximumWidth = helpers.getMaximumWidth = function(domNode) {
-			var container = domNode.parentNode,
-				padding = parseInt(getStyle(container, 'padding-left')) + parseInt(getStyle(container, 'padding-right'));
-			// TODO = check cross browser stuff with this.
-			return container.clientWidth - padding;
+			var container = domNode.parentNode;
+			var padding = parseInt(getStyle(container, 'padding-left')) + parseInt(getStyle(container, 'padding-right'));
+
+			var w = container.clientWidth - padding;
+			var cw = getConstraintWidth(domNode);
+			if (cw !== undefined) {
+				w = Math.min(w, cw);
+			}
+
+			return w;
 		},
 		getMaximumHeight = helpers.getMaximumHeight = function(domNode) {
-			var container = domNode.parentNode,
-				padding = parseInt(getStyle(container, 'padding-bottom')) + parseInt(getStyle(container, 'padding-top'));
-			// TODO = check cross browser stuff with this.
-			return container.clientHeight - padding;
+			var container = domNode.parentNode;
+			var padding = parseInt(getStyle(container, 'padding-top')) + parseInt(getStyle(container, 'padding-bottom'));
+
+			var h = container.clientHeight - padding;
+			var ch = getConstraintHeight(domNode);
+			if (ch !== undefined) {
+				h = Math.min(h, ch);
+			}
+
+			return h;
 		},
 		getStyle = helpers.getStyle = function(el, property) {
 			return el.currentStyle ?
@@ -806,16 +736,23 @@
 		},
 		getMaximumSize = helpers.getMaximumSize = helpers.getMaximumWidth, // legacy support
 		retinaScale = helpers.retinaScale = function(chart) {
-			var ctx = chart.ctx,
-				width = chart.canvas.width,
-				height = chart.canvas.height;
+			var ctx = chart.ctx;
+			var width = chart.canvas.width;
+			var height = chart.canvas.height;
+			chart.currentDevicePixelRatio = window.devicePixelRatio || 1;
 
-			if (window.devicePixelRatio) {
-				ctx.canvas.style.width = width + "px";
-				ctx.canvas.style.height = height + "px";
+			if (window.devicePixelRatio !== 1) {
 				ctx.canvas.height = height * window.devicePixelRatio;
 				ctx.canvas.width = width * window.devicePixelRatio;
 				ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+				ctx.canvas.style.width = width + 'px';
+				ctx.canvas.style.height = height + 'px';
+
+				// Store the device pixel ratio so that we can go backwards in `destroy`.
+				// The devicePixelRatio changes with zoom, so there are no guarantees that it is the same
+				// when destroy is called
+				chart.originalDevicePixelRatio = chart.originalDevicePixelRatio || window.devicePixelRatio;
 			}
 		},
 		//-- Canvas methods
@@ -854,11 +791,55 @@
 			}
 			return window.Color(color);
 		},
+		addResizeListener = helpers.addResizeListener = function(node, callback) {
+			// Hide an iframe before the node
+			var hiddenIframe = document.createElement('iframe');
+			var hiddenIframeClass = 'chartjs-hidden-iframe';
+
+			if (hiddenIframe.classlist) {
+				// can use classlist
+				hiddenIframe.classlist.add(hiddenIframeClass);
+			} else {
+				hiddenIframe.setAttribute('class', hiddenIframeClass);
+			}
+
+			// Set the style
+			hiddenIframe.style.width = '100%';
+			hiddenIframe.style.display = 'block';
+			hiddenIframe.style.border = 0;
+			hiddenIframe.style.height = 0;
+			hiddenIframe.style.margin = 0;
+			hiddenIframe.style.position = 'absolute';
+			hiddenIframe.style.left = 0;
+			hiddenIframe.style.right = 0;
+			hiddenIframe.style.top = 0;
+			hiddenIframe.style.bottom = 0;
+
+			// Insert the iframe so that contentWindow is available
+			node.insertBefore(hiddenIframe, node.firstChild);
+
+			var timer = 0;
+			(hiddenIframe.contentWindow || hiddenIframe).onresize = function() {
+				if (callback) {
+					callback();
+				}
+			};
+		},
+		removeResizeListener = helpers.removeResizeListener = function(node) {
+			var hiddenIframe = node.querySelector('.chartjs-hidden-iframe');
+
+			// Remove the resize detect iframe
+			if (hiddenIframe) {
+				hiddenIframe.parentNode.removeChild(hiddenIframe);
+			}
+		},
 		isArray = helpers.isArray = function(obj) {
 			if (!Array.isArray) {
 				return Object.prototype.toString.call(arg) === '[object Array]';
 			}
 			return Array.isArray(obj);
+		},
+		isDatasetVisible = helpers.isDatasetVisible = function(dataset) {
+			return !dataset.hidden;
 		};
-
 }).call(this);

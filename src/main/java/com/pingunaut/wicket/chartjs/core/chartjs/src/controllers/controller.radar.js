@@ -31,6 +31,9 @@
 			this.linkScales();
 			this.addElements();
 		},
+		updateIndex: function(datasetIndex) {
+			this.index = datasetIndex;
+		},
 
 		linkScales: function() {
 			// No need. Single scale only
@@ -67,23 +70,55 @@
 				});
 			}, this);
 		},
+		addElementAndReset: function(index) {
+			this.getDataset().metaData = this.getDataset().metaData || [];
+			var point = new Chart.elements.Point({
+				_chart: this.chart.chart,
+				_datasetIndex: this.index,
+				_index: index,
+			});
+
+			// Reset the point
+			this.updateElement(point, index, true);
+
+			// Add to the points array
+			this.getDataset().metaData.splice(index, 0, point);
+
+			// Make sure bezier control points are updated
+			this.updateBezierControlPoints();
+		},
+		removeElement: function(index) {
+			this.getDataset().metaData.splice(index, 1);
+		},
 
 		reset: function() {
 			this.update(true);
 		},
 
-		update: function(reset) {
+		buildOrUpdateElements: function buildOrUpdateElements() {
+			// Handle the number of data points changing
+			var numData = this.getDataset().data.length;
+			var numPoints = this.getDataset().metaData.length;
+
+			// Make sure that we handle number of datapoints changing
+			if (numData < numPoints) {
+				// Remove excess bars for data points that have been removed
+				this.getDataset().metaData.splice(numData, numPoints - numData);
+			} else if (numData > numPoints) {
+				// Add new elements
+				for (var index = numPoints; index < numData; ++index) {
+					this.addElementAndReset(index);
+				}
+			}
+		},
+
+		update: function update(reset) {
 
 			var line = this.getDataset().metaDataset;
 			var points = this.getDataset().metaData;
 
 			var scale = this.chart.scale;
 			var scaleBase;
-
-			scale.setScaleSize();
-			scale.calculateRange();
-			scale.generateTicks();
-			scale.buildYLabels();
 
 			if (scale.min < 0 && scale.max < 0) {
 				scaleBase = scale.getPointPositionForValue(0, scale.max);
@@ -106,8 +141,6 @@
 					borderWidth: this.getDataset().borderWidth || this.chart.options.elements.line.borderWidth,
 					borderColor: this.getDataset().borderColor || this.chart.options.elements.line.borderColor,
 					fill: this.getDataset().fill !== undefined ? this.getDataset().fill : this.chart.options.elements.line.fill, // use the value from the this.getDataset() if it was provided. else fall back to the default
-					skipNull: this.getDataset().skipNull !== undefined ? this.getDataset().skipNull : this.chart.options.elements.line.skipNull,
-					drawNull: this.getDataset().drawNull !== undefined ? this.getDataset().drawNull : this.chart.options.elements.line.drawNull,
 
 					// Scale
 					scaleTop: scale.top,
@@ -120,34 +153,41 @@
 
 			// Update Points
 			helpers.each(points, function(point, index) {
-				var pointPosition = scale.getPointPositionForValue(index, this.getDataset().data[index]);
-
-				helpers.extend(point, {
-					// Utility
-					_datasetIndex: this.index,
-					_index: index,
-
-					// Desired view properties
-					_model: {
-						x: reset ? scale.xCenter : pointPosition.x, // value not used in dataset scale, but we want a consistent API between scales
-						y: reset ? scale.yCenter : pointPosition.y,
-
-						// Appearance
-						tension: point.custom && point.custom.tension ? point.custom.tension : this.chart.options.elements.line.tension,
-						radius: point.custom && point.custom.radius ? point.custom.pointRadius : helpers.getValueAtIndexOrDefault(this.getDataset().pointRadius, index, this.chart.options.elements.point.radius),
-						backgroundColor: point.custom && point.custom.backgroundColor ? point.custom.backgroundColor : helpers.getValueAtIndexOrDefault(this.getDataset().pointBackgroundColor, index, this.chart.options.elements.point.backgroundColor),
-						borderColor: point.custom && point.custom.borderColor ? point.custom.borderColor : helpers.getValueAtIndexOrDefault(this.getDataset().pointBorderColor, index, this.chart.options.elements.point.borderColor),
-						borderWidth: point.custom && point.custom.borderWidth ? point.custom.borderWidth : helpers.getValueAtIndexOrDefault(this.getDataset().pointBorderWidth, index, this.chart.options.elements.point.borderWidth),
-						skip: this.getDataset().data[index] === null,
-
-						// Tooltip
-						hitRadius: point.custom && point.custom.hitRadius ? point.custom.hitRadius : helpers.getValueAtIndexOrDefault(this.getDataset().hitRadius, index, this.chart.options.elements.point.hitRadius),
-					},
-				});
+				this.updateElement(point, index, reset);
 			}, this);
 
 
 			// Update bezier control points
+			this.updateBezierControlPoints();
+		},
+		updateElement: function(point, index, reset) {
+			var pointPosition = this.chart.scale.getPointPositionForValue(index, this.getDataset().data[index]);
+
+			helpers.extend(point, {
+				// Utility
+				_datasetIndex: this.index,
+				_index: index,
+
+				// Desired view properties
+				_model: {
+					x: reset ? this.chart.scale.xCenter : pointPosition.x, // value not used in dataset scale, but we want a consistent API between scales
+					y: reset ? this.chart.scale.yCenter : pointPosition.y,
+
+					// Appearance
+					tension: point.custom && point.custom.tension ? point.custom.tension : this.chart.options.elements.line.tension,
+					radius: point.custom && point.custom.radius ? point.custom.pointRadius : helpers.getValueAtIndexOrDefault(this.getDataset().pointRadius, index, this.chart.options.elements.point.radius),
+					backgroundColor: point.custom && point.custom.backgroundColor ? point.custom.backgroundColor : helpers.getValueAtIndexOrDefault(this.getDataset().pointBackgroundColor, index, this.chart.options.elements.point.backgroundColor),
+					borderColor: point.custom && point.custom.borderColor ? point.custom.borderColor : helpers.getValueAtIndexOrDefault(this.getDataset().pointBorderColor, index, this.chart.options.elements.point.borderColor),
+					borderWidth: point.custom && point.custom.borderWidth ? point.custom.borderWidth : helpers.getValueAtIndexOrDefault(this.getDataset().pointBorderWidth, index, this.chart.options.elements.point.borderWidth),
+
+					// Tooltip
+					hitRadius: point.custom && point.custom.hitRadius ? point.custom.hitRadius : helpers.getValueAtIndexOrDefault(this.getDataset().hitRadius, index, this.chart.options.elements.point.hitRadius),
+				},
+			});
+
+			point._model.skip = point.custom && point.custom.skip ? point.custom.skip : (isNaN(point._model.x) || isNaN(point._model.y));
+		},
+		updateBezierControlPoints: function() {
 			helpers.each(this.getDataset().metaData, function(point, index) {
 				var controlPoints = helpers.splineCurve(
 					helpers.previousItem(this.getDataset().metaData, index, true)._model,
@@ -161,7 +201,7 @@
 
 				// Prevent the bezier going outside of the bounds of the graph
 
-				// Cap puter bezier handles to the upper/lower scale bounds
+				// Cap outer bezier handles to the upper/lower scale bounds
 				if (controlPoints.next.y > this.chart.chartArea.bottom) {
 					point._model.controlPointNextY = this.chart.chartArea.bottom;
 				} else if (controlPoints.next.y < this.chart.chartArea.top) {
@@ -182,7 +222,6 @@
 				// Now pivot the point for animation
 				point.pivot();
 			}, this);
-
 		},
 
 		draw: function(ease) {
