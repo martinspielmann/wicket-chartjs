@@ -31,6 +31,8 @@ public class LineDataSet extends AbstractPointColorDataSet {
 	@JsonIgnore
 	private static final long serialVersionUID = -3154092519924576329L;
 
+	private String label;
+
 	/**
 	 * Instantiates a new line data set.
 	 */
@@ -46,6 +48,36 @@ public class LineDataSet extends AbstractPointColorDataSet {
 	 */
 	public LineDataSet(List<? extends Number> values) {
 		super(values);
+	}
+
+	/**
+	 * Instantiates a new line data set.
+	 * 
+	 * @param values
+	 *            the values
+	 * @param label
+	 *            the label
+	 */
+	public LineDataSet(List<? extends Number> values, String label) {
+		super(values);
+	}
+
+	/**
+	 * Gets the label.
+	 * 
+	 * @return label
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * Sets the label.
+	 * 
+	 * @param label
+	 */
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 }
