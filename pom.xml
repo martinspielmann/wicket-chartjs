@@ -52,7 +52,6 @@
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-core</artifactId>
 			<version>${wicket.version}</version>
-			<scope>test</scope>
 		</dependency>
 
 		<!-- JSON DEPENDENCIES - JACKSON -->
@@ -206,7 +205,7 @@
 	</distributionManagement>
 
 	<properties>
-		<wicket.version>7.1.0</wicket.version>
+		<wicket.version>7.2.0</wicket.version>
 		<jackson.version>2.6.2</jackson.version>
 	</properties>
 
