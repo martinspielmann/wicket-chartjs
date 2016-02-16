@@ -60,6 +60,7 @@ public class LineDataSet extends AbstractPointColorDataSet {
 	 */
 	public LineDataSet(List<? extends Number> values, String label) {
 		super(values);
+                this.label = label;
 	}
 
 	/**
