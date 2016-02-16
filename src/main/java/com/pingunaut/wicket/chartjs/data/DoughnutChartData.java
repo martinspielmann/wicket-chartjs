@@ -30,6 +30,8 @@ public class DoughnutChartData extends SimpleColorValueChartData {
 	@JsonIgnore
 	private static final long serialVersionUID = -5122104387810776812L;
 
+        private String label;
+
 	/**
 	 * Instantiates a new doughnut chart data.
 	 * 
@@ -40,6 +42,19 @@ public class DoughnutChartData extends SimpleColorValueChartData {
 	 */
 	public DoughnutChartData(Integer value, String color) {
 		super(value, color);
+	}
+
+        public DoughnutChartData(Number value, String color, String label) {
+		super(value, color);
+		this.label = label;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 }
