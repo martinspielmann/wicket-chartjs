@@ -18,11 +18,9 @@ package com.pingunaut.wicket.chartjs.options;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.pingunaut.wicket.chartjs.chart.impl.Doughnut;
 
 /**
  * The Class DoughnutChartOptions provides options, that are available for
- * {@link Doughnut}.
  * 
  * @author Martin Spielmann
  */

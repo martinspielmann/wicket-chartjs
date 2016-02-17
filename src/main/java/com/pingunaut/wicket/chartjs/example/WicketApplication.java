@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,5 +23,11 @@ public class WicketApplication extends WebApplication {
 	@Override
 	public Class<? extends Page> getHomePage() {
 		return ExamplePage.class;
+	}
+	
+	@Override
+	protected void init() {
+		super.init();
+	 getMarkupSettings().setStripWicketTags(true);
 	}
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,8 @@ package com.pingunaut.wicket.chartjs.core.panel;
 
 import org.apache.wicket.model.IModel;
 
-import com.pingunaut.wicket.chartjs.chart.impl.Line;
-import com.pingunaut.wicket.chartjs.core.DataSetChartPanel;
-import com.pingunaut.wicket.chartjs.data.LineChartData;
-import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
-import com.pingunaut.wicket.chartjs.options.LineChartOptions;
+import com.pingunaut.wicket.chartjs.core.js.ChartType;
+import com.pingunaut.wicket.chartjs.data.LineData;
 
 /**
  * The Class LineChartPanel provides a simple implementation of chart.js line
@@ -32,27 +29,10 @@ import com.pingunaut.wicket.chartjs.options.LineChartOptions;
  * @author Martin Spielmann
  * 
  */
-public class LineChartPanel extends DataSetChartPanel<Line, LineChartData<LineDataSet>, LineChartOptions, LineDataSet> {
+public class LineChartPanel extends ChartPanel {
 
 	private static final long serialVersionUID = -7460695892808795726L;
 
-	/**
-	 * Instantiates a new line chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link Line}
-	 * @param width
-	 *            the width
-	 * @param height
-	 *            the height
-	 */
-	public LineChartPanel(String id, IModel<? extends Line> c, 
-            int width, int height) {
-        
-		super(id, c, width, height);
-	}
 
 	/**
 	 * Instantiates a new line chart panel.
@@ -60,9 +40,9 @@ public class LineChartPanel extends DataSetChartPanel<Line, LineChartData<LineDa
 	 * @param id
 	 *            the markup id
 	 * @param c
-	 *            the IModel of a {@link Line}
+	 *            the IModel of a {@link LineData}
 	 */
-	public LineChartPanel(String id, IModel<? extends Line> c) {
-		super(id, c);
+	public LineChartPanel(String id, IModel<LineData> model) {
+		super(id, ChartType.LINE, model);
 	}
 }

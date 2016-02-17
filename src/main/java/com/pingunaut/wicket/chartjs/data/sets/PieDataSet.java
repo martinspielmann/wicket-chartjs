@@ -18,10 +18,10 @@ package com.pingunaut.wicket.chartjs.data.sets;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pingunaut.wicket.chartjs.data.BarChartData;
+import com.pingunaut.wicket.chartjs.data.BarData;
 
 /**
- * The Class BarDataSet provides all information needed for {@link BarChartData}
+ * The Class BarDataSet provides all information needed for {@link BarData}
  * .
  * 
  * @author Martin Spielmann

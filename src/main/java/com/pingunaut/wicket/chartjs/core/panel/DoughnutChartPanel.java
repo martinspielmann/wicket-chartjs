@@ -17,11 +17,8 @@ package com.pingunaut.wicket.chartjs.core.panel;
 
 import org.apache.wicket.model.IModel;
 
-import com.pingunaut.wicket.chartjs.chart.impl.Doughnut;
-import com.pingunaut.wicket.chartjs.core.LegendGeneratingChartPanel;
-import com.pingunaut.wicket.chartjs.core.SimpleChartPanel;
+import com.pingunaut.wicket.chartjs.core.js.ChartType;
 import com.pingunaut.wicket.chartjs.data.DoughnutChartData;
-import com.pingunaut.wicket.chartjs.options.DoughnutChartOptions;
 
 /**
  * The Class DoughnutChartPanel provides a simple implementation of chart.js
@@ -32,35 +29,11 @@ import com.pingunaut.wicket.chartjs.options.DoughnutChartOptions;
  * @author Martin Spielmann
  *
  */
-public class DoughnutChartPanel extends LegendGeneratingChartPanel<Doughnut, DoughnutChartData, DoughnutChartOptions> {
+public class DoughnutChartPanel extends ChartPanel {
 
-   private static final long serialVersionUID = -7460695892808795726L;
+   public DoughnutChartPanel(String id, IModel<DoughnutChartData> model) {
+		super(id, ChartType.DOUGHNUT, model);
+	}
 
-   /**
-    * Instantiates a new doughnut chart panel.
-    *
-    * @param id
-    *           the markup id
-    * @param c
-    *           the IModel of a {@link Doughnut}
-    * @param width
-    *           the width
-    * @param height
-    *           the height
-    */
-   public DoughnutChartPanel(final String id, final IModel<? extends Doughnut> c, final int width, final int height) {
-      super(id, c, width, height);
-   }
 
-   /**
-    * Instantiates a new doughnut chart panel.
-    *
-    * @param id
-    *           the markup id
-    * @param c
-    *           the IModel of a {@link Doughnut}
-    */
-   public DoughnutChartPanel(final String id, final IModel<? extends Doughnut> c) {
-      super(id, c);
-   }
 }

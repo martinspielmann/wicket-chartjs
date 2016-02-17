@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,8 @@ package com.pingunaut.wicket.chartjs.core.panel;
 
 import org.apache.wicket.model.IModel;
 
-import com.pingunaut.wicket.chartjs.chart.impl.Bar;
-import com.pingunaut.wicket.chartjs.core.DataSetChartPanel;
-import com.pingunaut.wicket.chartjs.data.BarChartData;
-import com.pingunaut.wicket.chartjs.data.sets.BarDataSet;
-import com.pingunaut.wicket.chartjs.options.BarChartOptions;
+import com.pingunaut.wicket.chartjs.core.js.ChartType;
+import com.pingunaut.wicket.chartjs.data.BarData;
 
 /**
  * The Class BarChartPanel provides a simple implementation of chart.js bar
@@ -32,37 +29,22 @@ import com.pingunaut.wicket.chartjs.options.BarChartOptions;
  * @author Martin Spielmann
  * 
  */
-public class BarChartPanel extends DataSetChartPanel<Bar, BarChartData<BarDataSet>, BarChartOptions, BarDataSet> {
+public class BarChartPanel extends ChartPanel {
 
 	private static final long serialVersionUID = -7460695892808795726L;
 
-	/**
-	 * Instantiates a new bar chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link Bar}
-	 * @param width
-	 *            the width
-	 * @param height
-	 *            the height
-	 */
-	public BarChartPanel(String id, IModel<? extends Bar> c, 
-            int width, int height) {
-        
-		super(id, c, width, height);
-	}
 
 	/**
 	 * Instantiates a new bar chart panel.
 	 * 
 	 * @param id
 	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link Bar}
+	 * @param model
+	 *            the IModel of a {@link BarData}
 	 */
-	public BarChartPanel(String id, IModel<? extends Bar> c) {
-		super(id, c);
+	public BarChartPanel(String id, IModel<BarData> model) {
+
+		super(id, ChartType.BAR, model);
 	}
+
 }

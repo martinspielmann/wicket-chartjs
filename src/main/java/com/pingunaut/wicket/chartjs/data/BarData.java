@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,39 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package com.pingunaut.wicket.chartjs.data.sets;
+package com.pingunaut.wicket.chartjs.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pingunaut.wicket.chartjs.data.RadarData;
+import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.data.sets.BarDataset;
 
 /**
- * The Class RadarDataSet provides all information needed for
- * {@link RadarData}.
+ * The Class BarChartData provides chart data used by bar charts.
+ * 
+ * @param <T>
+ *            the generic type of it's dataset
  * 
  * @author Martin Spielmann
  */
-public class RadarDataSet extends AbstractPointColorDataSet {
+public class BarData extends Data {
 
-	@JsonIgnore
-	private static final long serialVersionUID = -3154092519924576329L;
+	private static final long serialVersionUID = 1L;
+	
+	private final List<BarDataset> datasets = new ArrayList<>();
 
-	/**
-	 * Instantiates a new radar data set.
-	 */
-	public RadarDataSet() {
-		super();
-	}
-
-	/**
-	 * Instantiates a new radar data set.
-	 * 
-	 * @param values
-	 *            the values
-	 */
-	public RadarDataSet(List<? extends Number> values) {
-		super(values);
+	public List<BarDataset> getDatasets() {
+		return datasets;
 	}
 
 }

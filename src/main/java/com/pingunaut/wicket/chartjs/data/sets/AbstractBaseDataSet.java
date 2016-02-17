@@ -37,13 +37,23 @@ public abstract class AbstractBaseDataSet implements Serializable {
 	private static final long serialVersionUID = 1581171902504828797L;
 
 	/** The fill color. */
-	private String fillColor = "rgba(220,220,220,0.5)";
-
-	/** The stroke color. */
-	private String strokeColor = "rgba(220,220,220,1)";
+//	private String fillColor = "rgba(220,220,220,0.5)";
+//
+//	/** The stroke color. */
+//	private String strokeColor = "rgba(220,220,220,1)";
 
 	/** The data. */
 	private List<? extends Number> data;
+
+	private String label;
+	
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
 
 	/**
 	 * Instantiates a new abstract base data set.
@@ -67,42 +77,42 @@ public abstract class AbstractBaseDataSet implements Serializable {
 	 * 
 	 * @return the fill color
 	 */
-	public String getFillColor() {
-		return fillColor;
-	}
-
-	/**
-	 * Sets the fill color.
-	 * 
-	 * @param fillColor
-	 *            the fill color
-	 * @return the abstract base data set
-	 */
-	public AbstractBaseDataSet setFillColor(String fillColor) {
-		this.fillColor = fillColor;
-		return this;
-	}
-
-	/**
-	 * Gets the stroke color.
-	 * 
-	 * @return the stroke color
-	 */
-	public String getStrokeColor() {
-		return strokeColor;
-	}
-
-	/**
-	 * Sets the stroke color.
-	 * 
-	 * @param strokeColor
-	 *            the stroke color
-	 * @return the abstract base data set
-	 */
-	public AbstractBaseDataSet setStrokeColor(String strokeColor) {
-		this.strokeColor = strokeColor;
-		return this;
-	}
+//	public String getFillColor() {
+//		return fillColor;
+//	}
+//
+//	/**
+//	 * Sets the fill color.
+//	 * 
+//	 * @param fillColor
+//	 *            the fill color
+//	 * @return the abstract base data set
+//	 */
+//	public AbstractBaseDataSet setFillColor(String fillColor) {
+//		this.fillColor = fillColor;
+//		return this;
+//	}
+//
+//	/**
+//	 * Gets the stroke color.
+//	 * 
+//	 * @return the stroke color
+//	 */
+//	public String getStrokeColor() {
+//		return strokeColor;
+//	}
+//
+//	/**
+//	 * Sets the stroke color.
+//	 * 
+//	 * @param strokeColor
+//	 *            the stroke color
+//	 * @return the abstract base data set
+//	 */
+//	public AbstractBaseDataSet setStrokeColor(String strokeColor) {
+//		this.strokeColor = strokeColor;
+//		return this;
+//	}
 
 	/**
 	 * Gets the data.

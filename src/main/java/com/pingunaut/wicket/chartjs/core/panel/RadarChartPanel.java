@@ -17,11 +17,8 @@ package com.pingunaut.wicket.chartjs.core.panel;
 
 import org.apache.wicket.model.IModel;
 
-import com.pingunaut.wicket.chartjs.chart.impl.Radar;
-import com.pingunaut.wicket.chartjs.core.DataSetChartPanel;
-import com.pingunaut.wicket.chartjs.data.RadarChartData;
-import com.pingunaut.wicket.chartjs.data.sets.RadarDataSet;
-import com.pingunaut.wicket.chartjs.options.RadarChartOptions;
+import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.core.js.ChartType;
 
 /**
  * The Class RadarChartPanel provides a simple implementation of chart.js radar
@@ -32,37 +29,10 @@ import com.pingunaut.wicket.chartjs.options.RadarChartOptions;
  * @author Martin Spielmann
  * 
  */
-public class RadarChartPanel extends DataSetChartPanel<Radar, RadarChartData<RadarDataSet>, RadarChartOptions, RadarDataSet> {
+public class RadarChartPanel extends ChartPanel {
 
-	private static final long serialVersionUID = -7460695892808795726L;
-
-	/**
-	 * Instantiates a new radar chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link Radar}
-	 * @param width
-	 *            the width
-	 * @param height
-	 *            the height
-	 */
-	public RadarChartPanel(String id, IModel<? extends Radar> c, 
-            int width, int height) {
-        
-		super(id, c, width, height);
+	public RadarChartPanel(String id, ChartType type, IModel<? extends Data> model) {
+		super(id, ChartType.RADAR, model);
 	}
 
-	/**
-	 * Instantiates a new radar chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link Radar}
-	 */
-	public RadarChartPanel(String id, IModel<? extends Radar> c) {
-		super(id, c);
-	}
 }

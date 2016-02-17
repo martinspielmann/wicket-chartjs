@@ -18,12 +18,9 @@ package com.pingunaut.wicket.chartjs.options;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.pingunaut.wicket.chartjs.chart.impl.Radar;
 
 /**
  * The Class RadarChartOptions provides options, that are available for.
- * 
- * {@link Radar}.
  * 
  * @author Martin Spielmann
  */

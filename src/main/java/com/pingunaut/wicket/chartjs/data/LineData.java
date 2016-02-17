@@ -13,39 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package com.pingunaut.wicket.chartjs.data.sets;
+package com.pingunaut.wicket.chartjs.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pingunaut.wicket.chartjs.data.RadarData;
+import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.data.sets.LineDataset;
 
 /**
- * The Class RadarDataSet provides all information needed for
- * {@link RadarData}.
+ * The Class LineChartData provides chart data used by line charts.
+ * 
+ * @param <T>
+ *            the generic type of it's dataset
  * 
  * @author Martin Spielmann
  */
-public class RadarDataSet extends AbstractPointColorDataSet {
+public class LineData extends Data {
 
-	@JsonIgnore
-	private static final long serialVersionUID = -3154092519924576329L;
+	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Instantiates a new radar data set.
-	 */
-	public RadarDataSet() {
-		super();
+	private final List<LineDataset> datasets = new ArrayList<>();
+
+	public List<LineDataset> getDatasets() {
+		return datasets;
 	}
-
-	/**
-	 * Instantiates a new radar data set.
-	 * 
-	 * @param values
-	 *            the values
-	 */
-	public RadarDataSet(List<? extends Number> values) {
-		super(values);
-	}
-
 }

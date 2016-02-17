@@ -18,11 +18,9 @@ package com.pingunaut.wicket.chartjs.options;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.pingunaut.wicket.chartjs.chart.impl.Pie;
 
 /**
  * The Class PieChartOptions provides options, that are available for
- * {@link Pie}.
  * 
  * @author Martin Spielmann
  */
@@ -47,8 +45,7 @@ public class PieChartOptions extends AbstractChartOptions {
 	/** The animate scale. */
 	private Boolean animateScale;
 	
-	private String legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>";
-
+	private String legendTemplate = "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"><%if(segments[i].label){%><%=segments[i].label%><%}%></span></li><%}%></ul>";
 	public String getLegendTemplate() {
     return legendTemplate;
   }

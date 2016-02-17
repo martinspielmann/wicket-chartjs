@@ -17,10 +17,8 @@ package com.pingunaut.wicket.chartjs.core.panel;
 
 import org.apache.wicket.model.IModel;
 
-import com.pingunaut.wicket.chartjs.chart.impl.PolarArea;
-import com.pingunaut.wicket.chartjs.core.SimpleChartPanel;
-import com.pingunaut.wicket.chartjs.data.PolarAreaChartData;
-import com.pingunaut.wicket.chartjs.options.PolarAreaChartOptions;
+import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.core.js.ChartType;
 
 /**
  * The Class PolarAreaChartPanel provides a simple implementation of chart.js
@@ -31,37 +29,10 @@ import com.pingunaut.wicket.chartjs.options.PolarAreaChartOptions;
  * @author Martin Spielmann
  * 
  */
-public class PolarAreaChartPanel extends SimpleChartPanel<PolarArea, PolarAreaChartData, PolarAreaChartOptions> {
+public class PolarAreaChartPanel extends ChartPanel {
 
-	private static final long serialVersionUID = -7460695892808795726L;
-
-	/**
-	 * Instantiates a new polar area chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link PolarArea}
-	 * @param width
-	 *            the width
-	 * @param height
-	 *            the height
-	 */
-	public PolarAreaChartPanel(String id, IModel<? extends PolarArea> c, 
-            int width, int height) {
-        
-		super(id, c, width, height);
+	public PolarAreaChartPanel(String id, ChartType type, IModel<? extends Data> model) {
+		super(id, ChartType.POLAR_AREA, model);
 	}
 
-	/**
-	 * Instantiates a new polar area chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link PolarArea}
-	 */
-	public PolarAreaChartPanel(String id, IModel<? extends PolarArea> c) {
-		super(id, c);
-	}
 }

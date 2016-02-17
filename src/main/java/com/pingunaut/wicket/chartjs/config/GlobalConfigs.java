@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.Generated;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
@@ -27,6 +30,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "elements"
 })
 public class GlobalConfigs {
+	
+	private static ObjectMapper mapper = new ObjectMapper();
 
     @JsonProperty("animation")
     private Animation animation;
@@ -238,5 +243,13 @@ public class GlobalConfigs {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
+
+	public static ObjectMapper getMapper() {
+		return mapper;
+	}
+
+	public static void setMapper(ObjectMapper mapper) {
+		GlobalConfigs.mapper = mapper;
+	}
 
 }

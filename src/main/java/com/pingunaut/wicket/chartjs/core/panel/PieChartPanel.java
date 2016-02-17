@@ -17,11 +17,8 @@ package com.pingunaut.wicket.chartjs.core.panel;
 
 import org.apache.wicket.model.IModel;
 
-import com.pingunaut.wicket.chartjs.chart.impl.Pie;
-import com.pingunaut.wicket.chartjs.core.LegendGeneratingChartPanel;
-import com.pingunaut.wicket.chartjs.core.SimpleChartPanel;
-import com.pingunaut.wicket.chartjs.data.PieChartData;
-import com.pingunaut.wicket.chartjs.options.PieChartOptions;
+import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.core.js.ChartType;
 
 /**
  * The Class PieChartPanel provides a simple implementation of chart.js pie
@@ -32,37 +29,10 @@ import com.pingunaut.wicket.chartjs.options.PieChartOptions;
  * @author Martin Spielmann
  * 
  */
-public class PieChartPanel extends LegendGeneratingChartPanel<Pie, PieChartData, PieChartOptions> {
+public class PieChartPanel extends ChartPanel {
 
-	private static final long serialVersionUID = -7460695892808795726L;
-
-	/**
-	 * Instantiates a new pie chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link Pie}
-	 * @param width
-	 *            the width
-	 * @param height
-	 *            the height
-	 */
-	public PieChartPanel(String id, IModel<? extends Pie> c, 
-            int width, int height) {
-        
-		super(id, c, width, height);
+	public PieChartPanel(String id, IModel<? extends Data> model) {
+		super(id, ChartType.PIE, model);
 	}
 
-	/**
-	 * Instantiates a new pie chart panel.
-	 * 
-	 * @param id
-	 *            the markup id
-	 * @param c
-	 *            the IModel of a {@link Pie}
-	 */
-	public PieChartPanel(String id, IModel<? extends Pie> c) {
-		super(id, c);
-	}
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,19 +21,13 @@ import java.util.List;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.Model;
 
-import com.pingunaut.wicket.chartjs.chart.impl.Bar;
-import com.pingunaut.wicket.chartjs.chart.impl.Line;
-import com.pingunaut.wicket.chartjs.chart.impl.Pie;
 import com.pingunaut.wicket.chartjs.core.panel.BarChartPanel;
-import com.pingunaut.wicket.chartjs.core.panel.LineChartPanel;
-import com.pingunaut.wicket.chartjs.core.panel.PieChartPanel;
-import com.pingunaut.wicket.chartjs.data.PieChartData;
-import com.pingunaut.wicket.chartjs.data.sets.BarDataSet;
-import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
+import com.pingunaut.wicket.chartjs.data.BarData;
+import com.pingunaut.wicket.chartjs.data.sets.BarDataset;
 
 /**
  * The Class ExamplePage provides a tiny little running example of
- * wicket-chartjs. to use it, just type mvn jetty:run
+ * wicket-chartjs2. to use it, just type mvn jetty:run
  *
  * @author Martin Spielmann
  */
@@ -49,8 +43,8 @@ public class ExamplePage extends WebPage {
    @Override
    protected void onInitialize() {
       super.onInitialize();
-      LineChartPanel lineChartPanel = new LineChartPanel("lineChart", Model.of(new Line()));
-      add(lineChartPanel);
+//      LineChartPanel lineChartPanel = new LineChartPanel("lineChart", Model.of(new Line()));
+//      add(lineChartPanel);
 //      PieChartPanel pieChartPanel = new PieChartPanel("pieChart", Model.of(new Pie()));
 //      add(pieChartPanel);
 //
@@ -65,35 +59,41 @@ public class ExamplePage extends WebPage {
       labels.add("apr");
       labels.add("may");
 
-      List<Double> values1 = new ArrayList<>();
+      List<Number> values1 = new ArrayList<>();
       values1.add(4d);
       values1.add(2d);
       values1.add(6.4563d);
       values1.add(7d);
       values1.add(7.56);
 
-      BarChartPanel barChartPanel = new BarChartPanel("bar", Model.of(new Bar()));
+      BarData barData = new BarData();
+	BarChartPanel barChartPanel = new BarChartPanel("bar", Model.of(barData));
       add(barChartPanel);
-      barChartPanel.getChart().getData().getDatasets().add(new BarDataSet(values1));
-      barChartPanel.getChart().getData().getLabels().addAll(labels);
+      BarDataset barDataSet = new BarDataset();
+      barDataSet.setLabel("test set 1");
+      barDataSet.setData(values1);
+      barData.getDatasets().add(barDataSet);
+      barData.getLabels().addAll(labels);
+      
+      
 
-      lineChartPanel.getChart().getData().getDatasets().add(new LineDataSet(values1));
-      lineChartPanel.getChart().getData().getLabels().addAll(labels);
+//      lineChartPanel.getChart().getData().getDatasets().add(new LineDataSet(values1));
+//      lineChartPanel.getChart().getData().getLabels().addAll(labels);
 
-      lineChartPanel.getChart().getOptions()
-            .setCustomTooltips("function(tooltip){var tooltipEl = $('#chartjs-tooltip');"
-                  + "if (!tooltip) {tooltipEl.css({opacity: 0});return;}"
-                  + "tooltipEl.removeClass('above below');tooltipEl.addClass(tooltip.yAlign);"
-                  + "tooltipEl.html('my custom text: '+tooltip.text);var top;if (tooltip.yAlign == 'above') {top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;"
-                  + "} else {top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;}tooltipEl.css({"
-                  + "opacity: 1,left: tooltip.chart.canvas.offsetLeft + tooltip.x + 'px',top: tooltip.chart.canvas.offsetTop + top + 'px',"
-                  + "fontFamily: tooltip.fontFamily,fontSize: tooltip.fontSize,fontStyle: tooltip.fontStyle,});}");
-
-      for (Double di : values1) {
-    	  int i = di.intValue();
-//         pieChartPanel.getChart().getData().add(new PieChartData(i, "#" + i + i + i));
-//         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (i + 3) + i + i, "label for " + di));
-//         pieChartWithoutTooltips.getChart().getOptions().setShowTooltips(Boolean.FALSE);
-      }
+//      lineChartPanel.getChart().getOptions()
+//            .setCustomTooltips("function(tooltip){var tooltipEl = $('#chartjs-tooltip');"
+//                  + "if (!tooltip) {tooltipEl.css({opacity: 0});return;}"
+//                  + "tooltipEl.removeClass('above below');tooltipEl.addClass(tooltip.yAlign);"
+//                  + "tooltipEl.html('my custom text: '+tooltip.text);var top;if (tooltip.yAlign == 'above') {top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;"
+//                  + "} else {top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;}tooltipEl.css({"
+//                  + "opacity: 1,left: tooltip.chart.canvas.offsetLeft + tooltip.x + 'px',top: tooltip.chart.canvas.offsetTop + top + 'px',"
+//                  + "fontFamily: tooltip.fontFamily,fontSize: tooltip.fontSize,fontStyle: tooltip.fontStyle,});}");
+//
+//      for (Double di : values1) {
+//    	  int i = di.intValue();
+////         pieChartPanel.getChart().getData().add(new PieChartData(i, "#" + i + i + i));
+////         pieChartWithoutTooltips.getChart().getData().add(new PieChartData(i, "#" + (i + 3) + i + i, "label for " + di));
+////         pieChartWithoutTooltips.getChart().getOptions().setShowTooltips(Boolean.FALSE);
+//      }
    }
 }
