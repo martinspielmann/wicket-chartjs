@@ -31,6 +31,8 @@ public class BarDataSet extends AbstractBaseDataSet {
 	@JsonIgnore
 	private static final long serialVersionUID = 3095383371272813559L;
 
+        private String label;
+
 	/**
 	 * Instantiates a new bar data set.
 	 */
@@ -48,4 +50,11 @@ public class BarDataSet extends AbstractBaseDataSet {
 		super(values);
 	}
 
+        public String getLabel() {
+                return label;
+        }
+
+        public void setLabel(final String label) {
+                this.label = label;
+        }
 }
