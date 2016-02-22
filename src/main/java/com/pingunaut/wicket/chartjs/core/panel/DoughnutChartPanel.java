@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package com.pingunaut.wicket.chartjs.core.panel;
 import org.apache.wicket.model.IModel;
 
 import com.pingunaut.wicket.chartjs.core.js.ChartType;
-import com.pingunaut.wicket.chartjs.data.DoughnutChartData;
+import com.pingunaut.wicket.chartjs.data.DoughnutData;
 
 /**
  * The Class DoughnutChartPanel provides a simple implementation of chart.js
@@ -31,7 +31,9 @@ import com.pingunaut.wicket.chartjs.data.DoughnutChartData;
  */
 public class DoughnutChartPanel extends ChartPanel {
 
-   public DoughnutChartPanel(String id, IModel<DoughnutChartData> model) {
+	private static final long serialVersionUID = 1L;
+
+public DoughnutChartPanel(String id, IModel<DoughnutData> model) {
 		super(id, ChartType.DOUGHNUT, model);
 	}
 

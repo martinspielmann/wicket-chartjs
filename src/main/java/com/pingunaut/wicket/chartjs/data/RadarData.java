@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,11 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.data.sets.RadarDataset;
 
 /**
  * The Class RadarData provides chart data used by radar charts.
@@ -26,4 +30,9 @@ public class RadarData extends Data {
 
 	private static final long serialVersionUID = 9057475640743455047L;
 
+	private final List<RadarDataset> datasets = new ArrayList<>();
+
+	public List<RadarDataset> getDatasets() {
+		return datasets;
+	}
 }

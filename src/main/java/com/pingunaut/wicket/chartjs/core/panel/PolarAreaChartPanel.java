@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@ import com.pingunaut.wicket.chartjs.core.js.ChartType;
  * 
  */
 public class PolarAreaChartPanel extends ChartPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	public PolarAreaChartPanel(String id, ChartType type, IModel<? extends Data> model) {
 		super(id, ChartType.POLAR_AREA, model);

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,18 +18,19 @@ package com.pingunaut.wicket.chartjs.data.sets;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.pingunaut.wicket.chartjs.data.LineData;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pingunaut.wicket.chartjs.data.RadarData;
 
 /**
- * The Class LineDataset provides all information needed for
- * {@link LineData}.
+ * The Class RadarDataset provides all information needed for
+ * {@link RadarData}.
  * 
  * @author Martin Spielmann
  */
-@JsonInclude(Include.NON_EMPTY)
-public class LineDataset extends Dataset {
+public class RadarDataset extends Dataset {
+
+	@JsonIgnore
+	private static final long serialVersionUID = -3154092519924576329L;
 
 	private String label;
 
@@ -85,7 +86,7 @@ public class LineDataset extends Dataset {
     private final List<Number> data = new ArrayList<>();
 
     // String - If specified, binds the dataset to a certain y-axis. If not specified, the first y-axis is used.
-    private String yAxisID;
+    private String yAxisID = "y-axis-1";
 
 	public String getLabel() {
 		return label;
@@ -223,5 +224,4 @@ public class LineDataset extends Dataset {
 	public void setyAxisID(String yAxisID) {
 		this.yAxisID = yAxisID;
 	}
-    
 }

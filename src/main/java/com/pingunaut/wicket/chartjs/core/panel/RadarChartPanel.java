@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ package com.pingunaut.wicket.chartjs.core.panel;
 
 import org.apache.wicket.model.IModel;
 
-import com.pingunaut.wicket.chartjs.core.Data;
 import com.pingunaut.wicket.chartjs.core.js.ChartType;
+import com.pingunaut.wicket.chartjs.data.RadarData;
 
 /**
  * The Class RadarChartPanel provides a simple implementation of chart.js radar
@@ -31,7 +31,9 @@ import com.pingunaut.wicket.chartjs.core.js.ChartType;
  */
 public class RadarChartPanel extends ChartPanel {
 
-	public RadarChartPanel(String id, ChartType type, IModel<? extends Data> model) {
+	private static final long serialVersionUID = 1L;
+
+	public RadarChartPanel(String id, ChartType type, IModel<RadarData> model) {
 		super(id, ChartType.RADAR, model);
 	}
 

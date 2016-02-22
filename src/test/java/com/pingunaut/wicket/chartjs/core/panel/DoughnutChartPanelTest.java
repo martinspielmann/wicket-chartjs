@@ -6,13 +6,13 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.WicketTestCase;
 import org.junit.Test;
 
-import com.pingunaut.wicket.chartjs.data.DoughnutChartData;
+import com.pingunaut.wicket.chartjs.data.DoughnutData;
 
 public class DoughnutChartPanelTest extends WicketTestCase{
 
 	@Test
 	public void testDoughnutChartPanelStringIModelOfQextendsDoughnutIntInt() {
-		IModel<DoughnutChartData> model = Model.of(new DoughnutChartData());
+		IModel<DoughnutData> model = Model.of(new DoughnutData());
 		DoughnutChartPanel panel = new DoughnutChartPanel("foo", model);
 		tester.startComponentInPage(panel);
 		tester.assertComponent("foo:chart", WebMarkupContainer.class);
@@ -20,7 +20,7 @@ public class DoughnutChartPanelTest extends WicketTestCase{
 
 	@Test
 	public void testDoughnutChartPanelStringIModelOfQextendsDoughnut() {
-		IModel<DoughnutChartData> model = Model.of(new DoughnutChartData());
+		IModel<DoughnutData> model = Model.of(new DoughnutData());
 		DoughnutChartPanel panel = new DoughnutChartPanel("foo", model);
 		tester.startComponentInPage(panel);
 		tester.assertComponent("foo:chart", WebMarkupContainer.class);	}

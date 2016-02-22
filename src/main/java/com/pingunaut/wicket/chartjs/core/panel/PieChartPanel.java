@@ -31,6 +31,8 @@ import com.pingunaut.wicket.chartjs.core.js.ChartType;
  */
 public class PieChartPanel extends ChartPanel {
 
+	private static final long serialVersionUID = 1L;
+
 	public PieChartPanel(String id, IModel<? extends Data> model) {
 		super(id, ChartType.PIE, model);
 	}

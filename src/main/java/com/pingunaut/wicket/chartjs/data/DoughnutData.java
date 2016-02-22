@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,39 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package com.pingunaut.wicket.chartjs.data.sets;
+package com.pingunaut.wicket.chartjs.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pingunaut.wicket.chartjs.data.RadarData;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.data.sets.DoughnutDataset;
 
 /**
- * The Class RadarDataSet provides all information needed for
- * {@link RadarData}.
+ * The Class DoughnutData provides chart data used by doughnut charts.
  * 
  * @author Martin Spielmann
  */
-public class RadarDataSet extends AbstractPointColorDataSet {
+@JsonInclude(Include.NON_NULL)
+public class DoughnutData extends Data {
 
-	@JsonIgnore
-	private static final long serialVersionUID = -3154092519924576329L;
+	private static final long serialVersionUID = -5122104387810776812L;
 
-	/**
-	 * Instantiates a new radar data set.
-	 */
-	public RadarDataSet() {
-		super();
+	private final List<DoughnutDataset> datasets = new ArrayList<>();
+
+	public List<DoughnutDataset> getDatasets() {
+		return datasets;
 	}
-
-	/**
-	 * Instantiates a new radar data set.
-	 * 
-	 * @param values
-	 *            the values
-	 */
-	public RadarDataSet(List<? extends Number> values) {
-		super(values);
-	}
-
 }
