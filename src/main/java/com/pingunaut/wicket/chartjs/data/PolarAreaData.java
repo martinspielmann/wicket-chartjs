@@ -15,9 +15,14 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.data.sets.PolarAreaDataset;
 
 /**
  * The Class PolarAreaChartData provides chart data used by polar area charts.
@@ -25,21 +30,15 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  * @author Martin Spielmann
  */
 @JsonInclude(Include.NON_NULL)
-public class PolarAreaChartData extends SimpleColorValueChartData {
+public class PolarAreaData extends Data {
 
 	@JsonIgnore
 	private static final long serialVersionUID = -5122104387810776812L;
 
-	/**
-	 * Instantiates a new polar area chart data.
-	 * 
-	 * @param value
-	 *            the value
-	 * @param color
-	 *            the color
-	 */
-	public PolarAreaChartData(Integer value, String color) {
-		super(value, color);
+	private final List<PolarAreaDataset> datasets = new ArrayList<>();
+
+	public List<PolarAreaDataset> getDatasets() {
+		return datasets;
 	}
 
 }

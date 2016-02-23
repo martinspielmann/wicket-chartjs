@@ -33,7 +33,7 @@ public class RadarChartPanel extends ChartPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public RadarChartPanel(String id, ChartType type, IModel<RadarData> model) {
+	public RadarChartPanel(String id, IModel<RadarData> model) {
 		super(id, ChartType.RADAR, model);
 	}
 

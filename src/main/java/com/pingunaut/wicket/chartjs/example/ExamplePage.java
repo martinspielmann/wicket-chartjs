@@ -25,14 +25,20 @@ import com.pingunaut.wicket.chartjs.core.panel.BarChartPanel;
 import com.pingunaut.wicket.chartjs.core.panel.DoughnutChartPanel;
 import com.pingunaut.wicket.chartjs.core.panel.LineChartPanel;
 import com.pingunaut.wicket.chartjs.core.panel.PieChartPanel;
+import com.pingunaut.wicket.chartjs.core.panel.PolarAreaChartPanel;
+import com.pingunaut.wicket.chartjs.core.panel.RadarChartPanel;
 import com.pingunaut.wicket.chartjs.data.BarData;
 import com.pingunaut.wicket.chartjs.data.DoughnutData;
 import com.pingunaut.wicket.chartjs.data.LineData;
 import com.pingunaut.wicket.chartjs.data.PieData;
+import com.pingunaut.wicket.chartjs.data.PolarAreaData;
+import com.pingunaut.wicket.chartjs.data.RadarData;
 import com.pingunaut.wicket.chartjs.data.sets.BarDataset;
 import com.pingunaut.wicket.chartjs.data.sets.DoughnutDataset;
 import com.pingunaut.wicket.chartjs.data.sets.LineDataset;
 import com.pingunaut.wicket.chartjs.data.sets.PieDataset;
+import com.pingunaut.wicket.chartjs.data.sets.PolarAreaDataset;
+import com.pingunaut.wicket.chartjs.data.sets.RadarDataset;
 
 /**
  * The Class ExamplePage provides a tiny little running example of
@@ -67,68 +73,77 @@ public class ExamplePage extends WebPage {
 		values1.add(7d);
 		values1.add(7.56);
 
-		LineData lineData = new LineData();
-		lineData.getLabels().addAll(labels);
-		LineDataset lineDataset = new LineDataset();
-		lineDataset.setLabel("dataset 1");
-		lineDataset.setData(values1);
-		lineData.getDatasets().add(lineDataset);
-		LineChartPanel lineChartPanel = new LineChartPanel("line", Model.of(lineData));
-		add(lineChartPanel);
+		add(createLineChart(labels, values1));
+		add(createPieChart(labels, values1));
+		add(createBarChart(labels, values1));
+		add(createDoughnutChart(labels, values1));
+		add(createRadarChart(labels, values1));
+		add(createPolarAreaChart(labels, values1));
+
+	}
+
+	private DoughnutChartPanel createDoughnutChart(List<String> labels, List<Number> values) {
+		DoughnutData date = new DoughnutData();
+		DoughnutDataset dataset = new DoughnutDataset();
+		dataset.setLabel("dataset 1");
+		dataset.setData(values);
+		date.getDatasets().add(dataset);
+		date.getLabels().addAll(labels);
+		DoughnutChartPanel panel = new DoughnutChartPanel("doughnut", Model.of(date));
+		return panel;
+	}
+
+	private BarChartPanel createBarChart(List<String> labels, List<Number> values) {
+		BarData data = new BarData();
+		BarDataset dataset = new BarDataset();
+		dataset.setLabel("dataset 1");
+		dataset.setData(values);
+		data.getDatasets().add(dataset);
+		data.getLabels().addAll(labels);
+		BarChartPanel panel = new BarChartPanel("bar", Model.of(data));
+		return panel;
+	}
+
+	private PieChartPanel createPieChart(List<String> labels, List<Number> values) {
+		PieData data = new PieData();
+		data.getLabels().addAll(labels);
+		PieDataset dataset = new PieDataset();
+		dataset.setData(values);
+		data.getDatasets().add(dataset);
+		PieChartPanel panel = new PieChartPanel("pie", Model.of(data));
+		return panel;
+	}
+
+	private LineChartPanel createLineChart(List<String> labels, List<Number> values) {
+		LineData data = new LineData();
+		data.getLabels().addAll(labels);
+		LineDataset dataset = new LineDataset();
+		dataset.setLabel("dataset 1");
+		dataset.setData(values);
+		data.getDatasets().add(dataset);
+		LineChartPanel panel = new LineChartPanel("line", Model.of(data));
+		return panel;
+	}
 	
-		PieData pieData = new PieData();
-		pieData.getLabels().addAll(labels);
-		PieDataset pieDataset = new PieDataset();
-		pieDataset.setData(values1);
-		pieData.getDatasets().add(pieDataset);
-		PieChartPanel pieChartPanel = new PieChartPanel("pie", Model.of(pieData));
-		add(pieChartPanel);
-
-		BarData barData = new BarData();
-		BarDataset barDataset = new BarDataset();
-		barDataset.setLabel("dataset 1");
-		barDataset.setData(values1);
-		barData.getDatasets().add(barDataset);
-		barData.getLabels().addAll(labels);
-		BarChartPanel barChartPanel = new BarChartPanel("bar", Model.of(barData));
-		add(barChartPanel);
-		
-		DoughnutData doughnutData = new DoughnutData();
-		DoughnutDataset doughnutDataset = new DoughnutDataset();
-		doughnutDataset.setLabel("dataset 1");
-		doughnutDataset.setData(values1);
-		doughnutData.getDatasets().add(doughnutDataset);
-		doughnutData.getLabels().addAll(labels);
-		DoughnutChartPanel doughnutChartPanel = new DoughnutChartPanel("doughnut", Model.of(doughnutData));
-		add(doughnutChartPanel);
-
-		// lineChartPanel.getChart().getData().getDatasets().add(new
-		// LineDataSet(values1));
-		// lineChartPanel.getChart().getData().getLabels().addAll(labels);
-
-		// lineChartPanel.getChart().getOptions()
-		// .setCustomTooltips("function(tooltip){var tooltipEl =
-		// $('#chartjs-tooltip');"
-		// + "if (!tooltip) {tooltipEl.css({opacity: 0});return;}"
-		// + "tooltipEl.removeClass('above
-		// below');tooltipEl.addClass(tooltip.yAlign);"
-		// + "tooltipEl.html('my custom text: '+tooltip.text);var top;if
-		// (tooltip.yAlign == 'above') {top = tooltip.y - tooltip.caretHeight -
-		// tooltip.caretPadding;"
-		// + "} else {top = tooltip.y + tooltip.caretHeight +
-		// tooltip.caretPadding;}tooltipEl.css({"
-		// + "opacity: 1,left: tooltip.chart.canvas.offsetLeft + tooltip.x +
-		// 'px',top: tooltip.chart.canvas.offsetTop + top + 'px',"
-		// + "fontFamily: tooltip.fontFamily,fontSize:
-		// tooltip.fontSize,fontStyle: tooltip.fontStyle,});}");
-		//
-		// for (Double di : values1) {
-		// int i = di.intValue();
-		//// pieChartPanel.getChart().getData().add(new PieChartData(i, "#" + i
-		// + i + i));
-		//// pieChartWithoutTooltips.getChart().getData().add(new
-		// PieChartData(i, "#" + (i + 3) + i + i, "label for " + di));
-		//// pieChartWithoutTooltips.getChart().getOptions().setShowTooltips(Boolean.FALSE);
-		// }
+	private RadarChartPanel createRadarChart(List<String> labels, List<Number> values) {
+		RadarData data = new RadarData();
+		data.getLabels().addAll(labels);
+		RadarDataset dataset = new RadarDataset();
+		dataset.setLabel("dataset 1");
+		dataset.setData(values);
+		data.getDatasets().add(dataset);
+		RadarChartPanel panel = new RadarChartPanel("radar", Model.of(data));
+		return panel;
+	}
+	
+	private PolarAreaChartPanel createPolarAreaChart(List<String> labels, List<Number> values) {
+		PolarAreaData data = new PolarAreaData();
+		data.getLabels().addAll(labels);
+		PolarAreaDataset dataset = new PolarAreaDataset();
+		dataset.setLabel("dataset 1");
+		dataset.setData(values);
+		data.getDatasets().add(dataset);
+		PolarAreaChartPanel panel = new PolarAreaChartPanel("polarArea", Model.of(data));
+		return panel;
 	}
 }

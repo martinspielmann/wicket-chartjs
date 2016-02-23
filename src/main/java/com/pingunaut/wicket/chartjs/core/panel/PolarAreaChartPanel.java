@@ -17,8 +17,8 @@ package com.pingunaut.wicket.chartjs.core.panel;
 
 import org.apache.wicket.model.IModel;
 
-import com.pingunaut.wicket.chartjs.core.Data;
 import com.pingunaut.wicket.chartjs.core.js.ChartType;
+import com.pingunaut.wicket.chartjs.data.PolarAreaData;
 
 /**
  * The Class PolarAreaChartPanel provides a simple implementation of chart.js
@@ -33,7 +33,7 @@ public class PolarAreaChartPanel extends ChartPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public PolarAreaChartPanel(String id, ChartType type, IModel<? extends Data> model) {
+	public PolarAreaChartPanel(String id,  IModel<PolarAreaData> model) {
 		super(id, ChartType.POLAR_AREA, model);
 	}
 
