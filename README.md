@@ -3,7 +3,7 @@
 it is completely open source and free to use (also in commercial projects). 
 create beautiful charts and graphs in your wicket project. no flash, just html, css and javascript.</p>
 
-[![Build Status](https://pingunaut.com/jenkins/buildStatus/icon?job=wicket-chartjs)](https://pingunaut.com/jenkins/job/wicket-chartjs/)
+[![Build Status](https://pingunaut.com/jenkins/buildStatus/icon?job=wicket-chartjs2)](https://pingunaut.com/jenkins/job/wicket-chartjs2/)
 
 <h2>project homepage</h2>
 [homepage](https://pingunaut.com/wicket-chartjs)
@@ -36,7 +36,7 @@ values1.add(2);
 values1.add(6);
 values1.add(7);
 
-LineChartData<LineDataSet> lineData = new LineChartData<LineDataSet>();
+LineChartData<LineDataSet> lineData = new LineChartData<LineDataset>();
 lineData.getDatasets().add(new LineDataSet(values1));
 
 lineChart.getChart().setData(lineData);
