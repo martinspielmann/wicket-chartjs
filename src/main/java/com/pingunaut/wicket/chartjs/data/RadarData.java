@@ -15,10 +15,7 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.core.LabelledData;
 import com.pingunaut.wicket.chartjs.data.sets.RadarDataset;
 
 /**
@@ -26,13 +23,8 @@ import com.pingunaut.wicket.chartjs.data.sets.RadarDataset;
  * 
  * @author Martin Spielmann
  */
-public class RadarData extends Data {
+public class RadarData extends LabelledData<RadarDataset> {
 
-	private static final long serialVersionUID = 9057475640743455047L;
+	private static final long serialVersionUID = 1L;
 
-	private final List<RadarDataset> datasets = new ArrayList<>();
-
-	public List<RadarDataset> getDatasets() {
-		return datasets;
-	}
 }

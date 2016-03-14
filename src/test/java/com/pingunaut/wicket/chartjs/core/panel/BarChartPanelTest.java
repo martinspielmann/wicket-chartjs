@@ -11,19 +11,12 @@ import com.pingunaut.wicket.chartjs.data.BarData;
 public class BarChartPanelTest extends WicketTestCase{
 
 	@Test
-	public void testBarChartPanelStringIModelOfQextendsBarIntInt() {
+	public void test() {
 		IModel<BarData> model = Model.of(new BarData());
 		BarChartPanel panel = new BarChartPanel("foo", model);
 		tester.startComponentInPage(panel);
-		tester.assertComponent("foo:chart", WebMarkupContainer.class);
+		tester.assertComponent("foo:canvas", WebMarkupContainer.class);
 	}
 
-	@Test
-	public void testBarChartPanelStringIModelOfQextendsBar() {
-		IModel<BarData> model = Model.of(new BarData());
-		BarChartPanel panel = new BarChartPanel("foo", model);
-		tester.startComponentInPage(panel);
-		tester.assertComponent("foo:chart", WebMarkupContainer.class);
-	}
 
 }

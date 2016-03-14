@@ -6,16 +6,15 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.WicketTestCase;
 import org.junit.Test;
 
-import com.pingunaut.wicket.chartjs.data.DoughnutData;
+import com.pingunaut.wicket.chartjs.data.PieData;
 
-public class DoughnutChartPanelTest extends WicketTestCase{
+public class PieChartPanelTest extends WicketTestCase{
 
 	@Test
 	public void test() {
-		IModel<DoughnutData> model = Model.of(new DoughnutData());
-		DoughnutChartPanel panel = new DoughnutChartPanel("foo", model);
+		IModel<PieData> model = Model.of(new PieData());
+		PieChartPanel panel = new PieChartPanel("foo", model);
 		tester.startComponentInPage(panel);
 		tester.assertComponent("foo:canvas", WebMarkupContainer.class);
 	}
-
 }

@@ -15,20 +15,9 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data.sets;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class PolarAreaDataset extends LabelNumberDataset{
+public interface LabelContaining extends Serializable{
 
-	private static final long serialVersionUID = 1L;
-
-    private List<String> backgroundColor;
-
-	public List<String> getBackgroundColor() {
-		return backgroundColor;
-	}
-
-	public void setBackgroundColor(List<String> backgroundColor) {
-		this.backgroundColor = backgroundColor;
-	}
-	
+	String getLabel();
 }

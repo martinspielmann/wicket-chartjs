@@ -15,13 +15,10 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.core.LabelledData;
 import com.pingunaut.wicket.chartjs.data.sets.PolarAreaDataset;
 
 /**
@@ -30,15 +27,9 @@ import com.pingunaut.wicket.chartjs.data.sets.PolarAreaDataset;
  * @author Martin Spielmann
  */
 @JsonInclude(Include.NON_NULL)
-public class PolarAreaData extends Data {
+public class PolarAreaData extends LabelledData<PolarAreaDataset> {
 
 	@JsonIgnore
-	private static final long serialVersionUID = -5122104387810776812L;
-
-	private final List<PolarAreaDataset> datasets = new ArrayList<>();
-
-	public List<PolarAreaDataset> getDatasets() {
-		return datasets;
-	}
+	private static final long serialVersionUID = 1L;
 
 }

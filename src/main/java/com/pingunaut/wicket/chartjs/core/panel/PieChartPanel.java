@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Martin Spielmann
+ * Copyright 2016 Martin Spielmann
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ package com.pingunaut.wicket.chartjs.core.panel;
 
 import org.apache.wicket.model.IModel;
 
-import com.pingunaut.wicket.chartjs.core.Data;
 import com.pingunaut.wicket.chartjs.core.js.ChartType;
+import com.pingunaut.wicket.chartjs.data.PieData;
 
 /**
  * The Class PieChartPanel provides a simple implementation of chart.js pie
@@ -33,7 +33,7 @@ public class PieChartPanel extends ChartPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public PieChartPanel(String id, IModel<? extends Data> model) {
+	public PieChartPanel(String id, IModel<PieData> model) {
 		super(id, ChartType.PIE, model);
 	}
 

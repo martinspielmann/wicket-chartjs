@@ -15,12 +15,9 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.core.LabelledData;
 import com.pingunaut.wicket.chartjs.data.sets.DoughnutDataset;
 
 /**
@@ -29,13 +26,8 @@ import com.pingunaut.wicket.chartjs.data.sets.DoughnutDataset;
  * @author Martin Spielmann
  */
 @JsonInclude(Include.NON_NULL)
-public class DoughnutData extends Data {
+public class DoughnutData extends LabelledData<DoughnutDataset> {
 
-	private static final long serialVersionUID = -5122104387810776812L;
+	private static final long serialVersionUID = 1L;
 
-	private final List<DoughnutDataset> datasets = new ArrayList<>();
-
-	public List<DoughnutDataset> getDatasets() {
-		return datasets;
-	}
 }

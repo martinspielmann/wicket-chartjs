@@ -15,28 +15,20 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.pingunaut.wicket.chartjs.core.Data;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.pingunaut.wicket.chartjs.core.LabelledData;
 import com.pingunaut.wicket.chartjs.data.sets.BarDataset;
 
 /**
  * The Class BarChartData provides chart data used by bar charts.
  * 
- * @param <T>
- *            the generic type of it's dataset
- * 
  * @author Martin Spielmann
  */
-public class BarData extends Data {
+@JsonInclude(Include.NON_NULL)
+public class BarData extends LabelledData<BarDataset> {
 
 	private static final long serialVersionUID = 1L;
 	
-	private final List<BarDataset> datasets = new ArrayList<>();
-
-	public List<BarDataset> getDatasets() {
-		return datasets;
-	}
 
 }

@@ -31,7 +31,7 @@ import com.pingunaut.wicket.chartjs.data.LineData;
  */
 public class LineChartPanel extends ChartPanel {
 
-	private static final long serialVersionUID = -7460695892808795726L;
+	private static final long serialVersionUID = 1L;
 
 
 	/**

@@ -85,8 +85,7 @@ public class ExamplePage extends WebPage {
 	private DoughnutChartPanel createDoughnutChart(List<String> labels, List<Number> values) {
 		DoughnutData date = new DoughnutData();
 		DoughnutDataset dataset = new DoughnutDataset();
-		dataset.setLabel("dataset 1");
-		dataset.setData(values);
+		dataset.addData(values);
 		date.getDatasets().add(dataset);
 		date.getLabels().addAll(labels);
 		DoughnutChartPanel panel = new DoughnutChartPanel("doughnut", Model.of(date));
@@ -97,7 +96,7 @@ public class ExamplePage extends WebPage {
 		BarData data = new BarData();
 		BarDataset dataset = new BarDataset();
 		dataset.setLabel("dataset 1");
-		dataset.setData(values);
+		dataset.addData(values);
 		data.getDatasets().add(dataset);
 		data.getLabels().addAll(labels);
 		BarChartPanel panel = new BarChartPanel("bar", Model.of(data));
@@ -108,7 +107,7 @@ public class ExamplePage extends WebPage {
 		PieData data = new PieData();
 		data.getLabels().addAll(labels);
 		PieDataset dataset = new PieDataset();
-		dataset.setData(values);
+		dataset.addData(values);
 		data.getDatasets().add(dataset);
 		PieChartPanel panel = new PieChartPanel("pie", Model.of(data));
 		return panel;
@@ -119,29 +118,29 @@ public class ExamplePage extends WebPage {
 		data.getLabels().addAll(labels);
 		LineDataset dataset = new LineDataset();
 		dataset.setLabel("dataset 1");
-		dataset.setData(values);
+		dataset.addData(values);
 		data.getDatasets().add(dataset);
 		LineChartPanel panel = new LineChartPanel("line", Model.of(data));
 		return panel;
 	}
-	
+
 	private RadarChartPanel createRadarChart(List<String> labels, List<Number> values) {
 		RadarData data = new RadarData();
 		data.getLabels().addAll(labels);
 		RadarDataset dataset = new RadarDataset();
 		dataset.setLabel("dataset 1");
-		dataset.setData(values);
+		dataset.addData(values);
 		data.getDatasets().add(dataset);
 		RadarChartPanel panel = new RadarChartPanel("radar", Model.of(data));
 		return panel;
 	}
-	
+
 	private PolarAreaChartPanel createPolarAreaChart(List<String> labels, List<Number> values) {
 		PolarAreaData data = new PolarAreaData();
 		data.getLabels().addAll(labels);
 		PolarAreaDataset dataset = new PolarAreaDataset();
 		dataset.setLabel("dataset 1");
-		dataset.setData(values);
+		dataset.addData(values);
 		data.getDatasets().add(dataset);
 		PolarAreaChartPanel panel = new PolarAreaChartPanel("polarArea", Model.of(data));
 		return panel;

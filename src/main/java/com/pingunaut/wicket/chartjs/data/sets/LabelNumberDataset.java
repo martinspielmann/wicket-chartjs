@@ -15,20 +15,44 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data.sets;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class PolarAreaDataset extends LabelNumberDataset{
+/**
+ * Dataset that provides label and number data information
+ * 
+ * @author Martin Spielmann
+ *
+ */
+public class LabelNumberDataset implements NumberDataContaining, LabelContaining {
 
 	private static final long serialVersionUID = 1L;
-
-    private List<String> backgroundColor;
-
-	public List<String> getBackgroundColor() {
-		return backgroundColor;
+	
+	private final List<Number> data = new ArrayList<>();
+	private String label;
+	
+	@Override
+	public List<Number> getData() {
+		return data;
 	}
 
-	public void setBackgroundColor(List<String> backgroundColor) {
-		this.backgroundColor = backgroundColor;
+	public void addData(List<Number> data){
+		this.data.addAll(data);
 	}
+	
+	public void addData(Number... data){
+		this.data.addAll(Arrays.asList(data));
+	}
+
+	@Override
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
 	
 }

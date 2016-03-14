@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright 2016 Martin Spielmann
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 package com.pingunaut.wicket.chartjs.core.panel;
 
 import java.util.Objects;
@@ -15,7 +30,7 @@ import org.apache.wicket.resource.JQueryResourceReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pingunaut.wicket.chartjs.config.GlobalConfigs;
-import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.core.LabelledData;
 import com.pingunaut.wicket.chartjs.core.Options;
 import com.pingunaut.wicket.chartjs.core.js.ChartType;
 
@@ -24,12 +39,12 @@ public abstract class ChartPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	private final WebMarkupContainer canvas = new WebMarkupContainer("canvas");
-	private final IModel<? extends Data> data;
+	private final IModel<? extends LabelledData<?>> data;
 	private final IModel<Options> options;
 	private final ChartType type;
 	private static ObjectMapper mapper = GlobalConfigs.getMapper();
 
-	public ChartPanel(String id, ChartType type, IModel<? extends Data> model, IModel<Options> options) {
+	public ChartPanel(String id, ChartType type, IModel<? extends LabelledData<?>> model, IModel<Options> options) {
 		super(id, model);
 		canvas.setOutputMarkupId(true);
 		add(canvas);
@@ -43,7 +58,7 @@ public abstract class ChartPanel extends Panel {
 		this.type = type;
 	}
 
-	public ChartPanel(String id, ChartType type, IModel<? extends Data> model) {
+	public ChartPanel(String id, ChartType type, IModel<? extends LabelledData<?>> model) {
 		this(id, type, model, new Model<Options>(new Options()));
 	}
 
@@ -79,15 +94,11 @@ public abstract class ChartPanel extends Panel {
 		return canvas;
 	}
 
-	public static ObjectMapper getMapper() {
+	protected static ObjectMapper getMapper() {
 		return mapper;
 	}
 
-	public static void setMapper(ObjectMapper mapper) {
-		ChartPanel.mapper = mapper;
-	}
-
-	public IModel<? extends Data> getData() {
+	public IModel<? extends LabelledData<?>> getData() {
 		return data;
 	}
 

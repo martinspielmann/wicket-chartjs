@@ -15,9 +15,6 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data.sets;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.pingunaut.wicket.chartjs.data.LineData;
@@ -29,71 +26,61 @@ import com.pingunaut.wicket.chartjs.data.LineData;
  * @author Martin Spielmann
  */
 @JsonInclude(Include.NON_EMPTY)
-public class LineDataset extends Dataset {
+public class LineDataset extends LabelNumberDataset {
 
-	private String label;
+	private static final long serialVersionUID = 1L;
 
-    // Boolean - if true fill the area under the line
-	private Boolean fill = false;
+	// Boolean - if true fill the area under the line
+	private Boolean fill;
 
     // String - the color to fill the area under the line with if fill is true
-    private String backgroundColor= "rgba(220,220,220,0.2)";
+    private String backgroundColor;
 
     
     // The properties below allow an array to be specified to change the value of the item at the given index
 
     // String or array - Line color
-    private String borderColor= "rgba(220,220,220,1)";
+    private String borderColor;
 
     // String - cap style of the line. See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap
-    private String borderCapStyle= "butt";
+    private String borderCapStyle;
 
     // Array - Length and spacing of dashes. See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setLineDash
-//    borderDash: [],
+    // TODO: implement
+    // private String borderDash;
 
     // Number - Offset for line dashes. See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineDashOffset
-    private Double borderDashOffset = 0.0;
+    private Double borderDashOffset;
 
     // String - line join style. See https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineJoin
-    private String borderJoinStyle = "miter";
+    private String borderJoinStyle;
 
     // String or array - Point stroke color
-    private String pointBorderColor="rgba(220,220,220,1)";
+    private String pointBorderColor;
 
     // String or array - Point fill color
-    private String pointBackgroundColor= "#fff";
+    private String pointBackgroundColor;
 
     // Number or array - Stroke width of point border
-    private Integer pointBorderWidth= 1;
-
+    private Integer pointBorderWidth;
+    
     // Number or array - Radius of point when hovered
-    private Integer pointHoverRadius= 5;
+    private Integer pointHoverRadius;
 
     // String or array - point background color when hovered
-    private String pointHoverBackgroundColor = "rgba(220,220,220,1)";
+    private String pointHoverBackgroundColor;
 
     // Point border color when hovered
-    private String pointHoverBorderColor = "rgba(220,220,220,1)";
+    private String pointHoverBorderColor;
 
     // Number or array - border width of point when hovered
-    private Integer pointHoverBorderWidth = 2;
+    private Integer pointHoverBorderWidth;
 
     // Tension - bezier curve tension of the line. Set to 0 to draw straight Wlines connecting points
-    private Double tension = 0.1;
-
-    // The actual data
-    private final List<Number> data = new ArrayList<>();
+    private Double tension;
 
     // String - If specified, binds the dataset to a certain y-axis. If not specified, the first y-axis is used.
     private String yAxisID;
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
 
 	public Boolean getFill() {
 		return fill;
@@ -205,15 +192,6 @@ public class LineDataset extends Dataset {
 
 	public void setTension(Double tension) {
 		this.tension = tension;
-	}
-
-	public List<Number> getData() {
-		return data;
-	}
-
-	public void setData(List<Number> data) {
-		this.data.clear();
-		this.data.addAll(data);
 	}
 
 	public String getyAxisID() {

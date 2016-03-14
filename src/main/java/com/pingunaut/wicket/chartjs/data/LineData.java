@@ -15,10 +15,7 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.pingunaut.wicket.chartjs.core.Data;
+import com.pingunaut.wicket.chartjs.core.LabelledData;
 import com.pingunaut.wicket.chartjs.data.sets.LineDataset;
 
 /**
@@ -29,13 +26,8 @@ import com.pingunaut.wicket.chartjs.data.sets.LineDataset;
  * 
  * @author Martin Spielmann
  */
-public class LineData extends Data {
+public class LineData extends LabelledData<LineDataset> {
 
 	private static final long serialVersionUID = 1L;
 
-	private final List<LineDataset> datasets = new ArrayList<>();
-
-	public List<LineDataset> getDatasets() {
-		return datasets;
-	}
 }

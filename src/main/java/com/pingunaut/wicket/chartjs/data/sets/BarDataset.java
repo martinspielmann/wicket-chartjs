@@ -15,9 +15,6 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data.sets;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.pingunaut.wicket.chartjs.data.BarData;
 
 /**
@@ -26,40 +23,29 @@ import com.pingunaut.wicket.chartjs.data.BarData;
  * 
  * @author Martin Spielmann
  */
-public class BarDataset extends Dataset {
+public class BarDataset extends LabelNumberDataset {
 
-	private String label;
+	private static final long serialVersionUID = 1L;
 
-    // String - the color to fill the area under the line with if fill is true
-    private String backgroundColor= "rgba(220,220,220,0.2)";
+	// String - the color to fill the area under the line with if fill is true
+    private String backgroundColor;
 
     // The properties below allow an array to be specified to change the value of the item at the given index
 
     // String or array - Line color
-    private String borderColor= "rgba(220,220,220,1)";
+    private String borderColor;
 
     // Number or array - bar border width
-    private Integer borderWidth = 1;
+    private Integer borderWidth;
 
     // String or array - fill color when hovered
-    private String hoverBackgroundColor = "rgba(220,220,220,0.2)";
+    private String hoverBackgroundColor;
 
     // String or array - border color when hovered
-    private String hoverBorderColor = "rgba(220,220,220,1)";
-
-    // The actual data
-    private final List<Number> data = new ArrayList<>();
+    private String hoverBorderColor;
 
     // String - If specified, binds the dataset to a certain y-axis. If not specified, the first y-axis is used.
     private String yAxisID;
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
 
 	public String getBackgroundColor() {
 		return backgroundColor;
@@ -99,15 +85,6 @@ public class BarDataset extends Dataset {
 
 	public void setHoverBorderColor(String hoverBorderColor) {
 		this.hoverBorderColor = hoverBorderColor;
-	}
-
-	public List<Number> getData() {
-		return data;
-	}
-
-	public void setData(List<Number> data) {
-		this.data.clear();
-		this.data.addAll(data);
 	}
 
 	public String getyAxisID() {
