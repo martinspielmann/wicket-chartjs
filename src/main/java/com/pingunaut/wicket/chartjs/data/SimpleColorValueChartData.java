@@ -15,11 +15,11 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data;
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+import java.io.Serializable;
 
 /**
  * The Class SimpleColorValueChartData is what it's named. it has a color and a

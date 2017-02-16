@@ -15,12 +15,12 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.chart.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.pingunaut.wicket.chartjs.chart.IPolarArea;
 import com.pingunaut.wicket.chartjs.data.PolarAreaChartData;
 import com.pingunaut.wicket.chartjs.options.PolarAreaChartOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Class PolarArea provides a simple implementation of chart.js polar area

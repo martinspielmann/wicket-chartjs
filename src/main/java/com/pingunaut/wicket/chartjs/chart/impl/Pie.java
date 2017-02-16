@@ -15,12 +15,12 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.chart.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.pingunaut.wicket.chartjs.chart.IPie;
 import com.pingunaut.wicket.chartjs.data.PieChartData;
 import com.pingunaut.wicket.chartjs.options.PieChartOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Class Pie provides a simple implementation of chart.js pie chart

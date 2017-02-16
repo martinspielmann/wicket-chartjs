@@ -15,12 +15,12 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.options;
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRawValue;
+
+import java.io.Serializable;
 
 /**
  * The Class AbstractChartOptions provides some basic options, that are

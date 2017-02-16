@@ -15,13 +15,11 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.core.panel;
 
-import org.apache.wicket.model.IModel;
-
 import com.pingunaut.wicket.chartjs.chart.impl.Pie;
 import com.pingunaut.wicket.chartjs.core.LegendGeneratingChartPanel;
-import com.pingunaut.wicket.chartjs.core.SimpleChartPanel;
 import com.pingunaut.wicket.chartjs.data.PieChartData;
 import com.pingunaut.wicket.chartjs.options.PieChartOptions;
+import org.apache.wicket.model.IModel;
 
 /**
  * The Class PieChartPanel provides a simple implementation of chart.js pie

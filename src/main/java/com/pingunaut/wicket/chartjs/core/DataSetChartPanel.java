@@ -15,8 +15,6 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.core;
 
-import org.apache.wicket.model.IModel;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pingunaut.wicket.chartjs.chart.IDataSetChart;
 import com.pingunaut.wicket.chartjs.core.panel.BarChartPanel;
@@ -25,6 +23,7 @@ import com.pingunaut.wicket.chartjs.core.panel.RadarChartPanel;
 import com.pingunaut.wicket.chartjs.data.AbstractChartData;
 import com.pingunaut.wicket.chartjs.data.sets.AbstractBaseDataSet;
 import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
+import org.apache.wicket.model.IModel;
 
 /**
  * The Class DataSetChartPanel is a prototype for

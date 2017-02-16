@@ -15,10 +15,10 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.chart;
 
-import java.io.Serializable;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
+
+import java.io.Serializable;
 
 /**
  * IChart provides chart options and a pojo-json mapper to communicate with
