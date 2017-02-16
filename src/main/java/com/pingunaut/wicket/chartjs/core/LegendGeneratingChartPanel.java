@@ -3,13 +3,12 @@
  */
 package com.pingunaut.wicket.chartjs.core;
 
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
-import org.apache.wicket.model.IModel;
-
 import com.pingunaut.wicket.chartjs.chart.ISimpleChart;
 import com.pingunaut.wicket.chartjs.data.SimpleColorValueChartData;
 import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
+import org.apache.wicket.markup.head.IHeaderResponse;
+import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
+import org.apache.wicket.model.IModel;
 
 /**
  * @author Martin Spielmann

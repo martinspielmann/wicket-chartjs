@@ -15,12 +15,11 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.core.panel;
 
-import org.apache.wicket.model.IModel;
-
 import com.pingunaut.wicket.chartjs.chart.impl.PolarArea;
 import com.pingunaut.wicket.chartjs.core.SimpleChartPanel;
 import com.pingunaut.wicket.chartjs.data.PolarAreaChartData;
 import com.pingunaut.wicket.chartjs.options.PolarAreaChartOptions;
+import org.apache.wicket.model.IModel;
 
 /**
  * The Class PolarAreaChartPanel provides a simple implementation of chart.js

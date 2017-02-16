@@ -15,10 +15,10 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data.sets;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pingunaut.wicket.chartjs.data.LineChartData;
+
+import java.util.List;
 
 /**
  * The Class LineDataSet provides all information needed for

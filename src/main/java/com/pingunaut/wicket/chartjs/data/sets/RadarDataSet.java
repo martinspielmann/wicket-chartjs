@@ -15,10 +15,10 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.data.sets;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pingunaut.wicket.chartjs.data.RadarChartData;
+
+import java.util.List;
 
 /**
  * The Class RadarDataSet provides all information needed for

@@ -15,12 +15,6 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.example;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.model.Model;
-
 import com.pingunaut.wicket.chartjs.chart.impl.Bar;
 import com.pingunaut.wicket.chartjs.chart.impl.Line;
 import com.pingunaut.wicket.chartjs.chart.impl.Pie;
@@ -30,6 +24,11 @@ import com.pingunaut.wicket.chartjs.core.panel.PieChartPanel;
 import com.pingunaut.wicket.chartjs.data.PieChartData;
 import com.pingunaut.wicket.chartjs.data.sets.BarDataSet;
 import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
+import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.model.Model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Class ExamplePage provides a tiny little running example of

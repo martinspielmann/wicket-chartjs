@@ -15,13 +15,12 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.core.panel;
 
-import org.apache.wicket.model.IModel;
-
 import com.pingunaut.wicket.chartjs.chart.impl.Line;
 import com.pingunaut.wicket.chartjs.core.DataSetChartPanel;
 import com.pingunaut.wicket.chartjs.data.LineChartData;
 import com.pingunaut.wicket.chartjs.data.sets.LineDataSet;
 import com.pingunaut.wicket.chartjs.options.LineChartOptions;
+import org.apache.wicket.model.IModel;
 
 /**
  * The Class LineChartPanel provides a simple implementation of chart.js line

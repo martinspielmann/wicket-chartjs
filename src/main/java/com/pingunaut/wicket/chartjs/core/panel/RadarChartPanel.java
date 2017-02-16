@@ -15,13 +15,12 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.core.panel;
 
-import org.apache.wicket.model.IModel;
-
 import com.pingunaut.wicket.chartjs.chart.impl.Radar;
 import com.pingunaut.wicket.chartjs.core.DataSetChartPanel;
 import com.pingunaut.wicket.chartjs.data.RadarChartData;
 import com.pingunaut.wicket.chartjs.data.sets.RadarDataSet;
 import com.pingunaut.wicket.chartjs.options.RadarChartOptions;
+import org.apache.wicket.model.IModel;
 
 /**
  * The Class RadarChartPanel provides a simple implementation of chart.js radar

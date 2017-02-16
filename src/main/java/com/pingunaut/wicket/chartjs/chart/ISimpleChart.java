@@ -15,10 +15,10 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.chart;
 
-import java.util.List;
-
 import com.pingunaut.wicket.chartjs.data.SimpleColorValueChartData;
 import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
+
+import java.util.List;
 
 /**
  * The Interface ISimpleChart provides chart data and options. ISimpleCharts are

@@ -15,8 +15,6 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.core;
 
-import org.apache.wicket.model.IModel;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.pingunaut.wicket.chartjs.chart.ISimpleChart;
 import com.pingunaut.wicket.chartjs.core.panel.DoughnutChartPanel;
@@ -24,6 +22,7 @@ import com.pingunaut.wicket.chartjs.core.panel.PieChartPanel;
 import com.pingunaut.wicket.chartjs.core.panel.PolarAreaChartPanel;
 import com.pingunaut.wicket.chartjs.data.SimpleColorValueChartData;
 import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
+import org.apache.wicket.model.IModel;
 
 /**
  * The Class SimpleChartPanel is a prototype for

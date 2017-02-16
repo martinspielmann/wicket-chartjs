@@ -15,14 +15,13 @@
  ******************************************************************************/
 package com.pingunaut.wicket.chartjs.core;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pingunaut.wicket.chartjs.chart.IChart;
+import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pingunaut.wicket.chartjs.chart.IChart;
-import com.pingunaut.wicket.chartjs.options.AbstractChartOptions;
 
 /**
  * The Class AbstractChartPanel provides the base panel holding the chart
