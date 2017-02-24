@@ -74,8 +74,8 @@ public class LineDataSet extends AbstractPointColorDataSet {
 
 	/**
 	 * Sets the label.
-	 * 
-	 * @param label
+	 *
+	 * @param label the new label
 	 */
 	public void setLabel(String label) {
 		this.label = label;
