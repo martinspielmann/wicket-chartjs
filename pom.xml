@@ -12,7 +12,7 @@
 	<groupId>com.pingunaut</groupId>
 	<artifactId>wicket-chartjs</artifactId>
 	<packaging>jar</packaging>
-	<version>7.0.2-SNAPSHOT</version>
+	<version>8.0.0-SNAPSHOT</version>
 	<name>wicket-chartjs</name>
 	<description>chart.js for wicket projects. simple but nice looking charts with html5/css/js</description>
 
@@ -23,13 +23,13 @@
 	</parent>
 
 	<organization>
-		<name>pingunaut.com</name>
-		<url>http://pingunaut.com</url>
+		<name>martinspielmann.de</name>
+		<url>https://martinspielmann.de</url>
 	</organization>
 
 	<properties>
-		<wicket.version>7.6.0</wicket.version>
-		<jackson.version>2.8.8.1</jackson.version>
+		<wicket.version>8.5.0</wicket.version>
+		<jackson.version>2.9.9</jackson.version>
 	</properties>
 
 	<scm>
@@ -50,7 +50,7 @@
 		<developer>
 			<id>pingunaut</id>
 			<name>Martin Spielmann</name>
-			<email>martin.spielmann@pingunaut.com</email>
+			<email>mail@martinspielmann.de</email>
 		</developer>
 	</developers>
 
