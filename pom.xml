@@ -29,7 +29,7 @@
 
 	<properties>
 		<wicket.version>8.5.0</wicket.version>
-		<jackson.version>2.9.10.1</jackson.version>
+		<jackson.version>2.9.10.3</jackson.version>
 	</properties>
 
 	<scm>
