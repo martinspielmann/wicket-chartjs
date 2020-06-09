@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.WicketTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import de.martinspielmann.wicket.chartjs.chart.impl.Doughnut;
 import de.martinspielmann.wicket.chartjs.panel.DoughnutChartPanel;
 

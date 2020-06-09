@@ -32,6 +32,7 @@
 		<java.version>8</java.version>
 		<wicket.version>9.0.0-M5</wicket.version>
 		<jackson.version>2.11.0</jackson.version>
+		<junit.jupiter.version>5.6.2</junit.jupiter.version>
 
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<!-- <jetty-maven-plugin.version>10.0.0.alpha2</jetty-maven-plugin.version> -->
@@ -82,11 +83,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
