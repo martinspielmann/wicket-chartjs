@@ -16,14 +16,6 @@ public class Clip implements JsonAware {
     this.sidedClip = null;
   }
 
-  /**
-   * Can be number or false if number is null.
-   * 
-   * @param top
-   * @param right
-   * @param bottom
-   * @param left
-   */
   public Clip(Number top, Number right, Number bottom, Number left) {
     this.singleNumber = null;
     SidedClip s = new SidedClip(top, right, bottom, left);

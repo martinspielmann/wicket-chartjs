@@ -179,6 +179,9 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<source>${java.version}</source>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
