@@ -15,7 +15,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This project uses Java version 8 minimum 
+This project uses Java version 11 minimum 
 
 
 ### Installing
