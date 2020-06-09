@@ -1,4 +1,4 @@
-package com.pingunaut.wicket.chartjs.core.panel;
+package de.martinspielmann.wicket.chartjs.core.panel;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.model.IModel;

@@ -36,7 +36,7 @@
 
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<jetty-maven-plugin.version>9.4.29.v20200521</jetty-maven-plugin.version>
-
+		<maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
 		<nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
@@ -80,12 +80,12 @@
 			<version>${jackson.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>${junit.jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.junit.jupiter</groupId> -->
+		<!-- <artifactId>junit-jupiter</artifactId> -->
+		<!-- <version>${junit.jupiter.version}</version> -->
+		<!-- <scope>test</scope> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -195,6 +195,15 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<distributionManagement>
