@@ -1,51 +1,86 @@
-<h1>This project combines Wicket with chart.js</h1>
-<p>this project provides all chart.js charts. 
-it is completely open source and free to use (also in commercial projects). 
-create beautiful charts and graphs in your wicket project. no flash, just html, css and javascript.</p>
+# Wicket Chart.js
 
-<h3>How to use</h3>
+This project combines [Apache Wicket](https://wicket.apache.org) and [Chart.js](https://chartjs.org). 
+It provides all charts from Chart.js within Apache Wicket. 
+It's completely open source and free to use (also in commercial projects).
+Create beautiful charts and graphs in your Wicket project using only Java if you like. Customize every JavaScript and CSS details if you need to.
 
-<ol>
-<li>include maven artifact in your pom</li>
-<li>add a new ChartPanel to your Page</li>
-<pre>
-/*
- * Line Chart
- */
-LineChartPanel lineChart = new LineChartPanel("lineChartPanel", Model.of(new Line()));
-add(lineChart);
-</pre>
+![Java CI with Maven](https://github.com/pingunaut/wicket-chartjs/workflows/Java%20CI%20with%20Maven/badge.svg)
 
-<li>fill in some data</li>
-<pre>
-List<String> labels = new ArrayList<String>();
-labels.add("jan");
-labels.add("feb");
-labels.add("mar");
-labels.add("apr");
 
-List<Integer> values1 = new ArrayList<Integer>();
-values1.add(4);
-values1.add(2);
-values1.add(6);
-values1.add(7);
+## Getting Started
 
-LineChartData<LineDataSet> lineData = new LineChartData<LineDataSet>();
-lineData.getDatasets().add(new LineDataSet(values1));
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-lineChart.getChart().setData(lineData);
-lineData.setLabels(labels);
-</pre>
-<li>add the chart inside your html markup</li>
-<pre>
-&lt;div wicket:id="lineChartPanel"&gt;&lt;/div&gt;
-</pre>
-</ol>
-<h5>That was it :) That's your first Chart in Java with wicket-chartjs</h5>
 
-<h3>Compatibility</h3>
-<ul>
-<li>IE 9 and upwards</li>
-<li>IE 7 and 8 in parts</li>
-<li>others are not a problem ;)</li>
-<ul>
+### Prerequisites
+
+This project uses Java version 8 minimum 
+
+
+### Installing
+
+Include wicket-chartjs in your pom.xml
+
+```
+<dependency>
+  <groupId>de.martinspielmann.wicket</groupId>
+  <artifactId>wicket-chartjs</artifactId>
+  <version>${wicket-chartjs.version}</version>
+</dependency>
+```
+
+### Usage
+
+1. Add your data to a chart model:
+
+```
+LoadableDetachableModel<Bar> model = LoadableDetachableModel.of(() -> {
+  Bar bar = new Bar();
+  bar.getData().getLabels().addAll(Label.of("January", "February", "March", "April", "May", "June", "July"));
+  BarDataset barDataSet = new BarDataset();
+  barDataSet.setLabel("My First dataset");
+  barDataSet.setData(new Data(NumberDataValue.of(0, 10, 5, 2.5, 20, 30, 45)));
+  bar.getData().getDatasets().add(barDataSet);
+  return bar;
+})
+```
+
+2. Create a chart panel:
+
+```
+add(new BarChartPanel("bar", model));
+```
+
+3. Add the panel to your HTML markup:
+
+```
+<div wicket:id="bar"></div>
+```
+
+That was it :) That's your first Chart in Java with wicket-chartjs.
+
+
+
+## Built With
+
+* [Maven](https://maven.apache.org/) - Software project management and comprehension tool
+* [Wicket](https://wicket.apache.org) - Wicket is an open source, component oriented, serverside, Java web application framework
+* [Chart.js](https://chartjs.org/) - Simple yet flexible JavaScript charting for designers & developers
+
+## Contributing
+
+This is stil lwork in progress and not yet feature complete. If you find any problem, don't hesitate to create an issue or PR.
+
+## Versioning
+
+I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+See the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the Apache License - see the [LICENSE](LICENSE) file for details
+

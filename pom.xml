@@ -10,12 +10,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.pingunaut</groupId>
+	<groupId>de.martinspielmann.wicket</groupId>
 	<artifactId>wicket-chartjs</artifactId>
 	<packaging>jar</packaging>
 	<version>8.0.0-SNAPSHOT</version>
 	<name>wicket-chartjs</name>
-	<description>chart.js for wicket projects. simple but nice looking charts with html5/css/js</description>
+	<description>Chart.js for Wicket projects.</description>
 
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -35,11 +35,9 @@
 		<junit.jupiter.version>5.6.2</junit.jupiter.version>
 
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-		<!-- <jetty-maven-plugin.version>10.0.0.alpha2</jetty-maven-plugin.version> -->
 		<jetty-maven-plugin.version>9.4.29.v20200521</jetty-maven-plugin.version>
 
 		<nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
-		<!-- <javax.servlet-api.version>4.0.1</javax.servlet-api.version> -->
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
 		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>

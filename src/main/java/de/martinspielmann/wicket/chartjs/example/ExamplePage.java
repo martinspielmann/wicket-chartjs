@@ -76,8 +76,6 @@ public class ExamplePage extends WebPage {
       lineDataSet.setPointBackgroundColor(pointBackgroundColor);
       lineDataSet.setPointRadius(new IndexableOption<>(List.of(new SimpleNumber(10),
           new SimpleNumber(5), new SimpleNumber(10), new SimpleNumber(15))));
-      // barDataSet.getBackgroundColor().add(new RgbColor(255, 99, 132));
-      // barDataSet.setBorderColor(new RgbColor(255, 99, 132));
       lineDataSet.setData(new Data(NumberDataValue.of(10, 40, 45, 30)));
       mixed.getData().getDatasets().add(lineDataSet);
       BarDataset barDataSet = new BarDataset();
@@ -85,56 +83,10 @@ public class ExamplePage extends WebPage {
       barDataSet.setLabel("Bar Dataset");
       barDataSet.setBackgroundColor(new IndexableOption<>(List.of(new SimpleColor("#00f"),
           new SimpleColor("#06f"), new SimpleColor("#0ff"), new SimpleColor("#dff"))));
-      // barDataSet.setBorderColor(new Color(255, 99, 132));
       barDataSet.setData(new Data(NumberDataValue.of(10, 20, 30, 40)));
       mixed.getData().getDatasets().add(barDataSet);
       return mixed;
     })));
-
-    //
-    // LineChartPanel lineChartPanel = new LineChartPanel("lineChart", Model.of(new Line()));
-    // add(lineChartPanel);
-    // PieChartPanel pieChartPanel = new PieChartPanel("pieChart", Model.of(new Pie()));
-    // add(pieChartPanel);
-    //
-    // PieChartPanel pieChartWithoutTooltips =
-    // new PieChartPanel("pieChartWithoutTooltips", Model.of(new Pie()));
-    // add(pieChartWithoutTooltips);
-    // //
-    //
-    // List<Double> values1 = new ArrayList<>();
-    // values1.add(4d);
-    // values1.add(2d);
-    // values1.add(6.4563d);
-    // values1.add(7d);
-    // values1.add(7.56);
-    //
-    //
-    //
-    // lineChartPanel.getChart().getData().getDatasets().add(new LineDataSet(values1));
-    // lineChartPanel.getChart().getData().setLabels(labels);
-    //
-    // Tooltips t = new Tooltips();
-    // t.setCustom(new JavaScriptReference("function(tooltip){var tooltipEl =
-    // $('#chartjs-tooltip');"
-    // + "if (!tooltip) {tooltipEl.css({opacity: 0});return;}"
-    // + "tooltipEl.removeClass('above below');tooltipEl.addClass(tooltip.yAlign);"
-    // + "tooltipEl.html('my custom text: '+tooltip.text);var top;if (tooltip.yAlign == 'above')
-    // {top = tooltip.y - tooltip.caretHeight - tooltip.caretPadding;"
-    // + "} else {top = tooltip.y + tooltip.caretHeight + tooltip.caretPadding;}tooltipEl.css({"
-    // + "opacity: 1,left: tooltip.chart.canvas.offsetLeft + tooltip.x + 'px',top:
-    // tooltip.chart.canvas.offsetTop + top + 'px',"
-    // + "fontFamily: tooltip.fontFamily,fontSize: tooltip.fontSize,fontStyle:
-    // tooltip.fontStyle,});}"));
-    // lineChartPanel.getChart().getOptions().setTooltips(t);
-    //
-    // for (Double di : values1) {
-    // int i = di.intValue();
-    // pieChartPanel.getChart().getData().add(new PieChartData(i, "#" + i + i + i));
-    // pieChartWithoutTooltips.getChart().getData()
-    // .add(new PieChartData(i, "#" + (i + 3) + i + i, "label for " + di));
-    // pieChartWithoutTooltips.getChart().getOptions().getTooltips().setEnabled(Boolean.FALSE);
-    // }
   }
 
 }
