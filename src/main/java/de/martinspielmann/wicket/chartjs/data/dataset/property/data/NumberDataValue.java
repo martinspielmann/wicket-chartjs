@@ -17,16 +17,16 @@ public class NumberDataValue implements DataValue, JsonNumberAware {
     this.value = number;
   }
 
-  public static List<DataValue> of(List<Number> numbers) {
-    List<DataValue> resultList = new ArrayList<>();
+  public static List<NumberDataValue> of(List<Number> numbers) {
+    List<NumberDataValue> resultList = new ArrayList<>();
     for (Number i : numbers) {
       resultList.add(new NumberDataValue(i));
     }
     return resultList;
   }
 
-  public static List<DataValue> of(Number... numbers) {
-    List<DataValue> resultList = new ArrayList<>();
+  public static List<NumberDataValue> of(Number... numbers) {
+    List<NumberDataValue> resultList = new ArrayList<>();
     for (Number i : numbers) {
       resultList.add(new NumberDataValue(i));
     }

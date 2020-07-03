@@ -22,7 +22,7 @@ import de.martinspielmann.wicket.chartjs.core.internal.IndexableOption;
 import de.martinspielmann.wicket.chartjs.data.dataset.BarDataset;
 import de.martinspielmann.wicket.chartjs.data.dataset.LineDataset;
 import de.martinspielmann.wicket.chartjs.data.dataset.property.ChartType;
-import de.martinspielmann.wicket.chartjs.data.dataset.property.Label;
+import de.martinspielmann.wicket.chartjs.data.dataset.property.TextLabel;
 import de.martinspielmann.wicket.chartjs.data.dataset.property.border.SideSpecificBorderWidth;
 import de.martinspielmann.wicket.chartjs.data.dataset.property.color.Color;
 import de.martinspielmann.wicket.chartjs.data.dataset.property.color.ScriptableColor;
@@ -48,7 +48,7 @@ public class ExamplePage extends WebPage {
     add(new BarChartPanel("bar", LoadableDetachableModel.of(() -> {
       Bar bar = new Bar();
       bar.getData().getLabels()
-          .addAll(Label.of("January", "February", "March", "April", "May", "June", "July"));
+          .addAll(TextLabel.of("January", "February", "March", "April", "May", "June", "July"));
       BarDataset barDataSet = new BarDataset();
       barDataSet.setLabel("My First dataset");
       barDataSet.setBackgroundColor(new IndexableOption<>(new ScriptableColor("function(context) {"
@@ -63,7 +63,7 @@ public class ExamplePage extends WebPage {
 
     add(new MixedChartPanel("mixed", LoadableDetachableModel.of(() -> {
       Mixed mixed = new Mixed();
-      mixed.getData().getLabels().addAll(Label.of("January", "February", "March", "April"));
+      mixed.getData().getLabels().addAll(TextLabel.of("January", "February", "March", "April"));
 
       LineDataset lineDataSet = new LineDataset();
       lineDataSet.setType(ChartType.LINE);

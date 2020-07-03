@@ -7,10 +7,10 @@ public class Data implements JsonAware {
 
   private static final long serialVersionUID = 1L;
 
-  private final List<DataValue> listOfValues;
+  private final List<? extends DataValue> listOfValues;
   private final ObjectDataValue singleObjectDataValue;
 
-  public Data(List<DataValue> listOfValues) {
+  public Data(List<? extends DataValue> listOfValues) {
     super();
     this.listOfValues = listOfValues;
     this.singleObjectDataValue = null;
@@ -22,7 +22,7 @@ public class Data implements JsonAware {
     this.singleObjectDataValue = singleObjectDataValue;
   }
 
-  public List<DataValue> getListOfValues() {
+  public List<? extends DataValue> getListOfValues() {
     return listOfValues;
   }
 

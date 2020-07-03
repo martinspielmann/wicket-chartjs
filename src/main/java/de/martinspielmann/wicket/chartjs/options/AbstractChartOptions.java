@@ -18,6 +18,7 @@ import de.martinspielmann.wicket.chartjs.options.element.Elements;
 import de.martinspielmann.wicket.chartjs.options.legend.Legend;
 import de.martinspielmann.wicket.chartjs.options.properties.Animation;
 import de.martinspielmann.wicket.chartjs.options.properties.Layout;
+import de.martinspielmann.wicket.chartjs.options.properties.Scales;
 import de.martinspielmann.wicket.chartjs.options.properties.Title;
 import de.martinspielmann.wicket.chartjs.options.tooltip.Tooltip;
 
@@ -37,6 +38,7 @@ public abstract class AbstractChartOptions implements Serializable {
   private Title title;
   private Tooltip tooltips;
   private Elements elements;
+  private Scales scales;
 
   public Animation getAnimation() {
     return animation;
@@ -86,4 +88,18 @@ public abstract class AbstractChartOptions implements Serializable {
     this.elements = elements;
   }
 
+  /**
+   * @return the scales
+   */
+  public Scales getScales() {
+    return scales;
+  }
+
+  /**
+   * @param scales the scales to set
+   */
+  public void setScales(Scales scales) {
+    this.scales = scales;
+  }
+  
 }

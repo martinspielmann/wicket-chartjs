@@ -84,8 +84,7 @@ public class ChartBehavior<C extends IChart<D, O, S>, D extends AbstractChartDat
       dataString = c.toJson(c.getData());
       optionString = c.toJson(c.getOptions());
     } catch (JsonProcessingException e) {
-      throw new RuntimeException("foo", e);
-   //   LOG.error("Error generating chartjs configuration", e);
+      LOG.error("Error generating chartjs configuration", e);
     }
     String chartConfig =
         String.format("{ %s 'data': %s, 'options': %s }", typeString, dataString, optionString);

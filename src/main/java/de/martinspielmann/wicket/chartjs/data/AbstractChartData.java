@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import de.martinspielmann.wicket.chartjs.data.dataset.AbstractDataset;
-import de.martinspielmann.wicket.chartjs.data.dataset.property.Label;
+import de.martinspielmann.wicket.chartjs.data.dataset.property.TextLabel;
 
 /**
  * The Class AbstractChartData provides labels and datasets.
@@ -35,28 +35,28 @@ public abstract class AbstractChartData<T extends AbstractDataset> implements Se
   @JsonIgnore
   private static final long serialVersionUID = 1L;
 
-  private final List<Label> labels = new ArrayList<>();
+  private final List<TextLabel> labels = new ArrayList<>();
 
   private final List<T> datasets = new ArrayList<>();
 
   @JsonInclude(value = Include.NON_EMPTY)
   @JsonProperty("xLabels")
-  private final List<Label> xLabels = new ArrayList<>();
+  private final List<TextLabel> xLabels = new ArrayList<>();
 
   @JsonInclude(value = Include.NON_EMPTY)
   @JsonProperty("yLabels")
-  private final List<Label> yLabels = new ArrayList<>();
+  private final List<TextLabel> yLabels = new ArrayList<>();
 
-  public List<Label> getLabels() {
+  public List<TextLabel> getLabels() {
     return labels;
   }
 
 
-  public List<Label> getxLabels() {
+  public List<TextLabel> getxLabels() {
     return xLabels;
   }
 
-  public List<Label> getyLabels() {
+  public List<TextLabel> getyLabels() {
     return yLabels;
   }
 
