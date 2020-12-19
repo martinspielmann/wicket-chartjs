@@ -37,7 +37,7 @@ Include wicket-chartjs in your pom.xml
 ```
 LoadableDetachableModel<Bar> model = LoadableDetachableModel.of(() -> {
   Bar bar = new Bar();
-  bar.getData().getLabels().addAll(Label.of("January", "February", "March", "April", "May", "June", "July"));
+  bar.getData().getLabels().addAll(TextLabel.of("January", "February", "March", "April", "May", "June", "July"));
   BarDataset barDataSet = new BarDataset();
   barDataSet.setLabel("My First dataset");
   barDataSet.setData(new Data(NumberDataValue.of(0, 10, 5, 2.5, 20, 30, 45)));
