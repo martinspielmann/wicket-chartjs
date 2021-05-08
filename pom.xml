@@ -28,7 +28,7 @@
 
 	<properties>
 		<java.version>8</java.version>
-		<wicket.version>9.0.0-M5</wicket.version>
+		<wicket.version>9.0.0</wicket.version>
 		<jackson.version>2.11.0</jackson.version>
 		<junit.jupiter.version>5.6.2</junit.jupiter.version>
 
